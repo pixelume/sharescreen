@@ -3,13 +3,14 @@ module.exports = {
     title: "sharscreen-gatsby-v3",
   },
   plugins: [
+    "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: "",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-google-analytics",
+    //   options: {
+    //     trackingId: "",
+    //   },
+    // },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
@@ -38,5 +39,28 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `http://localhost:1337`,
+        queryLimit: 100, // Default to 100
+        contentTypes: [`user`, `presenter`, `presentation`, `tag`],
+        //If using single types place them in this array.
+        // singleTypes: [`home-page`, `contact`],
+        // Possibility to login with a strapi user, when content types are not publically available (optional).
+        loginData: {
+          identifier: "webdev@pixelume.com",
+          password: "g@tsby",
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /svg/ // See below to configure properly
+        }
+      }
+    }
   ],
 };
