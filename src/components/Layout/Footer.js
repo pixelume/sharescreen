@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 import { ColInSection } from "./Body/ColInSection";
-import { StLogo } from "./Header/Title";
+// import { StLogo } from "./Header/Title";
+import { StaticImage } from 'gatsby-plugin-image';
+
 
 const FooterContainer = styled.footer`
   position: absolute;
@@ -28,7 +30,7 @@ const Li = styled.li`
 `;
 
 const FooterColItem = ({ children }) => (
-  <ColInSection col={4} color="greyBlue" colFlex fontSize="0.9em">
+  <ColInSection col={4} color="textDark1" colFlex fontSize="0.9em">
     {children}
   </ColInSection>
 );
@@ -37,13 +39,14 @@ const Footer = (props) => {
   //Logic
 
   return (
-    <FooterContainer padding="20px 5vw" color="skyBlue">
+    <FooterContainer padding="20px 5vw" color="medium1">
       <FooterColItem>
-        <StLogo
+        <StaticImage width={70} height={70} src="../../images/web_logo.png" alt="Logo"/>
+        {/* <StLogo
           viewBox="0 0 455 243"
           width="100px"
           preserveAspectRatio="xMidYMid meet"
-        />
+        /> */}
         <Ul>
           <Li>Share Screen ©&nbsp;{new Date().getFullYear()}</Li>
           <Li>Developed by WebJam Digital</Li>
@@ -61,7 +64,7 @@ const Footer = (props) => {
       <FooterColItem>
         <h4>LEGAL</h4>
         <Ul>
-          <Li>Privacy Policy</Li>
+          <Li><a href="/privacy">Privacy Policy</a></Li>
           <Li>Terms & Conditions</Li>
           <Li>Cookie Preferences</Li>
         </Ul>

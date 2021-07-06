@@ -41,10 +41,10 @@ const NavLink = styled(Link).attrs({
       padding: 0px 10px;
     }
     &:hover {
-      border-bottom: 5px solid ${({ theme }) => theme.skyBlue};
+      border-bottom: 5px solid ${({ theme }) => theme.medium1};
     }
     &.active {
-      border-bottom: 5px solid ${({ theme }) => theme.fadedGreyBlue};
+      border-bottom: 5px solid ${({ theme }) => theme.dark1};
     }
     /* &:last-child {
       border-right: none;
@@ -53,10 +53,10 @@ const NavLink = styled(Link).attrs({
   /* color: ${({ theme }) => theme.primaryDark}; */
   transition: color 0.3s linear;
   &.active {
-    color: ${({ theme }) => theme.fadedGreyBlue};
+    color: ${({ theme }) => theme.dark1};
   }
   &:hover {
-    color: ${({ theme }) => theme.skyBlue};
+    color: ${({ theme }) => theme.medium1};
     /* text-decoration: underline; */
   }
   @media (max-width: ${({ theme }) => theme.mobileMenu}) {

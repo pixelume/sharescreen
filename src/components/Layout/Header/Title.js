@@ -5,22 +5,26 @@ import styled from "styled-components"
 import { Link } from 'gatsby';
 
 // import {ReactComponent as Logo} from '../../../images/logo_optimised.svg'
-import Logo from '../../../svg/logo_optimised.svg'
+// import Logo from '../../../svg/logo_optimised.svg'
+// import Logo from '../../../images/web_logo.png'
+import { StaticImage } from "gatsby-plugin-image"
+
 
 // SVG Dimensions are 455 by 243
 
 const TitleCont = styled(Link)`
-  display: block;
+  display: flex;
   /* width: 200px; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
   /* margin-left: 20px; */
   cursor: pointer;
+  color: #84986b;
 `
-export const StLogo = styled(Logo)`
-  height: ${({theme}) => theme.headerHeightBig};
-  width: 100px;
-`
+// export const StLogo = styled(Logo)`
+//   height: ${({theme}) => theme.headerHeightBig};
+//   width: 100px;
+// `
 
 const Title = () => {
 
@@ -28,7 +32,9 @@ const Title = () => {
 
   return (
     <TitleCont to="/">
-      <StLogo viewBox="0 0 455 243" width="100px" preserveAspectRatio="xMidYMid meet"/>
+      <StaticImage width={70} height={70} src="../../../images/web_logo.png" alt="ShareScreen Logo"/>
+      <span style={{textAlign: "center"}}><span style={{fontWeight: "bold", marginLeft: 10}}>ShareScreen</span><br/><span>Africa</span></span>
+      {/* <StLogo viewBox="0 0 455 243" width="100px" preserveAspectRatio="xMidYMid meet"/> */}
       {/* <Img fixed={logo} alt={title} title={title}/> */}
       {/* <h1>{title}</h1> */}
     </TitleCont>

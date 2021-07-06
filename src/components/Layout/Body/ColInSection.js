@@ -48,10 +48,10 @@ const ColInSection = styled.div`
         : "44vw"};
     margin: 0px;
     padding: ${(props) => props.paddingDesktop || props.padding || "0px"};
-    &:nth-child(2) {
+    /* &:nth-child(2) {
       border-left: 1px solid lightgrey;
       border-right: 1px solid lightgrey;
-    }
+    } */
   }
   ${(props) =>
     props.maintainAspect
@@ -62,6 +62,7 @@ const ColInSection = styled.div`
           padding-right: 0px;
           @media only screen and (orientation: landscape) {
             padding-bottom: calc(0.5625 * ${(90/props.col-1) || 44}vw);
+            height: 0px;
           }
         `
       : null}

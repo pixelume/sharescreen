@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import {
   Section,
   ColInSection,
-  SubHeading,
+  H3,
   P,
   // Img,
   imgStyle,
@@ -16,8 +16,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 
 const PresentationPage = ({ data }) => {
-  const renderers = {
-    paragraph: ({ children }) => <P margin="1.2em auto">{children}</P>,
+  const components = {
+    p: ({ children }) => <P margin="1.2em auto">{children}</P>,
   };
 
   const pData = data.strapiPresentation;
@@ -35,9 +35,9 @@ const PresentationPage = ({ data }) => {
             background="linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)"
           >
             <ColInSection col={3}>
-              <SubHeading margin="0 auto 1.5em" textAlign="center">
+              <H3 margin="0 auto 1.5em" textAlign="center">
                 Presentation
-              </SubHeading>
+              </H3>
               {pData.Image ? (
                 <GatsbyImage
                   image={presentationPic}
@@ -51,9 +51,9 @@ const PresentationPage = ({ data }) => {
                   alt="Image Placeholder"
                 />
               )}
-              <SubHeading margin="1.5em auto" color="olive">
+              <H3 margin="1.5em auto" color="dark1">
                 {pData.Name}
-              </SubHeading>
+              </H3>
               {pData.presenter ? (
                 <h3>
                   by {pData.presenter.Title ? pData.presenter.Title : null}
@@ -63,11 +63,11 @@ const PresentationPage = ({ data }) => {
               ) : null}
             </ColInSection>
             <ColInSection col={3} display="flex" flexFlow="column">
-              <SubHeading margin="0 auto 1.5em" textAlign="center">
+              <H3 margin="0 auto 1.5em" textAlign="center">
                 Description
-              </SubHeading>
+              </H3>
               <div>
-                <ReactMarkdown renderers={renderers}>
+                <ReactMarkdown components={components}>
                   {pData.Description}
                 </ReactMarkdown>
               </div>
@@ -81,9 +81,9 @@ const PresentationPage = ({ data }) => {
               </Notification> */}
             </ColInSection>
             <ColInSection col={3}>
-              <SubHeading margin="0 auto 1.5em" textAlign="center">
+              <H3 margin="0 auto 1.5em" textAlign="center">
                 Presenter
-              </SubHeading>
+              </H3>
               {pData.presenter ? (
                 <>
                   {/* <Link to={`/presenters/${pData.presenter.id}`}> */}
@@ -100,11 +100,11 @@ const PresentationPage = ({ data }) => {
                         style={imgStyle}
                       />
                     )}
-                    <SubHeading>
+                    <H3>
                       {pData.presenter.Title ? pData.presenter.Title : null}
                       &nbsp;
                       {pData.presenter.fullName}
-                    </SubHeading>
+                    </H3>
                   </Link>
                   <h3>{pData.presenter.Role}</h3>
                   <h3>at {pData.presenter.Organization}</h3>

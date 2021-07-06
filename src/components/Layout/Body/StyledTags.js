@@ -6,7 +6,7 @@ const baseSize = {
 };
 
 const H1 = styled.h1`
-  color: ${({ theme }) => theme.greyBlue};
+  color: ${({ theme }) => theme.textDark1};
   text-align: ${(props) => props.textAlign || "left"};
   font-size: ${baseSize.mobile}em;
   @media only screen and (orientation: landscape) {
@@ -14,8 +14,8 @@ const H1 = styled.h1`
   }
   font-weight: bold;
 `;
-const SubHeading = styled.h3`
-  color: ${({ color, theme }) => theme[color] || color || "olive"};
+const H3 = styled.h3`
+  color: ${({ color, theme }) => theme[color] || color || theme.dark1};
   /* color: slategrey; */
   text-align: ${(props) => props.textAlign || "left"};
   font-size: ${baseSize.mobile / 2.5}em;
@@ -30,7 +30,7 @@ const SubHeading = styled.h3`
 `;
 
 const P = styled.p`
-  color: ${({ color, theme }) => theme[color] || color || theme.greyBlue};
+  color: ${({ color, theme }) => theme[color] || color || theme.textDark1};
   text-align: ${(props) => props.textAlign || "left"};
   margin: ${(props) => props.margin || "auto"};
   ${(props) =>
@@ -60,4 +60,4 @@ const imgStyle = {
   boxShadow: '0px 0px 3px -1px #000000',
 }
 
-export { H1, SubHeading, P, Img, imgStyle };
+export { H1, H3, P, Img, imgStyle };

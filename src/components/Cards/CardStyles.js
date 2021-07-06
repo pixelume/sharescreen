@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import styled, { keyframes, css } from "styled-components";
 import { fadeIn } from "../../styles/animations";
-import hexToRGB from '../../functions/hexToRgba';
 
 export const SCard = styled(Link)`
   display: box;
@@ -60,7 +59,7 @@ export const Tile = styled(Link)`
     width: 100%;
     height: 50%;
     box-sizing: border-box;
-    background-color: ${({theme}) => hexToRGB(theme.greyBlue, 0.8)};
+    background-color: rgba(49, 112, 142, 0.8);
     opacity: 0;
     transition: all 0.2s linear;
     z-index:1;

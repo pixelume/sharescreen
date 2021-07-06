@@ -7,14 +7,14 @@ import { GiVideoConference } from "react-icons/gi";
 import { VscFeedback } from "react-icons/vsc";
 
 const ColoredP = styled.p`
-  color: ${({theme}) => theme.fadedGreyBlue};
+  color: ${({theme}) => theme.dark1};
 `
 
 const IconsWithDescriptions = () => {
   //Logic
-
+  //borderRadius="80% 80% 0px 0px/40%"
   return (
-    <Section padding="100px 0px" alignItems="stretch" backgroundColor="AliceBlue" borderRadius="80% 80% 0px 0px/40%">
+    <Section padding="50px 0px" alignItems="stretch" backgroundColor="mediumLight1">
       <ColInSection
         col={4}
         flexCol

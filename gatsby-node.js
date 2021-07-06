@@ -1,7 +1,8 @@
-const path = require(`path`)
+const path = require(`path`);
+const { createRemoteFileNode } = require("gatsby-source-filesystem")
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
   const result = await graphql(`
     query {
       allStrapiPresentation {
@@ -15,8 +16,8 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
-  result.data.allStrapiPresentation.nodes.forEach(node => {
+  `);
+  result.data.allStrapiPresentation.nodes.forEach((node) => {
     createPage({
       path: node.slug,
       component: path.resolve(`./src/templates/PresentationPage.js`),
@@ -25,9 +26,9 @@ exports.createPages = async ({ graphql, actions }) => {
         // in page queries as GraphQL variables.
         slug: node.slug,
       },
-    })
-  })
-  result.data.allStrapiPresenter.nodes.forEach(node => {
+    });
+  });
+  result.data.allStrapiPresenter.nodes.forEach((node) => {
     createPage({
       path: node.slug,
       component: path.resolve(`./src/templates/PresenterPage.js`),
@@ -36,6 +37,56 @@ exports.createPages = async ({ graphql, actions }) => {
         // in page queries as GraphQL variables.
         slug: node.slug,
       },
-    })
-  })
-}
+    });
+  });
+};
+
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode },
+  store,
+  cache,
+  createNodeId,
+}) => {
+  if (node.internal.type === "StrapiAboutPage") {
+    if (node.Content !== null && node.Content.length) {
+      let contentImages = [];
+      for (let i = 0, len = node.Content.length; i < len; i++) {
+        const block = node.Content[i];
+        const blockImage = {};
+        if (
+          block.strapi_component === "layout.2-column-section" &&
+          block.image !== null //&&
+          // block.images.length
+        ) {
+          const fileNode = await createRemoteFileNode({
+            url: `http://localhost:1337${block.image.url}`, // string that points to the URL of the image
+            parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+            createNode, // helper function in gatsby-node to generate the node
+            createNodeId, // helper function in gatsby-node to generate the node id
+            cache, // Gatsby's cache
+            store, // Gatsby's Redux store
+          });
+          console.log(fileNode)
+          blockImage.image = fileNode ? { localFile___NODE: fileNode.id } : {};
+          // for (let j = 0, len2 = block.images.length; j < len2; j++) {
+          //   let fileNode = await createRemoteFileNode({
+          //     url: `${CMS_URL}${block.images[j].url}`, // string that points to the URL of the image
+          //     parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+          //     createNode, // helper function in gatsby-node to generate the node
+          //     createNodeId, // helper function in gatsby-node to generate the node id
+          //     cache, // Gatsby's cache
+          //     store, // Gatsby's Redux store
+          //   });
+          //   blockImages.images.push(
+          //     fileNode ? { localFile___NODE: fileNode.id } : {}
+          //   );
+          // }
+        }
+        contentImages.push(blockImage);
+      }
+      node.contentImages = contentImages;
+      node.test = ['one', 'two', 'three'];
+    }
+  }
+};

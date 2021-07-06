@@ -13,7 +13,7 @@ const CatNavLink = styled(Link).attrs({
   /* background-color: ${({ active }) =>
     active ? "AliceBlue" : "whitesmoke"}; */
   cursor: pointer;
-  color: ${({ active, theme }) => (active ? theme.fadedGreyBlue : "slategrey")};
+  color: ${({ active, theme }) => (active ? theme.dark1 : "slategrey")};
   font-size: 1.2em;
   z-index: 1;
   transition: all 0.2s ease-out;

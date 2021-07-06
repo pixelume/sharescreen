@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Grommet } from "grommet";
 import { ThemeProvider } from "styled-components";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+} from "@apollo/client";
+import fetch from "cross-fetch";
 import { theme, grommetTheme } from "../styles/Theme";
-import GlobalStyle from "../styles/GlobalStyle";
 import { useStaticQuery, graphql } from "gatsby";
 import "@fontsource/montserrat";
 
 const client = new ApolloClient({
-  uri: "http://localhost:1337/graphql",
+  // uri: "http://localhost:1337/graphql",
   cache: new InMemoryCache(),
+  link: new HttpLink({ uri: "/graphql", fetch }),
 });
 
 export const Context = React.createContext();
@@ -22,6 +28,9 @@ const RootElement = ({ children }) => {
 
   const data = useStaticQuery(graphql`
     query MyQuery {
+      strapiPrivacyPolicy {
+        content
+      }
       allStrapiPresentation(sort: { order: DESC, fields: id }) {
         nodes {
           Description
@@ -79,11 +88,18 @@ const RootElement = ({ children }) => {
           }
         }
       }
+      allStrapiTag(sort: {fields: Title}) {
+        nodes {
+          Title
+        }
+      }
     }
   `);
 
   const presentationsArr = data.allStrapiPresentation.nodes;
   const presentersArr = data.allStrapiPresenter.nodes;
+  const tagsArr = data.allStrapiTag.nodes;
+  const privacyPolicy = data.strapiPrivacyPolicy.content
 
   useEffect(() => {
     if (didMount.current) {
@@ -114,12 +130,13 @@ const RootElement = ({ children }) => {
     setKeywords,
     presentationsArr,
     presentersArr,
+    tagsArr,
+    privacyPolicy
   };
 
   return (
     <Grommet theme={grommetTheme}>
       <ApolloProvider client={client}>
-        <GlobalStyle />
         <Context.Provider value={providerValue}>
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </Context.Provider>

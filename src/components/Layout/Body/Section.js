@@ -35,7 +35,7 @@ const Section = styled.section`
         : null}
     &:first-child {
       min-height: calc(100vh - ${({ theme }) => theme.headerHeightBig});
-      align-items: stretch;
+      /* align-items: stretch; */
     }
   }
   ${({ height }) =>

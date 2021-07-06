@@ -5,7 +5,7 @@ import MainNavContainer from "./MainNavContainer"
 
 export const HeaderCont = styled.header`
   width: 100vw;
-  /* background-color: ${({theme}) => theme.primaryLight2}; */
+  /* background-color: ${({theme}) => theme.mediumLight1}; */
   background-color: ${({theme}) => theme.whitish};
   display: flex;
   justify-content: space-between;

@@ -12,7 +12,7 @@ module.exports = {
     //   },
     // },
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
+    // "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -43,10 +43,10 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: `http://localhost:1337`,
-        queryLimit: 100, // Default to 100
-        contentTypes: [`user`, `presenter`, `presentation`, `tag`],
+        // queryLimit: 100, // Default to 100
+        collectionTypes: [`user`, `presenter`, `presentation`, `tag`],
         //If using single types place them in this array.
-        // singleTypes: [`home-page`, `contact`],
+        singleTypes: [`privacy-policy`, `about-page`, `single-type-test`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).
         loginData: {
           identifier: "webdev@pixelume.com",

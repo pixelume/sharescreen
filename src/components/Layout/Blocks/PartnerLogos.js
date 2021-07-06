@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, ColInSection, SubHeading } from "../";
+import { Section, ColInSection, H3 } from "../";
 // import partnerLogos from "../../../Assets/Images/ngo_logos.png"
 import lcaLogo from '../../../images/partner_logos/lca.png'
 import sanparksLogo from '../../../images/partner_logos/sanparks.png'
@@ -23,11 +23,11 @@ const PartnerLogos = props => {
   ]
 
   return (
-    <Section slanted='4' backgroundColor="aliceblue" padding="0px 0px 40px">
+    <Section slanted='3' backgroundColor="mediumLight1" padding="0px 0px 40px">
         <ColInSection col={1} paddingDesktop="30px 0px">
-          <SubHeading as="h2" textAlign="center" color="greyBlue">
+          <H3 as="h2" textAlign="center" color="textDark1">
             Our Partners
-          </SubHeading>
+          </H3>
         </ColInSection>
         <ColInSection
           col={1}

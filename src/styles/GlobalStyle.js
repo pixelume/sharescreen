@@ -6,9 +6,10 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     width: 100vw;
     box-sizing: border-box;
-    font-family: montserrat -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;;
+    sans-serif;
+    margin: 0px;
   }
   
   ${'' /* h1, h2, h3 {

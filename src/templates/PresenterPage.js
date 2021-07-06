@@ -6,7 +6,7 @@ import Notification from "../styles/Notification";
 import {
   Section,
   ColInSection,
-  SubHeading,
+  H3,
   P,
   imgStyle,
 } from "../components/Layout";
@@ -24,8 +24,8 @@ const SinglePresenter = ({ data }) => {
   // const [error, setError] = useState(false);
   // const [loading, setLoading] = useState(false);
 
-  const renderers = {
-    paragraph: ({ children }) => <P margin="1.2em auto">{children}</P>,
+  const components = {
+    p: ({ children }) => <P margin="1.2em auto">{children}</P>,
   };
 
   // useEffect(() => {
@@ -74,9 +74,9 @@ const SinglePresenter = ({ data }) => {
             background="linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)"
           >
             <ColInSection col={3}>
-              <SubHeading margin="0 auto 1.5em" textAlign="center">
+              <H3 margin="0 auto 1.5em" textAlign="center">
                 Presenter
-              </SubHeading>
+              </H3>
               {pData.ProfilePicture ? (
                 <GatsbyImage image={profilePic} alt={pData.fullName} style={imgStyle} />
               )
@@ -87,25 +87,25 @@ const SinglePresenter = ({ data }) => {
                   alt="Image Placeholder"
                 />
               )}
-              <SubHeading margin="1.5em auto" color="olive">
+              <H3 margin="1.5em auto" color="dark1">
                 {pData.Title ? pData.Title + " " : null}
                 {pData.fullName}
-              </SubHeading>
+              </H3>
               <h3>{pData.Role}</h3>
               <h3>{pData.Organization}</h3>
             </ColInSection>
             <ColInSection col={3}>
-              <SubHeading margin="0 auto 1.5em" textAlign="center">
+              <H3 margin="0 auto 1.5em" textAlign="center">
                 Biography
-              </SubHeading>
-              <ReactMarkdown renderers={renderers}>
+              </H3>
+              <ReactMarkdown components={components}>
                 {pData.Biography}
               </ReactMarkdown>
             </ColInSection>
             <ColInSection col={3} padding="0px">
-              <SubHeading margin="0 auto 1.5em" textAlign="center">
+              <H3 margin="0 auto 1.5em" textAlign="center">
                 Presentations
-              </SubHeading>
+              </H3>
               {getPresentationColData()}
               {/* <ColInSection maintainAspect shadow col={3}>
                 {getPresentationColData()}

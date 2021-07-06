@@ -62,7 +62,7 @@ const CloseBtn = styled(OpenBtn)`
   left: 1em;
   z-index: 17;
   background-color: transparent;
-  color: ${({theme}) => theme.fadedGreyBlue};
+  color: ${({theme}) => theme.dark1};
 `
 
 const SideDrawer = ({children}) => {

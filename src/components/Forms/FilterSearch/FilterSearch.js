@@ -9,7 +9,7 @@ import { Context } from "../../../components/RootElement";
 // import {FilterSearchCtx} from "../../../Pages/Catalogue";
 import { OpenBtn } from "../../Layout/SideDrawer";
 import { IoFunnelOutline } from "react-icons/io5";
-import { SubHeading } from "../../Layout";
+import { H3 } from "../../Layout";
 import { useQuery, gql } from "@apollo/client";
 import LoadAnimation from "../../../styles/LoadAnimation";
 import Notification from '../../../styles/Notification';
@@ -65,7 +65,7 @@ const FlexBox = styled.div`
 const KeywordContainer = styled.div`
   position: relative;
   padding: 0.1em 1.8em 0.1em 0.3em;
-  background-color: ${({theme}) => theme.fadedGreyBlue};
+  background-color: ${({theme}) => theme.dark1};
   border-radius: 10px;
   color: white;
   margin: 0.2em;
@@ -90,7 +90,7 @@ const KeywCloseBtn = styled.button.attrs({type: 'button'})`
 
 const FilterSearch = (props) => {
   // const [keywords, setKeywords] = useState([])
-  const { searchTerm, setSearchTerm, keywords, setKeywords } = useContext(Context);
+  const { searchTerm, setSearchTerm, keywords, setKeywords, tagsArr } = useContext(Context);
   // const { searchTerm, setSearchTerm, keywords, setKeywords } = useContext(FilterSearchCtx);
   const { loading, error, data } = useQuery(GET_TAGS);
 
@@ -120,9 +120,22 @@ const FilterSearch = (props) => {
         <FilterIcon>
           <IoFunnelOutline />
         </FilterIcon>
-        <SubHeading>Fliter by</SubHeading>
+        <H3>Fliter by</H3>
       </FlexBox>
-      {loading && <LoadAnimation />}
+        <form>
+          <FlexBox>
+            <h3 style={{margin: 'auto 1em auto 0'}}>Tags:</h3>
+            <Select
+              options={tagsArr.map(tagObj => tagObj.Title)}
+              onChange={({ option }) => setKeywords(keywords.concat(option))}
+              clear={{position:'bottom'}}
+              value=''
+              // closeOnChange={false}
+            />
+          </FlexBox>
+          <FlexBox wrap="wrap">{keywords? keywords.map((keyw, idx) => <KeywordContainer key={`keyw${idx}`}>{keyw}<KeywCloseBtn onClick={() => removeKeyw(keyw)}>&times;</KeywCloseBtn></KeywordContainer>): null}</FlexBox>
+        </form>
+      {/* {loading && <LoadAnimation />}
       {data && data.tags && (
         <form>
           <FlexBox>
@@ -138,7 +151,7 @@ const FilterSearch = (props) => {
           <FlexBox wrap="wrap">{keywords? keywords.map((keyw, idx) => <KeywordContainer key={`keyw${idx}`}>{keyw}<KeywCloseBtn onClick={() => removeKeyw(keyw)}>&times;</KeywCloseBtn></KeywordContainer>): null}</FlexBox>
         </form>
       )}
-      {error && <Notification color="red"><h3>Error fetching tags list</h3></Notification>}
+      {error && <Notification color="red"><h3>Error fetching tags list</h3></Notification>} */}
     {/* <form>
       <Formfield style={{boxShadow: '0px 0px 3px -1px #000000', borderRadius: '10px'}}>
         <SearchInput
