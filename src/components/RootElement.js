@@ -33,20 +33,20 @@ const RootElement = ({ children }) => {
       }
       allStrapiPresentation(sort: { order: DESC, fields: id }) {
         nodes {
-          Description
-          Duration
-          Language
-          Name
-          Topic
-          VideoPreviewLink
+          description
+          duration
+          language
+          name
+          topic
+          videoLink
           id
           slug
           presenter {
             fullName
             id
-            Title
+            title
           }
-          Image {
+          image {
             localFile {
               childImageSharp {
                 gatsbyImageData(layout: FIXED, width: 350, height: 233)
@@ -60,18 +60,20 @@ const RootElement = ({ children }) => {
       }
       allStrapiPresenter(sort: { order: DESC, fields: id }) {
         nodes {
-          Biography
-          City
-          Email
-          Organization
-          Role
-          Title
+          biography
+          city
+          email
+          role
+          institution
+          title
           fullName
           id
           slug
+          subjectMatter
+          qualifications
           presentations {
-            Name
-            Image {
+            name
+            image {
               localFile {
                 childImageSharp {
                   gatsbyImageData(layout: FIXED, width: 350, height: 233)
@@ -79,7 +81,7 @@ const RootElement = ({ children }) => {
               }
             }
           }
-          ProfilePicture {
+          profilePicture {
             localFile {
               childImageSharp {
                 gatsbyImageData(layout: FIXED, width: 350, height: 350)
@@ -88,6 +90,36 @@ const RootElement = ({ children }) => {
           }
         }
       }
+      # allStrapiPresenter(sort: { order: DESC, fields: id }) {
+      #   nodes {
+      #     Biography
+      #     City
+      #     Email
+      #     Organization
+      #     Role
+      #     Title
+      #     fullName
+      #     id
+      #     slug
+      #     presentations {
+      #       Name
+      #       Image {
+      #         localFile {
+      #           childImageSharp {
+      #             gatsbyImageData(layout: FIXED, width: 350, height: 233)
+      #           }
+      #         }
+      #       }
+      #     }
+      #     ProfilePicture {
+      #       localFile {
+      #         childImageSharp {
+      #           gatsbyImageData(layout: FIXED, width: 350, height: 350)
+      #         }
+      #       }
+      #     }
+      #   }
+      # }
       allStrapiTag(sort: {fields: Title}) {
         nodes {
           Title

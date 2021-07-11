@@ -21,8 +21,8 @@ const PresentationPage = ({ data }) => {
   };
 
   const pData = data.strapiPresentation;
-  const profilePic = getImage(pData.presenter.ProfilePicture.localFile);
-  const presentationPic = getImage(pData.Image.localFile);
+  const profilePic = getImage(pData.presenter.profilePicture.localFile);
+  const presentationPic = getImage(pData.image.localFile);
 
   return (
     <>
@@ -38,10 +38,10 @@ const PresentationPage = ({ data }) => {
               <H3 margin="0 auto 1.5em" textAlign="center">
                 Presentation
               </H3>
-              {pData.Image ? (
+              {pData.image ? (
                 <GatsbyImage
                   image={presentationPic}
-                  alt={pData.Description}
+                  alt={pData.description}
                   style={imgStyle}
                 />
               ) : (
@@ -52,11 +52,11 @@ const PresentationPage = ({ data }) => {
                 />
               )}
               <H3 margin="1.5em auto" color="dark1">
-                {pData.Name}
+                {pData.name}
               </H3>
               {pData.presenter ? (
                 <h3>
-                  by {pData.presenter.Title ? pData.presenter.Title : null}
+                  by {pData.presenter.title ? pData.presenter.title : null}
                   &nbsp;
                   {pData.presenter.fullName}
                 </h3>
@@ -68,7 +68,7 @@ const PresentationPage = ({ data }) => {
               </H3>
               <div>
                 <ReactMarkdown components={components}>
-                  {pData.Description}
+                  {pData.description}
                 </ReactMarkdown>
               </div>
               {/* <div>
@@ -88,7 +88,7 @@ const PresentationPage = ({ data }) => {
                 <>
                   {/* <Link to={`/presenters/${pData.presenter.id}`}> */}
                   <Link to={`/${pData.presenter.slug}`}>
-                    {pData.presenter.ProfilePicture ? (
+                    {pData.presenter.profilePicture ? (
                       <GatsbyImage
                         image={profilePic}
                         alt={pData.presenter.fullName}
@@ -101,13 +101,13 @@ const PresentationPage = ({ data }) => {
                       />
                     )}
                     <H3>
-                      {pData.presenter.Title ? pData.presenter.Title : null}
+                      {pData.presenter.title ? pData.presenter.title : null}
                       &nbsp;
                       {pData.presenter.fullName}
                     </H3>
                   </Link>
-                  <h3>{pData.presenter.Role}</h3>
-                  <h3>at {pData.presenter.Organization}</h3>
+                  <h3>{pData.presenter.role}</h3>
+                  <h3>at {pData.presenter.institution}</h3>
                 </>
               ) : (
                 <Notification borderRadius="10px" color="orange">
@@ -131,20 +131,20 @@ export default PresentationPage;
 export const pageQuery = graphql`
   query($slug: String!) {
     strapiPresentation(slug: { eq: $slug }) {
-      Description
-      Duration
-      Language
-      Name
-      Topic
-      VideoPreviewLink
+      description
+      duration
+      language
+      name
+      topic
+      videoLink
       id
       presenter {
         fullName
-        Title
-        Role
-        Organization
+        title
+        role
+        institution
         slug
-        ProfilePicture {
+        profilePicture {
           localFile {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED)
@@ -152,7 +152,7 @@ export const pageQuery = graphql`
           }
         }
       }
-      Image {
+      image {
         localFile {
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED)

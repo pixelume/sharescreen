@@ -39,7 +39,7 @@ const SinglePresenter = ({ data }) => {
   // }, [cardId]);
 
   const pData = data.strapiPresenter;
-  const profilePic = getImage(pData.ProfilePicture.localFile);
+  const profilePic = getImage(pData.profilePicture.localFile);
   // const presentationPic = getImage(pData.presentations.Image.localFile);
 
   const getPresentationColData = () => {
@@ -77,7 +77,7 @@ const SinglePresenter = ({ data }) => {
               <H3 margin="0 auto 1.5em" textAlign="center">
                 Presenter
               </H3>
-              {pData.ProfilePicture ? (
+              {pData.profilePicture ? (
                 <GatsbyImage image={profilePic} alt={pData.fullName} style={imgStyle} />
               )
               : (
@@ -88,18 +88,18 @@ const SinglePresenter = ({ data }) => {
                 />
               )}
               <H3 margin="1.5em auto" color="dark1">
-                {pData.Title ? pData.Title + " " : null}
+                {pData.title ? pData.title + " " : null}
                 {pData.fullName}
               </H3>
-              <h3>{pData.Role}</h3>
-              <h3>{pData.Organization}</h3>
+              <h3>{pData.role}</h3>
+              <h3>{pData.institution}</h3>
             </ColInSection>
             <ColInSection col={3}>
               <H3 margin="0 auto 1.5em" textAlign="center">
-                Biography
+                biography
               </H3>
               <ReactMarkdown components={components}>
-                {pData.Biography}
+                {pData.biography}
               </ReactMarkdown>
             </ColInSection>
             <ColInSection col={3} padding="0px">
@@ -129,23 +129,23 @@ export default SinglePresenter;
 export const pageQuery = graphql`
   query($slug: String!) {
     strapiPresenter(slug: { eq: $slug }) {
-      ProfilePicture {
+      profilePicture {
         localFile {
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED)
           }
         }
       }
-      Biography
-      Title
+      biography
+      title
       fullName
-      Role
-      Organization
+      role
+      institution
       presentations {
         id
-        Name
+        name
         slug
-        Image {
+        image {
           localFile {
             childImageSharp {
               gatsbyImageData(layout: FIXED, width: 350, height:233)
