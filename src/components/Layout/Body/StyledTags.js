@@ -58,6 +58,7 @@ const imgStyle = {
   width: '100%',
   borderRadius: '15px',
   boxShadow: '0px 0px 3px -1px #000000',
+  minHeight: 233
 }
 
 export { H1, H3, P, Img, imgStyle };

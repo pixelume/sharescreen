@@ -1,6 +1,6 @@
-import React from "react";
-import Notification from "../styles/Notification";
-import { Link } from "gatsby";
+import React from 'react';
+import Notification from '../styles/Notification';
+import { Link } from 'gatsby';
 // import LoadAnimation from "../styles/LoadAnimation";
 import {
   Section,
@@ -9,15 +9,14 @@ import {
   P,
   // Img,
   imgStyle,
-} from "../components/Layout";
-import ReactMarkdown from "react-markdown";
-import Img from "gatsby-image";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { graphql } from "gatsby";
+} from '../components/Layout';
+import ReactMarkdown from 'react-markdown';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import { graphql } from 'gatsby';
 
 const PresentationPage = ({ data }) => {
   const components = {
-    p: ({ children }) => <P margin="1.2em auto">{children}</P>,
+    p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
   };
 
   const pData = data.strapiPresentation;
@@ -29,13 +28,13 @@ const PresentationPage = ({ data }) => {
       {pData && (
         <>
           <Section
-            alignSelf="flex-start"
-            alignItems="flex-start"
+            alignSelf='flex-start'
+            alignItems='flex-start'
             // background="linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(240,248,255,1) 35%, rgba(240,248,255,1) 65%, rgba(255,255,255,1) 65%)"
-            background="linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)"
+            background='linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)'
           >
             <ColInSection col={3}>
-              <H3 margin="0 auto 1.5em" textAlign="center">
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Presentation
               </H3>
               {pData.image ? (
@@ -46,12 +45,12 @@ const PresentationPage = ({ data }) => {
                 />
               ) : (
                 <img
-                  src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
+                  src='http://localhost:1337/uploads/placeholder_e8d28bfc61.png'
                   style={imgStyle}
-                  alt="Image Placeholder"
+                  alt='Image Placeholder'
                 />
               )}
-              <H3 margin="1.5em auto" color="dark1">
+              <H3 margin='1.5em auto' color='dark1'>
                 {pData.name}
               </H3>
               {pData.presenter ? (
@@ -62,8 +61,8 @@ const PresentationPage = ({ data }) => {
                 </h3>
               ) : null}
             </ColInSection>
-            <ColInSection col={3} display="flex" flexFlow="column">
-              <H3 margin="0 auto 1.5em" textAlign="center">
+            <ColInSection col={3} display='flex' flexFlow='column'>
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Description
               </H3>
               <div>
@@ -81,7 +80,7 @@ const PresentationPage = ({ data }) => {
               </Notification> */}
             </ColInSection>
             <ColInSection col={3}>
-              <H3 margin="0 auto 1.5em" textAlign="center">
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Presenter
               </H3>
               {pData.presenter ? (
@@ -95,9 +94,11 @@ const PresentationPage = ({ data }) => {
                         style={imgStyle}
                       />
                     ) : (
-                      <img
-                        src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
-                        style={imgStyle}
+                      <StaticImage
+                        src='../images/placeholder_image.png'
+                        layout='fixed'
+                        width={350}
+                        height={233}
                       />
                     )}
                     <H3>
@@ -110,7 +111,7 @@ const PresentationPage = ({ data }) => {
                   <h3>at {pData.presenter.institution}</h3>
                 </>
               ) : (
-                <Notification borderRadius="10px" color="orange">
+                <Notification borderRadius='10px' color='orange'>
                   <h4>
                     This presentation has not been linked to a presenter yet
                   </h4>
@@ -129,7 +130,7 @@ const PresentationPage = ({ data }) => {
 export default PresentationPage;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     strapiPresentation(slug: { eq: $slug }) {
       description
       duration

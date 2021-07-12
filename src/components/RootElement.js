@@ -49,7 +49,7 @@ const RootElement = ({ children }) => {
           image {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 350, height: 233)
+                gatsbyImageData(layout: CONSTRAINED, width: 350)
               }
             }
           }
@@ -67,6 +67,7 @@ const RootElement = ({ children }) => {
           institution
           title
           fullName
+          surname
           id
           slug
           subjectMatter
@@ -76,7 +77,7 @@ const RootElement = ({ children }) => {
             image {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(layout: FIXED, width: 350, height: 233)
+                  gatsbyImageData(layout: CONSTRAINED, width: 350)
                 }
               }
             }
@@ -84,7 +85,7 @@ const RootElement = ({ children }) => {
           profilePicture {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 350, height: 350)
+                gatsbyImageData(layout: CONSTRAINED, width: 350)
               }
             }
           }

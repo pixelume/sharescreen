@@ -1,21 +1,14 @@
-import React from "react";
-import Notification from "../styles/Notification";
+import React from 'react';
+import Notification from '../styles/Notification';
 // import { withRouter } from "react-router-dom";
 // import LoadAnimation from "../styles/LoadAnimation";
 // import getData from "../functions/getData";
-import {
-  Section,
-  ColInSection,
-  H3,
-  P,
-  imgStyle,
-} from "../components/Layout";
+import { Section, ColInSection, H3, P, imgStyle } from '../components/Layout';
 // import ReactPlayer from "react-player";
-import Cards from "../components/Cards/Cards";
-import ReactMarkdown from "react-markdown";
-import Img from "gatsby-image";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { graphql } from "gatsby";
+import Cards from '../components/Cards/Cards';
+import ReactMarkdown from 'react-markdown';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import { graphql } from 'gatsby';
 
 const SinglePresenter = ({ data }) => {
   // const cardId = JSON.parse(props.match.params.id);
@@ -25,7 +18,7 @@ const SinglePresenter = ({ data }) => {
   // const [loading, setLoading] = useState(false);
 
   const components = {
-    p: ({ children }) => <P margin="1.2em auto">{children}</P>,
+    p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
   };
 
   // useEffect(() => {
@@ -48,7 +41,7 @@ const SinglePresenter = ({ data }) => {
       if (presentationsArr && presentationsArr.length > 0) {
         return (
           <Cards
-            cardMargin="auto"
+            cardMargin='auto'
             withoutContainer
             presentationsArr={presentationsArr}
             fullName={pData.fullName}
@@ -56,7 +49,7 @@ const SinglePresenter = ({ data }) => {
         );
       } else {
         return (
-          <Notification color="blue">
+          <Notification color='blue'>
             <h2>No Presentations Yet</h2>
           </Notification>
         );
@@ -69,41 +62,45 @@ const SinglePresenter = ({ data }) => {
       {pData && (
         <>
           <Section
-            alignSelf="flex-start"
-            alignItems="flex-start"
-            background="linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)"
+            alignSelf='flex-start'
+            alignItems='flex-start'
+            background='linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)'
           >
             <ColInSection col={3}>
-              <H3 margin="0 auto 1.5em" textAlign="center">
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Presenter
               </H3>
               {pData.profilePicture ? (
-                <GatsbyImage image={profilePic} alt={pData.fullName} style={imgStyle} />
-              )
-              : (
-                <img
+                <GatsbyImage
+                  image={profilePic}
+                  alt={pData.fullName}
                   style={imgStyle}
-                  src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
-                  alt="Image Placeholder"
+                />
+              ) : (
+                <StaticImage
+                  src='../images/placeholder_image.png'
+                  layout='fixed'
+                  width={350}
+                  height={233}
                 />
               )}
-              <H3 margin="1.5em auto" color="dark1">
-                {pData.title ? pData.title + " " : null}
+              <H3 margin='1.5em auto' color='dark1'>
+                {pData.title ? pData.title + ' ' : null}
                 {pData.fullName}
               </H3>
               <h3>{pData.role}</h3>
               <h3>{pData.institution}</h3>
             </ColInSection>
             <ColInSection col={3}>
-              <H3 margin="0 auto 1.5em" textAlign="center">
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 biography
               </H3>
               <ReactMarkdown components={components}>
                 {pData.biography}
               </ReactMarkdown>
             </ColInSection>
-            <ColInSection col={3} padding="0px">
-              <H3 margin="0 auto 1.5em" textAlign="center">
+            <ColInSection col={3} padding='0px'>
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Presentations
               </H3>
               {getPresentationColData()}
@@ -127,7 +124,7 @@ const SinglePresenter = ({ data }) => {
 export default SinglePresenter;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     strapiPresenter(slug: { eq: $slug }) {
       profilePicture {
         localFile {
@@ -148,7 +145,7 @@ export const pageQuery = graphql`
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData(layout: FIXED, width: 350, height:233)
+              gatsbyImageData(layout: FIXED, width: 350, height: 233)
             }
           }
         }
