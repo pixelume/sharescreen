@@ -48,6 +48,11 @@ const P = styled.p`
   }
 `;
 
+const SmallHeading = styled.span`
+  color: ${({ color, theme }) => theme[color] || color || theme.mediumDark1};
+  font-weight: bold;
+`
+
 const Img = styled.img`
   width: 100%;
   border-radius: 15px;
@@ -61,4 +66,4 @@ const imgStyle = {
   minHeight: 233
 }
 
-export { H1, H3, P, Img, imgStyle };
+export { H1, H3, P, Img, imgStyle, SmallHeading };

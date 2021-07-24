@@ -26,7 +26,7 @@ const Cards = ({
             height='350px'
           >
             {card.profilePicture ? (
-              <GatsbyImage image={getImage(card.profilePicture.localFile)}/>
+              <GatsbyImage image={getImage(card.profilePicture.localFile)} alt={card.fullName}/>
             ) : (
               <img
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -64,7 +64,7 @@ const Cards = ({
                 height='233px'
               >
               {card.image ? (
-                <GatsbyImage image={getImage(card.image.localFile)} />
+                <GatsbyImage image={getImage(card.image.localFile)} alt={card.name}/>
             ) : (
               <img
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}

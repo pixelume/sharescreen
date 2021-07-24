@@ -9,7 +9,11 @@ import {
 import { MdClear } from "react-icons/md";
 import {HiOutlineMail} from "react-icons/hi";
 import {RiKey2Line} from "react-icons/ri";
+import styled from 'styled-components';
 
+const InputLogin = styled(Input)`
+  padding-left: 2.5em;
+`
 
 const LoginFormContent = ({
   inputHandler,
@@ -19,7 +23,7 @@ const LoginFormContent = ({
   return (
   <>
     <Formfield>
-      <Input
+      <InputLogin
         placeholder="Email"
         id="email"
         type="email"
@@ -36,7 +40,7 @@ const LoginFormContent = ({
       )}
     </Formfield>
     <Formfield>
-      <Input
+      <InputLogin
         placeholder="Password"
         id="password"
         type="password"

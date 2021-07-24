@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ColInSection } from "./Body/ColInSection";
 // import { StLogo } from "./Header/Title";
 import { StaticImage } from 'gatsby-plugin-image';
-
+import { Link } from 'gatsby';
 
 const FooterContainer = styled.footer`
   position: absolute;
@@ -64,7 +64,7 @@ const Footer = (props) => {
       <FooterColItem>
         <h4>LEGAL</h4>
         <Ul>
-          <Li><a href="/privacy">Privacy Policy</a></Li>
+          <Li><Link to="/privacy">Privacy Policy</Link></Li>
           <Li>Terms & Conditions</Li>
           <Li>Cookie Preferences</Li>
         </Ul>

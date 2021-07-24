@@ -25,7 +25,8 @@ const navData = [
   },
   {
     text: 'Catalogue',
-    link: '/catalogue/presentations',
+    link: '/catalogue',
+    // link: '/catalogue/presentations',
     show: 'both',
     role: 'Any',
     icon: <VscLibrary />,
@@ -63,6 +64,13 @@ const navData = [
     show: 'loggedOut',
     role: 'Any',
     icon: <AiOutlineUserAdd />,
+  },
+  {
+    text: 'Admin',
+    link: '/admin/presenterRegistration',
+    show: 'loggedIn',
+    role: 'SSA-Admin',
+    icon: <IoCreateOutline />,
   },
 ];
 

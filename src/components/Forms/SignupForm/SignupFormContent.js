@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 import { Button } from '../../../styles/Buttons';
 import {
   Formfield,
@@ -12,6 +13,9 @@ import {HiOutlineMail} from "react-icons/hi";
 import {RiKey2Line} from "react-icons/ri";
 // import {IoPeopleOutline} from "react-icons/io5";
 
+const InputSignup = styled(Input)`
+  padding-left: 2.5em;
+`
 
 const LoginFormContent = ({
   inputHandler,
@@ -22,7 +26,7 @@ const LoginFormContent = ({
   return (
   <>
     <Formfield>
-      <Input
+      <InputSignup
         placeholder="Email"
         id="email"
         name="email"
@@ -40,7 +44,7 @@ const LoginFormContent = ({
       )}
     </Formfield>
     <Formfield>
-      <Input
+      <InputSignup
         placeholder="Password"
         id="password"
         name="password"
@@ -55,7 +59,7 @@ const LoginFormContent = ({
       )}
     </Formfield>
     <Formfield>
-      <Input
+      <InputSignup
         placeholder="Verify Password"
         id="passwordVer"
         name="passwordVer"

@@ -33,10 +33,6 @@ const Section = styled.section`
             background: ${props.background};
           `
         : null}
-    &:first-child {
-      min-height: calc(100vh - ${({ theme }) => theme.headerHeightBig});
-      /* align-items: stretch; */
-    }
   }
   ${({ height }) =>
     height

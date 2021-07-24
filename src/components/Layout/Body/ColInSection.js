@@ -55,7 +55,7 @@ const ColInSection = styled.div`
   }
   ${(props) =>
     props.maintainAspect
-      ? `
+      ? css`
           position: relative;
           padding-bottom: 56.25%;
           padding-left: 0px;
@@ -66,6 +66,10 @@ const ColInSection = styled.div`
           }
         `
       : null}
+  & a, a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export { ColInSection };

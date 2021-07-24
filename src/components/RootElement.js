@@ -20,7 +20,7 @@ const client = new ApolloClient({
 
 export const Context = React.createContext();
 
-const RootElement = ({ children }) => {
+const RootElement = ({ children, location }) => {
   const [user, setUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [keywords, setKeywords] = useState([]);
@@ -41,10 +41,12 @@ const RootElement = ({ children }) => {
           videoLink
           id
           slug
+          tags
           presenter {
             fullName
             id
             title
+            slug
           }
           image {
             localFile {
@@ -52,9 +54,6 @@ const RootElement = ({ children }) => {
                 gatsbyImageData(layout: CONSTRAINED, width: 350)
               }
             }
-          }
-          tags {
-            Title
           }
         }
       }
@@ -74,6 +73,7 @@ const RootElement = ({ children }) => {
           qualifications
           presentations {
             name
+            slug
             image {
               localFile {
                 childImageSharp {
@@ -91,47 +91,17 @@ const RootElement = ({ children }) => {
           }
         }
       }
-      # allStrapiPresenter(sort: { order: DESC, fields: id }) {
+      # allStrapiTag(sort: {fields: Title}) {
       #   nodes {
-      #     Biography
-      #     City
-      #     Email
-      #     Organization
-      #     Role
       #     Title
-      #     fullName
-      #     id
-      #     slug
-      #     presentations {
-      #       Name
-      #       Image {
-      #         localFile {
-      #           childImageSharp {
-      #             gatsbyImageData(layout: FIXED, width: 350, height: 233)
-      #           }
-      #         }
-      #       }
-      #     }
-      #     ProfilePicture {
-      #       localFile {
-      #         childImageSharp {
-      #           gatsbyImageData(layout: FIXED, width: 350, height: 350)
-      #         }
-      #       }
-      #     }
       #   }
       # }
-      allStrapiTag(sort: {fields: Title}) {
-        nodes {
-          Title
-        }
-      }
     }
   `);
 
   const presentationsArr = data.allStrapiPresentation.nodes;
   const presentersArr = data.allStrapiPresenter.nodes;
-  const tagsArr = data.allStrapiTag.nodes;
+  // const tagsArr = data.allStrapiTag.nodes;
   const privacyPolicy = data.strapiPrivacyPolicy.content
 
   useEffect(() => {
@@ -163,7 +133,7 @@ const RootElement = ({ children }) => {
     setKeywords,
     presentationsArr,
     presentersArr,
-    tagsArr,
+    // tagsArr,
     privacyPolicy
   };
 

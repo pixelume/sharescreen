@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Section, ColInSection } from '../components/Layout';
-import PresentersTable from '../components/presentersTable';
+import PresentationsTable from '../components/presentationsTable';
 // import styled from 'styled-components';
 import {
   Input,
@@ -9,9 +9,9 @@ import {
 } from '../components/Forms/FormStyles';
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import useSortByPresenter from '../hooks/useSortByPresenter';
-import useSearchPresenter from '../hooks/useSearchPresenter';
+import useSortByPresentation from '../hooks/useSortbyPresenter';
 import { Context } from '../components/RootElement';
+import useSearchPresentation from '../hooks/useSearchPresentation';
 
 const SubHeader = styled.div`
   width: 100vw;
@@ -28,18 +28,18 @@ const SearchInput = styled(Input)`
 `;
 
 const headings = [
-  'Presenter',
-  'Qualifications',
-  'Current Institution',
-  'Role',
-  'Subject Matter',
-  'Presentations',
+  'Presentation', // Image
+  //Name, By, Topic & Duration
+  'Description',
+  // 'Main Topic',
+  'Tags',
+  // 'Presenter',
 ];
 
-const PresentersPage = () => {
-  const { presentersArr } = useContext(Context);
-  const [searchString, setSearchString, filteredArray] = useSearchPresenter(presentersArr);
-  const [sortBy, setSortBy, sortedArray] = useSortByPresenter(
+const CataloguePage = () => {
+  const { presentationsArr } = useContext(Context);
+  const [searchString, setSearchString, filteredArray] = useSearchPresentation(presentationsArr);
+  const [sortBy, setSortBy, sortedArray] = useSortByPresentation(
     filteredArray,
     headings
   );
@@ -59,7 +59,7 @@ const PresentersPage = () => {
           <SearchInput
             id={'search'}
             type='text'
-            placeholder='Search ( Name, Institution or Subject Matter)'
+            placeholder='Search ( Name, Tags or Description )'
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
           />
@@ -68,11 +68,11 @@ const PresentersPage = () => {
       </SubHeader>
       <Section>
         <ColInSection col={1} textAlign='center'>
-          <PresentersTable {...{ sortedArray, headings, sortClickHandler }} />
+          <PresentationsTable {...{ sortedArray, headings, sortClickHandler }} />
         </ColInSection>
       </Section>
     </>
   );
 };
 
-export default PresentersPage;
+export default CataloguePage;

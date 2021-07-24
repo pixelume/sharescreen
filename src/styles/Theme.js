@@ -7,6 +7,7 @@ export const theme = {
   mediumDark1: '#8c9c09',
   medium1: '#8db4c6',
   mediumLight1: '#e2e6e4',
+  light1: '#b3d6ff',
   radialGradientLight: "radial-gradient(circle, white 33%, rgba(139, 156, 9, 0.05) 66%)", //#8c9c09
   whitish: '#F7F9FB',
   orange: {
@@ -40,6 +41,16 @@ export const grommetTheme = {
     colors: {
       brand: '#5085A5',
       focus: 'transparent'
+    }
+  },
+  select: {
+    background: 'white',
+    step: 5,
+    control: {
+      extend: {
+        width: '100%',
+        height: '100%'
+      }
     }
   }
 }

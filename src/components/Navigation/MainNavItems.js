@@ -21,19 +21,19 @@ const NavLink = styled(Link).attrs({
   @media (min-width: ${({ theme }) => theme.mobileMenu}) {
     /* border-right: 1px solid lightgrey; */
     ${({highlite}) => highlite? css`
-      /* background-color: teal; */
-      &::before {
+      background-color: lightcoral;
+      color: white;
+      ${'' /* &::before {
         content: "";
         position: absolute;
         left: 2%;
         top: calc(0.25 * ${({theme}) => theme.headerHeightBig} - 5px);
         width: 96%;
         height: calc(0.5 * ${({theme}) => theme.headerHeightBig});
-        background-color: teal;
+        background-color: lightcoral;
         border-radius: 10px;
         z-index: -10;
-        animation: ${blink} 1.33s ease-out infinite;
-      }
+      } */}
     `
       : null}
     &:hover, &.active {
@@ -70,18 +70,6 @@ const NavLink = styled(Link).attrs({
   }
 `
 
-const blink = keyframes`
-  0% {
-    opacity: 1;
-  }
-  20% {
-    opacity: .5;
-  }
-  100% {
-    opacity: 1;
-  }
-`
-
 const MainNavItems = ({setNavOpen, navOpen, navData}) => {
   const { user, setUser } = useContext(Context);
 
@@ -109,7 +97,8 @@ const MainNavItems = ({setNavOpen, navOpen, navData}) => {
         return (
           <NavLink 
             key={idx}
-            to={navItem.link} 
+            to={navItem.link}
+            highlite={navItem.text === 'Admin'} 
             exact
             onClick={() => {
               if (navOpen) {

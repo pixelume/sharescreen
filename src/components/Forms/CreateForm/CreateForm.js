@@ -70,24 +70,6 @@ const CreateForm = () => {
       setPostError(error.response.data.message);
       setFormStatus("unSent");
     }
-
-    // axios({
-    //   method: "post",
-    //   url: "http://localhost:1337/posts",
-    //   data: formData,
-    //   headers: { "Content-Type": "multipart/form-data" },
-    // })
-    //   .then((res) => {
-    //     console.log(res)
-    //     setFormStatus("sent")
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setPostError(err);
-    //     console.log(postErr);
-    //   });
-    // setTimeout(() => setFormStatus("sent"), 3000);
-    // setFData(initialFData);
   };
 
   useEffect(() => {

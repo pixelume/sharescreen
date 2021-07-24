@@ -1,7 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Header from "./Header/Header";
-import { Footer } from "./Footer";
+import React, { useEffect, useContext } from 'react';
+import styled from 'styled-components';
+import Header from './Header/Header';
+import { Footer } from './Footer';
+import { Context } from '../RootElement';
+import { navigate } from 'gatsby';
 
 const MainContainer = styled.div`
   display: flex;
@@ -14,10 +16,20 @@ const MainContainer = styled.div`
   font-family: montserrat;
 `;
 
-const Layout = ({ children }) => {
-  //Logic
+const Layout = ({ children, location }) => {
+  const { pathname } = location;
+  const {user} = useContext(Context)
+  const didMount = React.useRef(false);
 
-  return (
+  // useEffect(() => {
+  //   if (!user || (user && user.user.role.name !== 'SSA-Admin')) {
+  //     if (pathname !== '/login') {
+  //       navigate('/coming-soon')
+  //     }
+  //   }
+  // }, [user, pathname])
+
+  return pathname !== '/coming-soon' ? (
     <>
       <MainContainer>
         {children}
@@ -25,7 +37,7 @@ const Layout = ({ children }) => {
       </MainContainer>
       <Header />
     </>
-  );
+  ) : children;
 };
 
 export default Layout;

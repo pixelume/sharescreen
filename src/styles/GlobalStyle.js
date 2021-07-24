@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,10 +12,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0px;
   }
   
-  ${'' /* h1, h2, h3 {
+  ${
+    '' /* h1, h2, h3 {
     text-align: center;
-  } */}
-  a {
+  } */
+  }
+  a, a:visited {
     text-decoration: none;
   }
   
@@ -26,6 +28,22 @@ const GlobalStyle = createGlobalStyle`
   li {
     margin-bottom: 0.5em;
   }
+
+  select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    &:required:invalid {
+      color: grey;
+    }
+}
 `;
 
 // body::before {
