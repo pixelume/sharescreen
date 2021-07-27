@@ -42,11 +42,16 @@ const P = styled.p`
           line-height: 1.7em;
         `}
   @media only screen and (orientation: landscape) {
-    padding-left: 15px;
-    padding-right: 15px;
+    /* padding-left: 15px;
+    padding-right: 15px; */
     box-sizing: border-box;
   }
 `;
+
+const SmallHeading = styled.span`
+  color: ${({ color, theme }) => theme[color] || color || theme.mediumDark1};
+  font-weight: bold;
+`
 
 const Img = styled.img`
   width: 100%;
@@ -58,6 +63,9 @@ const imgStyle = {
   width: '100%',
   borderRadius: '15px',
   boxShadow: '0px 0px 3px -1px #000000',
+  minHeight: 233,
+  PointerEvent: 'none',
+  cursor: 'pointer'
 }
 
-export { H1, H3, P, Img, imgStyle };
+export { H1, H3, P, Img, imgStyle, SmallHeading };

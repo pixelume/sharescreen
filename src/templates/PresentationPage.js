@@ -1,6 +1,6 @@
-import React from "react";
-import Notification from "../styles/Notification";
-import { Link } from "gatsby";
+import React, { useContext } from 'react';
+import Notification from '../styles/Notification';
+import { Link } from 'gatsby';
 // import LoadAnimation from "../styles/LoadAnimation";
 import {
   Section,
@@ -9,66 +9,97 @@ import {
   P,
   // Img,
   imgStyle,
-} from "../components/Layout";
-import ReactMarkdown from "react-markdown";
-import Img from "gatsby-image";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { graphql } from "gatsby";
+} from '../components/Layout';
+import ReactMarkdown from 'react-markdown';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import { graphql } from 'gatsby';
+import { FaPlay } from 'react-icons/fa';
+import { LayoutContext } from '../components/Layout/Layout';
+import Modal from '../components/Modal';
+import { ThemeContext } from 'grommet';
 
 const PresentationPage = ({ data }) => {
+  const { openVideo, setOpenVideo } = useContext(LayoutContext);
+  const {headerHeightBig} = useContext(ThemeContext);
   const components = {
-    p: ({ children }) => <P margin="1.2em auto">{children}</P>,
+    p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
   };
 
   const pData = data.strapiPresentation;
-  const profilePic = getImage(pData.presenter.ProfilePicture.localFile);
-  const presentationPic = getImage(pData.Image.localFile);
+  const profilePic = getImage(pData.presenter.profilePicture.localFile);
+  const presentationPic = getImage(pData.image.localFile);
 
   return (
     <>
       {pData && (
         <>
           <Section
-            alignSelf="flex-start"
-            alignItems="flex-start"
+            alignSelf='flex-start'
+            alignItems='strecth'
+            minHeight={`calc(100vh - ${headerHeightBig}px)`}
             // background="linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(240,248,255,1) 35%, rgba(240,248,255,1) 65%, rgba(255,255,255,1) 65%)"
-            background="linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)"
+            background='linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)'
           >
             <ColInSection col={3}>
-              <H3 margin="0 auto 1.5em" textAlign="center">
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Presentation
               </H3>
-              {pData.Image ? (
-                <GatsbyImage
-                  image={presentationPic}
-                  alt={pData.Description}
-                  style={imgStyle}
-                />
+              {pData.image ? (
+                <div
+                  onClick={() => setOpenVideo(true)}
+                  style={{
+                    width: '100%',
+                    position: 'relative',
+                    padding: '5px',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <GatsbyImage
+                    image={presentationPic}
+                    alt={pData.description}
+                    style={imgStyle}
+                  />
+                  <FaPlay
+                    style={{
+                      color: 'rgba(255,255,255,0.8)',
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: -25,
+                      marginLeft: -25,
+                      width: 50,
+                      height: 50,
+                      cursor: 'pointer'
+                    }}
+                  />
+                  {/* <div style={{position: 'absolute', top: '50%', left: '50%', marginTop: -10, marginLeft: -10, width: 0, height: 0, borderLeft: '40px solid white', borderTop: '20px solid transparent', borderBottom: '20px solid transparent', boxShadow: '3px 3px 8px 0px rgba(0, 0, 0, 0.75)', boxSizing: 'border-box'}}></div> */}
+                  {/* <div style={{position: 'absolute', top: '50%', left: '50%', marginTop: -10, marginLeft: -10, width: 40, height: 0, borderLeft: '40px solid white', borderTop: '20px solid transparent', borderBottom: '20px solid transparent', boxShadow: '3px 3px 8px 0px rgba(0, 0, 0, 0.75)', boxSizing: 'border-box'}}></div> */}
+                </div>
               ) : (
                 <img
-                  src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
+                  src='http://localhost:1337/uploads/placeholder_e8d28bfc61.png'
                   style={imgStyle}
-                  alt="Image Placeholder"
+                  alt='Image Placeholder'
                 />
               )}
-              <H3 margin="1.5em auto" color="dark1">
-                {pData.Name}
+              <H3 margin='1.5em auto' color='dark1'>
+                {pData.name}
               </H3>
               {pData.presenter ? (
                 <h3>
-                  by {pData.presenter.Title ? pData.presenter.Title : null}
+                  by {pData.presenter.title ? pData.presenter.title : null}
                   &nbsp;
                   {pData.presenter.fullName}
                 </h3>
               ) : null}
             </ColInSection>
-            <ColInSection col={3} display="flex" flexFlow="column">
-              <H3 margin="0 auto 1.5em" textAlign="center">
+            <ColInSection col={3} display='flex' flexFlow='column'>
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Description
               </H3>
               <div>
                 <ReactMarkdown components={components}>
-                  {pData.Description}
+                  {pData.description}
                 </ReactMarkdown>
               </div>
               {/* <div>
@@ -81,36 +112,38 @@ const PresentationPage = ({ data }) => {
               </Notification> */}
             </ColInSection>
             <ColInSection col={3}>
-              <H3 margin="0 auto 1.5em" textAlign="center">
+              <H3 margin='0 auto 1.5em' textAlign='center'>
                 Presenter
               </H3>
               {pData.presenter ? (
                 <>
                   {/* <Link to={`/presenters/${pData.presenter.id}`}> */}
                   <Link to={`/${pData.presenter.slug}`}>
-                    {pData.presenter.ProfilePicture ? (
+                    {pData.presenter.profilePicture ? (
                       <GatsbyImage
                         image={profilePic}
                         alt={pData.presenter.fullName}
                         style={imgStyle}
                       />
                     ) : (
-                      <img
-                        src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
-                        style={imgStyle}
+                      <StaticImage
+                        src='../images/placeholder_image.png'
+                        layout='fixed'
+                        width={350}
+                        height={233}
                       />
                     )}
                     <H3>
-                      {pData.presenter.Title ? pData.presenter.Title : null}
+                      {pData.presenter.title ? pData.presenter.title : null}
                       &nbsp;
                       {pData.presenter.fullName}
                     </H3>
                   </Link>
-                  <h3>{pData.presenter.Role}</h3>
-                  <h3>at {pData.presenter.Organization}</h3>
+                  <h3>{pData.presenter.role}</h3>
+                  <h3>at {pData.presenter.institution}</h3>
                 </>
               ) : (
-                <Notification borderRadius="10px" color="orange">
+                <Notification borderRadius='10px' color='orange'>
                   <h4>
                     This presentation has not been linked to a presenter yet
                   </h4>
@@ -118,6 +151,26 @@ const PresentationPage = ({ data }) => {
               )}
             </ColInSection>
           </Section>
+          {openVideo && (
+            <Modal
+              closeHandler={() => setOpenVideo(false)}
+              width='80vw'
+              height={`${0.5625*80}vw`}
+              bgPadding='0px 0px 0px 0px'
+              alignBody='center'
+            >
+            <iframe
+          // width='560'
+          // height='315'
+          style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%' }}
+          src={pData.videoLink}
+          title='YouTube video player'
+          frameBorder={0}
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          allowfullscreen='true'
+        ></iframe>
+            </Modal>
+          )}
         </>
       )}
       {/* {error && <Notification color="red">{error}</Notification>}
@@ -129,22 +182,22 @@ const PresentationPage = ({ data }) => {
 export default PresentationPage;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     strapiPresentation(slug: { eq: $slug }) {
-      Description
-      Duration
-      Language
-      Name
-      Topic
-      VideoPreviewLink
+      description
+      duration
+      language
+      name
+      topic
+      videoLink
       id
       presenter {
         fullName
-        Title
-        Role
-        Organization
+        title
+        role
+        institution
         slug
-        ProfilePicture {
+        profilePicture {
           localFile {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED)
@@ -152,7 +205,7 @@ export const pageQuery = graphql`
           }
         }
       }
-      Image {
+      image {
         localFile {
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED)

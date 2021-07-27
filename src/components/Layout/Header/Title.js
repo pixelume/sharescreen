@@ -22,7 +22,7 @@ const TitleCont = styled(Link)`
   color: #84986b;
 `
 // export const StLogo = styled(Logo)`
-//   height: ${({theme}) => theme.headerHeightBig};
+//   height: ${({theme}) => theme.headerHeightBig}px;
 //   width: 100px;
 // `
 

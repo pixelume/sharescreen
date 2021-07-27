@@ -44,14 +44,14 @@ module.exports = {
       options: {
         apiURL: `http://localhost:1337`,
         // queryLimit: 100, // Default to 100
-        collectionTypes: [`user`, `presenter`, `presentation`, `tag`],
+        collectionTypes: [`user`, `presenter`, `presentation`],
         //If using single types place them in this array.
-        singleTypes: [`privacy-policy`, `about-page`, `single-type-test`],
+        singleTypes: [`privacy-policy`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).
-        loginData: {
-          identifier: "webdev@pixelume.com",
-          password: "g@tsby",
-        },
+        // loginData: {
+        //   identifier: "webdev@pixelume.com",
+        //   password: "g@tsby",
+        // },
       },
     },
     {

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 const Section = styled.section`
   width: 100%;
+  ${({minHeight}) => minHeight? css`min-height: ${minHeight};`: null}
   box-sizing: border-box;
   display: flex;
   flex-flow: row wrap;
@@ -33,10 +34,6 @@ const Section = styled.section`
             background: ${props.background};
           `
         : null}
-    &:first-child {
-      min-height: calc(100vh - ${({ theme }) => theme.headerHeightBig});
-      /* align-items: stretch; */
-    }
   }
   ${({ height }) =>
     height

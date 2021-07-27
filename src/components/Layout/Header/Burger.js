@@ -11,7 +11,7 @@ export const StyledBurger = styled.button`
 
   @media(max-width: ${({theme}) => theme.mobileMenu}) {
     position: fixed;
-    top: calc(${({theme}) => theme.headerHeightBig/2} - 1rem);
+    top: calc(${({theme}) => theme.headerHeightBig/2}px - 1rem);
     right: 2rem;
     display: flex;
     flex-direction: column;

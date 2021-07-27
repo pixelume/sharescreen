@@ -1,0 +1,81 @@
+{
+  "data": {
+    "strapiPresenter": {
+      "title": "Mr",
+      "fullName": "Christiaan Brink",
+      "qualifications": [
+        "MSc Conservation Biology (UCT)",
+        "PhD currently on-going (UCT)"
+      ],
+      "institution": "BirdLife SA",
+      "role": "Raptor and Large Terrestrial Bird Project Manager",
+      "country": "South Africa",
+      "subjectMatter": [
+        "Raptor conservation",
+        "Vulture conservation"
+      ],
+      "biography": "Christiaan manages the conservation projects for various threatened raptor and large terrestrial bird species, with the Secretarybird and Southern Banded Snake Eagle being current priorities. His responsibilities include all aspects of the conservation of these birds, including research, threat mitigation and stakeholder engagement. Christiaan holds an MSc in Conservation Biology from the FitzPatrick Institute of African Ornithology and is currently completing his PhD, which investigates the role of supplementary feeding sites for vulture conservation.",
+      "id": "Presenter_43",
+      "profilePicture": {
+        "localFile": {
+          "childImageSharp": {
+            "gatsbyImageData": {
+              "layout": "constrained",
+              "backgroundColor": "#284888",
+              "images": {
+                "fallback": {
+                  "src": "/static/c967b435e1051a9398b25a3c04c1c5d5/d4053/christiaan_brink_50318be3a8.jpg",
+                  "srcSet": "/static/c967b435e1051a9398b25a3c04c1c5d5/a7fd3/christiaan_brink_50318be3a8.jpg 113w,\n/static/c967b435e1051a9398b25a3c04c1c5d5/f7e5e/christiaan_brink_50318be3a8.jpg 225w,\n/static/c967b435e1051a9398b25a3c04c1c5d5/d4053/christiaan_brink_50318be3a8.jpg 450w",
+                  "sizes": "(min-width: 450px) 450px, 100vw"
+                },
+                "sources": [
+                  {
+                    "srcSet": "/static/c967b435e1051a9398b25a3c04c1c5d5/4bb69/christiaan_brink_50318be3a8.webp 113w,\n/static/c967b435e1051a9398b25a3c04c1c5d5/51e9d/christiaan_brink_50318be3a8.webp 225w,\n/static/c967b435e1051a9398b25a3c04c1c5d5/ffc31/christiaan_brink_50318be3a8.webp 450w",
+                    "type": "image/webp",
+                    "sizes": "(min-width: 450px) 450px, 100vw"
+                  }
+                ]
+              },
+              "width": 450,
+              "height": 533
+            }
+          }
+        }
+      },
+      "presentations": [
+        {
+          "image": {
+            "localFile": {
+              "childImageSharp": {
+                "gatsbyImageData": {
+                  "layout": "fixed",
+                  "backgroundColor": "#a8a8c8",
+                  "images": {
+                    "fallback": {
+                      "src": "/static/41691d04b9197ef145ae5c2d1bd17f4a/3e6cf/snake_eagle_9421fcf934.jpg",
+                      "srcSet": "/static/41691d04b9197ef145ae5c2d1bd17f4a/3e6cf/snake_eagle_9421fcf934.jpg 150w,\n/static/41691d04b9197ef145ae5c2d1bd17f4a/b3f7d/snake_eagle_9421fcf934.jpg 300w",
+                      "sizes": "150px"
+                    },
+                    "sources": [
+                      {
+                        "srcSet": "/static/41691d04b9197ef145ae5c2d1bd17f4a/359ec/snake_eagle_9421fcf934.webp 150w,\n/static/41691d04b9197ef145ae5c2d1bd17f4a/9825d/snake_eagle_9421fcf934.webp 300w",
+                        "type": "image/webp",
+                        "sizes": "150px"
+                      }
+                    ]
+                  },
+                  "width": 150,
+                  "height": 94
+                }
+              }
+            }
+          },
+          "name": "South Africa’s rarest snake eagle",
+          "videoLink": "https://youtu.be/Gez3-P33vyo",
+          "slug": "south-africas-rarest-snake-eagle"
+        }
+      ]
+    }
+  },
+  "extensions": {}
+}

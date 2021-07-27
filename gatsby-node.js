@@ -86,7 +86,6 @@ exports.onCreateNode = async ({
         contentImages.push(blockImage);
       }
       node.contentImages = contentImages;
-      node.test = ['one', 'two', 'three'];
     }
   }
 };

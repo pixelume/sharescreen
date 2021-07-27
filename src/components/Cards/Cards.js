@@ -16,7 +16,7 @@ const Cards = ({
     if (presentersArr) {
       if (typeof presentersArr === "object") {
         return presentersArr.map((card, idx) => {
-          // const profilePic = getImage(card.ProfilePicture.localFile)
+          // const profilePic = getImage(card.profilePicture.localFile)
           return (
           <Tile 
             to={`/${card.slug}`} 
@@ -25,8 +25,8 @@ const Cards = ({
             idx={idx}
             height='350px'
           >
-            {card.ProfilePicture ? (
-              <GatsbyImage image={getImage(card.ProfilePicture.localFile)}/>
+            {card.profilePicture ? (
+              <GatsbyImage image={getImage(card.profilePicture.localFile)} alt={card.fullName}/>
             ) : (
               <img
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -39,9 +39,9 @@ const Cards = ({
                 {card.fullName}
               </h3>
               <h3>
-                {card.Role}&nbsp;at&nbsp;{card.Organization}
+                {card.role}&nbsp;at&nbsp;{card.institution}
               </h3>
-              <h3>{card.AvailableHours}&nbsp;hours available</h3>
+              <h3>{card.availableHours}&nbsp;hours available</h3>
             </TileOverlay>
           </Tile>
         )});
@@ -63,8 +63,8 @@ const Cards = ({
                 margin={cardMargin}
                 height='233px'
               >
-              {card.Image ? (
-                <GatsbyImage image={getImage(card.Image.localFile)} />
+              {card.image ? (
+                <GatsbyImage image={getImage(card.image.localFile)} alt={card.name}/>
             ) : (
               <img
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -73,7 +73,7 @@ const Cards = ({
               />
             )}
                 <TileOverlay>
-                  <h3>{card.Name}</h3>
+                  <h3>{card.name}</h3>
                   {card.presenter && (
                     <h3>by&nbsp;{card.presenter.fullName}</h3>
                   )}

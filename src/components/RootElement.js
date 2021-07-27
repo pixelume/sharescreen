@@ -20,7 +20,7 @@ const client = new ApolloClient({
 
 export const Context = React.createContext();
 
-const RootElement = ({ children }) => {
+const RootElement = ({ children, location }) => {
   const [user, setUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [keywords, setKeywords] = useState([]);
@@ -31,74 +31,77 @@ const RootElement = ({ children }) => {
       strapiPrivacyPolicy {
         content
       }
-      allStrapiPresentation(sort: { order: DESC, fields: id }) {
+      allStrapiPresentation(sort: { fields: published_at ,order: DESC }) {
         nodes {
-          Description
-          Duration
-          Language
-          Name
-          Topic
-          VideoPreviewLink
+          description
+          duration
+          language
+          name
+          topic
+          videoLink
           id
           slug
+          tags
           presenter {
             fullName
             id
-            Title
+            title
+            slug
           }
-          Image {
+          image {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 350, height: 233)
+                gatsbyImageData(layout: CONSTRAINED, width: 350)
               }
             }
-          }
-          tags {
-            Title
           }
         }
       }
       allStrapiPresenter(sort: { order: DESC, fields: id }) {
         nodes {
-          Biography
-          City
-          Email
-          Organization
-          Role
-          Title
+          biography
+          city
+          email
+          role
+          institution
+          title
           fullName
+          surname
           id
           slug
+          subjectMatter
+          qualifications
           presentations {
-            Name
-            Image {
+            name
+            slug
+            image {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(layout: FIXED, width: 350, height: 233)
+                  gatsbyImageData(layout: CONSTRAINED, width: 350)
                 }
               }
             }
           }
-          ProfilePicture {
+          profilePicture {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 350, height: 350)
+                gatsbyImageData(layout: CONSTRAINED, width: 350)
               }
             }
           }
         }
       }
-      allStrapiTag(sort: {fields: Title}) {
-        nodes {
-          Title
-        }
-      }
+      # allStrapiTag(sort: {fields: Title}) {
+      #   nodes {
+      #     Title
+      #   }
+      # }
     }
   `);
 
   const presentationsArr = data.allStrapiPresentation.nodes;
   const presentersArr = data.allStrapiPresenter.nodes;
-  const tagsArr = data.allStrapiTag.nodes;
+  // const tagsArr = data.allStrapiTag.nodes;
   const privacyPolicy = data.strapiPrivacyPolicy.content
 
   useEffect(() => {
@@ -130,7 +133,7 @@ const RootElement = ({ children }) => {
     setKeywords,
     presentationsArr,
     presentersArr,
-    tagsArr,
+    // tagsArr,
     privacyPolicy
   };
 

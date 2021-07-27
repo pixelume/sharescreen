@@ -12,7 +12,7 @@ export const HeaderCont = styled.header`
   align-items: center;
   position: fixed;
   z-index: 2;
-  height: ${({theme}) => theme.headerHeightBig};
+  height: ${({theme}) => theme.headerHeightBig}px;
   top: 0;
   left: 0;
   padding: 0px 30px;
