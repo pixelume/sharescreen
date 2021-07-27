@@ -10,7 +10,6 @@ import data from '../data/tempPresenter.json';
 import { Link } from 'gatsby';
 
 const PresenterPageTemp = () => {
-  // console.log(data);
   const { radialGradientLight, mediumLight1 } = useContext(ThemeContext);
 
   const components = {
@@ -18,7 +17,6 @@ const PresenterPageTemp = () => {
   };
 
   const pData = data.data.strapiPresenter;
-  console.log(pData);
   const profilePic = getImage(pData.profilePicture.localFile);
 
   const getPresentationColData = () => {

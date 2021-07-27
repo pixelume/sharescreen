@@ -1,5 +1,5 @@
 export const theme = {
-  headerHeightBig: '80px',
+  headerHeightBig: 80,
   mobileMenu: '500px',
   textDark1: '#232e27',
   textMedium1: "#7C7C80",

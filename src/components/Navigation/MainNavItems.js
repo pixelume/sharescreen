@@ -27,9 +27,9 @@ const NavLink = styled(Link).attrs({
         content: "";
         position: absolute;
         left: 2%;
-        top: calc(0.25 * ${({theme}) => theme.headerHeightBig} - 5px);
+        top: calc(0.25 * ${({theme}) => theme.headerHeightBig}px - 5px);
         width: 96%;
-        height: calc(0.5 * ${({theme}) => theme.headerHeightBig});
+        height: calc(0.5 * ${({theme}) => theme.headerHeightBig}px);
         background-color: lightcoral;
         border-radius: 10px;
         z-index: -10;

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 const Section = styled.section`
   width: 100%;
+  ${({minHeight}) => minHeight? css`min-height: ${minHeight};`: null}
   box-sizing: border-box;
   display: flex;
   flex-flow: row wrap;

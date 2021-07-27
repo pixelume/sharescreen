@@ -18,7 +18,7 @@ export const DrawerContainer = styled.nav`
   right: 0;
   overflow: hidden;
   z-index: 15;
-  padding: calc(20px + ${({theme}) => theme.headerHeightBig}) 1em 0px;
+  padding: calc(20px + ${({theme}) => theme.headerHeightBig}px) 1em 0px;
   ${({ open }) =>
     !open
       ? css`

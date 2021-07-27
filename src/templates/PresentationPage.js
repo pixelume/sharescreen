@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Notification from '../styles/Notification';
 import { Link } from 'gatsby';
 // import LoadAnimation from "../styles/LoadAnimation";
@@ -13,8 +13,14 @@ import {
 import ReactMarkdown from 'react-markdown';
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { graphql } from 'gatsby';
+import { FaPlay } from 'react-icons/fa';
+import { LayoutContext } from '../components/Layout/Layout';
+import Modal from '../components/Modal';
+import { ThemeContext } from 'grommet';
 
 const PresentationPage = ({ data }) => {
+  const { openVideo, setOpenVideo } = useContext(LayoutContext);
+  const {headerHeightBig} = useContext(ThemeContext);
   const components = {
     p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
   };
@@ -29,7 +35,8 @@ const PresentationPage = ({ data }) => {
         <>
           <Section
             alignSelf='flex-start'
-            alignItems='flex-start'
+            alignItems='strecth'
+            minHeight={`calc(100vh - ${headerHeightBig}px)`}
             // background="linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(240,248,255,1) 35%, rgba(240,248,255,1) 65%, rgba(255,255,255,1) 65%)"
             background='linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)'
           >
@@ -38,11 +45,36 @@ const PresentationPage = ({ data }) => {
                 Presentation
               </H3>
               {pData.image ? (
-                <GatsbyImage
-                  image={presentationPic}
-                  alt={pData.description}
-                  style={imgStyle}
-                />
+                <div
+                  onClick={() => setOpenVideo(true)}
+                  style={{
+                    width: '100%',
+                    position: 'relative',
+                    padding: '5px',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <GatsbyImage
+                    image={presentationPic}
+                    alt={pData.description}
+                    style={imgStyle}
+                  />
+                  <FaPlay
+                    style={{
+                      color: 'rgba(255,255,255,0.8)',
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: -25,
+                      marginLeft: -25,
+                      width: 50,
+                      height: 50,
+                      cursor: 'pointer'
+                    }}
+                  />
+                  {/* <div style={{position: 'absolute', top: '50%', left: '50%', marginTop: -10, marginLeft: -10, width: 0, height: 0, borderLeft: '40px solid white', borderTop: '20px solid transparent', borderBottom: '20px solid transparent', boxShadow: '3px 3px 8px 0px rgba(0, 0, 0, 0.75)', boxSizing: 'border-box'}}></div> */}
+                  {/* <div style={{position: 'absolute', top: '50%', left: '50%', marginTop: -10, marginLeft: -10, width: 40, height: 0, borderLeft: '40px solid white', borderTop: '20px solid transparent', borderBottom: '20px solid transparent', boxShadow: '3px 3px 8px 0px rgba(0, 0, 0, 0.75)', boxSizing: 'border-box'}}></div> */}
+                </div>
               ) : (
                 <img
                   src='http://localhost:1337/uploads/placeholder_e8d28bfc61.png'
@@ -119,6 +151,26 @@ const PresentationPage = ({ data }) => {
               )}
             </ColInSection>
           </Section>
+          {openVideo && (
+            <Modal
+              closeHandler={() => setOpenVideo(false)}
+              width='80vw'
+              height={`${0.5625*80}vw`}
+              bgPadding='0px 0px 0px 0px'
+              alignBody='center'
+            >
+            <iframe
+          // width='560'
+          // height='315'
+          style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%' }}
+          src={pData.videoLink}
+          title='YouTube video player'
+          frameBorder={0}
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          allowfullscreen='true'
+        ></iframe>
+            </Modal>
+          )}
         </>
       )}
       {/* {error && <Notification color="red">{error}</Notification>}

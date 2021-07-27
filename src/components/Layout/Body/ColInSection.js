@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 const ColInSection = styled.div`
   display: ${(props) => props.display || "block"};
+  box-sizing: border-box;
   ${(props) =>
     props.justifyContent
       ? css`
@@ -18,7 +19,7 @@ const ColInSection = styled.div`
   box-sizing: border-box;
   width: 100%;
   margin: 20px auto;
-  background-color: ${(props) => props.backgroundColor || "transparent"};
+  background-color: ${({theme, backgroundColor}) => theme[backgroundColor] || backgroundColor || "transparent"};
   border-radius: ${(props) => props.borderRadius || "none"};
   overflow: hidden;
   padding: ${(props) => props.paddingMobile || props.padding || "0px 5vw"};
@@ -44,10 +45,11 @@ const ColInSection = styled.div`
       props.col
         ? props.col === 1
           ? "100%"
-          : `${90 / props.col - 1}vw`
+          : `${90 / props.col}vw`
         : "44vw"};
     margin: 0px;
-    padding: ${(props) => props.paddingDesktop || props.padding || "0px"};
+    padding: ${(props) => props.paddingDesktop || props.padding || "1vw"};
+    ${({boxShadow}) => boxShadow? css`box-shadow: ${boxShadow}`: null}
     /* &:nth-child(2) {
       border-left: 1px solid lightgrey;
       border-right: 1px solid lightgrey;

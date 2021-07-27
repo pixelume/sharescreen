@@ -31,7 +31,7 @@ const RootElement = ({ children, location }) => {
       strapiPrivacyPolicy {
         content
       }
-      allStrapiPresentation(sort: { order: DESC, fields: id }) {
+      allStrapiPresentation(sort: { fields: published_at ,order: DESC }) {
         nodes {
           description
           duration
