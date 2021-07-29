@@ -1,7 +1,6 @@
-import React, {useContext} from "react";
+import React from "react";
 import styled, {css} from "styled-components";
 import { fadeIn } from '../styles/animations';
-import { LayoutContext } from "./Layout/Layout";
 
 const ModalBg = styled.div`
   position: fixed;
@@ -66,7 +65,6 @@ const CloseBtn = styled.button`
 // `
 
 const Modal = ({children, closeHandler, width, height, bgPadding, alignBody}) => {
-  const {setRequestSpeaker} = useContext(LayoutContext)
 
   return (
     //JSX

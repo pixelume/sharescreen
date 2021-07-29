@@ -14,7 +14,7 @@ const PresentationsPage = ({ limit }) => {
 
   const {
     presentationsArr,
-    searchTerm,
+    // searchTerm,
     keywords
   } = useContext(Context);
 

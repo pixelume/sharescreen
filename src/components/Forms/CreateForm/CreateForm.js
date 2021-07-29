@@ -55,7 +55,7 @@ const CreateForm = () => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:1337/posts",
+        url: `${process.env.GATSBY_STRAPI_URL}/posts`,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",

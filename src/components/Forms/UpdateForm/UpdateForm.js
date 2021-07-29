@@ -57,7 +57,7 @@ const UpdateForm = ({ id, dismissDialog, reFetchPosts }) => {
       try {
         const response = await axios({
           method: "put",
-          url: `http://localhost:1337/posts/${id}`,
+          url: `${process.env.GATSBY_STRAPI_URL}/posts/${id}`,
           data: formData,
           headers: {
             "Content-Type": "multipart/form-data",
@@ -76,7 +76,7 @@ const UpdateForm = ({ id, dismissDialog, reFetchPosts }) => {
       try {
         const response = await axios({
           method: "put",
-          url: `http://localhost:1337/posts/${id}`,
+          url: `${process.env.GATSBY_STRAPI_URL}/posts/${id}`,
           data: { description: fData.description },
           headers: {
             'Authorization': `Bearer ${user.jwt}`

@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 import { fadeIn } from "../../styles/animations";
 
 export const SCard = styled(Link)`
@@ -26,18 +26,6 @@ export const SCard = styled(Link)`
   }
 `;
 
-const fadeDown = keyframes`
-  0% {
-    opacity 0;
-    transform: translateY(-100%);
-  }
-`;
-const fadeUp = keyframes`
-  0% {
-    opacity 0;
-    transform: translateY(100%);
-  }
-`;
 export const Tile = styled(Link)`
   display: block;
   position: relative;

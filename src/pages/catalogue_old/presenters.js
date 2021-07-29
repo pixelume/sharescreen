@@ -14,8 +14,8 @@ const PresentersPage = ({ limit }) => {
 
   const {
     presentersArr,
-    searchTerm,
-    keywords
+    // searchTerm,
+    // keywords
   } = useContext(Context);
 
   // const getKeywordData = () => {

@@ -61,7 +61,7 @@ const SignupForm = () => {
     }
     setFormStatus("sending");
     try {
-      const response = await axios.post("http://localhost:1337/auth/local/register", {
+      const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/local/register`, {
         username: fData.email,
         email: fData.email,
         password: fData.password,

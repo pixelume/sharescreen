@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
-import { Formfield, Input } from "../FormStyles";
-import { MdClear } from "react-icons/md";
-import { FiSearch } from "react-icons/fi";
+import React, { useContext } from "react";
+// import { Formfield, Input } from "../FormStyles";
+// import { MdClear } from "react-icons/md";
+// import { FiSearch } from "react-icons/fi";
 import styled from "styled-components";
 // import { FilterSearchCtx } from '../../../Pages/Catalogue';
 import { Context } from "../../../components/RootElement";
@@ -10,18 +10,18 @@ import { Context } from "../../../components/RootElement";
 import { OpenBtn } from "../../Layout/SideDrawer";
 import { IoFunnelOutline } from "react-icons/io5";
 import { H3 } from "../../Layout";
-import { useQuery, gql } from "@apollo/client";
-import LoadAnimation from "../../../styles/LoadAnimation";
-import Notification from '../../../styles/Notification';
+// import { gql } from "@apollo/client";
+// import LoadAnimation from "../../../styles/LoadAnimation";
+// import Notification from '../../../styles/Notification';
 import { Select } from 'grommet';
 
-const GET_TAGS = gql`
-  query GetTagsData {
-    tags {
-      Title
-    }
-  }
-`;
+// const GET_TAGS = gql`
+//   query GetTagsData {
+//     tags {
+//       Title
+//     }
+//   }
+// `;
 
 const FilterIcon = styled(OpenBtn).attrs({
   as: "div",
@@ -30,31 +30,31 @@ const FilterIcon = styled(OpenBtn).attrs({
   margin-right: 0.5em;
 `;
 
-const SearchInput = styled(Input)`
-  /* height: 3em; */
-  font-size: 1.2em;
-  padding-left: 3em;
-`;
+// const SearchInput = styled(Input)`
+//   /* height: 3em; */
+//   font-size: 1.2em;
+//   padding-left: 3em;
+// `;
 
-const iconStyle = {
-  display: "block",
-  position: "absolute",
-  left: "0.5em",
-  top: "0.375em",
-  color: "darkgrey",
-  fontSize: "1.5em",
-};
+// const iconStyle = {
+//   display: "block",
+//   position: "absolute",
+//   left: "0.5em",
+//   top: "0.375em",
+//   color: "darkgrey",
+//   fontSize: "1.5em",
+// };
 
-const clearBtnStyle = {
-  display: "block",
-  position: "absolute",
-  right: "0.75em",
-  top: "0.25em",
-  color: "darkgrey",
-  border: "none",
-  backgroundColor: "transparent",
-  fontSize: "1.5em",
-};
+// const clearBtnStyle = {
+//   display: "block",
+//   position: "absolute",
+//   right: "0.75em",
+//   top: "0.25em",
+//   color: "darkgrey",
+//   border: "none",
+//   backgroundColor: "transparent",
+//   fontSize: "1.5em",
+// };
 
 const FlexBox = styled.div`
   display: flex;
@@ -90,9 +90,9 @@ const KeywCloseBtn = styled.button.attrs({type: 'button'})`
 
 const FilterSearch = (props) => {
   // const [keywords, setKeywords] = useState([])
-  const { searchTerm, setSearchTerm, keywords, setKeywords, tagsArr } = useContext(Context);
+  const { /* searchTerm, setSearchTerm,  */keywords, setKeywords, tagsArr } = useContext(Context);
   // const { searchTerm, setSearchTerm, keywords, setKeywords } = useContext(FilterSearchCtx);
-  const { loading, error, data } = useQuery(GET_TAGS);
+  // const { loading, error, data } = useQuery(GET_TAGS);
 
   const removeKeyw = keyw => {
     const indexOfKeyw = keywords.indexOf(keyw);

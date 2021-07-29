@@ -4,7 +4,7 @@ import { Formfield, FormFieldFileDrop, Input, clearBtnStyle, CloseBtnRound } fro
 import { MdClear } from 'react-icons/md';
 import ArrayElementsBox from './arrayElementsBox';
 import countryList from '../../../data/countriesList';
-import styled, { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components';
 import { FileDrop } from 'react-file-drop';
 import { theme } from '../../../styles/Theme';
 

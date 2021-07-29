@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import { fadeIn } from './animations';
 
 const Notification = styled.div`

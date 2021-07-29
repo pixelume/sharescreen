@@ -9,7 +9,7 @@ const useSortByPresentation = (arrayToSort, headings) => {
         const arr0 = arrayToSort.sort((a, b) => a.name.localeCompare(b.name))
         return sortBy.ascending? arr0: arr0.reverse()
       case headings[4]: // by Presenter
-        const arr1 = arrayToSort.sort((a, b) => a.institution.localeCompare(b.institution))
+        const arr1 = arrayToSort.sort((a, b) => a.presenter.surname.localeCompare(b.presenter.surname))
         return sortBy.ascending? arr1: arr1.reverse()
       default:
         return arrayToSort;

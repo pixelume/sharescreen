@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 import { FileDrop } from 'react-file-drop';
 import { theme } from '../../../styles/Theme';
 import { Context } from '../../RootElement';
-import { GiConwayLifeGlider } from 'react-icons/gi';
+// import { GiConwayLifeGlider } from 'react-icons/gi';
 
 const PresentationRegistrationFormContent = ({
   inputHandler,
@@ -167,7 +167,6 @@ const PresentationRegistrationFormContent = ({
             Select Presenter * ↓
           </option>
           {presentersArr.map((presenter) => {
-            {/* console.log('presenter.id', presenter.id) */}
             return (
             <option
               value={presenter.id.slice(presenter.id.indexOf('_')+1)}
@@ -214,7 +213,6 @@ const PresentationRegistrationFormContent = ({
           </Formfield>
         )}
       </Formfield>
-      {/* Next up is Tags */}
       <Formfield>
         <Input
           placeholder='Tags (Separate with comma)'
@@ -225,7 +223,6 @@ const PresentationRegistrationFormContent = ({
           onKeyDown={commaHandler}
           value={tagArrayEl}
         />
-        {/* <RiKey2Line style={iconStyle} /> */}
         {tagArrayEl && (
           <MdClear style={clearBtnStyle} onClick={() => setTagArrayEl('')} />
         )}
@@ -278,7 +275,6 @@ const PresentationRegistrationFormContent = ({
           </FileDrop>
         )}
       </FormFieldFileDrop>
-      {/* {errorDisplay && <Notification color="red">{errorDisplay}</Notification>} */}
       <Button margin='20px auto' type='submit' color='green'>
         Submit
       </Button>
@@ -293,16 +289,3 @@ const PresentationRegistrationFormContent = ({
 };
 
 export default PresentationRegistrationFormContent;
-
-// {/* <Input
-// style={{ display: 'flex', alignItems: 'center' }}
-// id='image'
-// type='file'
-// accept='image/*'
-// aria-label='image'
-// onChange={fileSelectHandler}
-// backgroundColor='transparent'
-// />
-// {/* {fData.role && (
-// <MdClear style={clearBtnStyle} onClick={() => clearField('role')} />
-// )} */} */}

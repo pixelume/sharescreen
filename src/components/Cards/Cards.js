@@ -1,7 +1,6 @@
 import React from "react";
 import { Section, ColInSection } from "../Layout";
 import { Tile, TileOverlay } from "./CardStyles";
-import Img from "gatsby-image";
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
 
 const Cards = ({
@@ -30,7 +29,7 @@ const Cards = ({
             ) : (
               <img
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
+                src={`${process.env.GATSBY_STRAPI_URL}/uploads/placeholder_e8d28bfc61.png`}
                 alt=""
               />
             )}
@@ -68,7 +67,7 @@ const Cards = ({
             ) : (
               <img
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                src="http://localhost:1337/uploads/placeholder_e8d28bfc61.png"
+                src={`${process.env.GATSBY_STRAPI_URL}/uploads/placeholder_e8d28bfc61.png`}
                 alt=""
               />
             )}

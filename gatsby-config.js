@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: "sharscreen-gatsby-v3",
@@ -42,9 +46,9 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: process.env.STRAPI_URL,
         // queryLimit: 100, // Default to 100
-        collectionTypes: [`user`, `presenter`, `presentation`],
+        collectionTypes: [`user`, `presenter`, `presentation`, `request`],
         //If using single types place them in this array.
         singleTypes: [`privacy-policy`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).

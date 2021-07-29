@@ -1,19 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Button } from '../../../styles/Buttons';
-import { Formfield, FormFieldFileDrop, Input, clearBtnStyle, CloseBtnRound } from '../FormStyles';
+import { Formfield, Input, clearBtnStyle } from '../FormStyles';
 import { MdClear } from 'react-icons/md';
-import ArrayElementsBox from './arrayElementsBox';
-import countryList from '../../../data/countriesList';
-import styled, { useTheme } from 'styled-components';
-import { FileDrop } from 'react-file-drop';
-import { theme } from '../../../styles/Theme';
+// import { useTheme } from 'styled-components';
+// import { theme } from '../../../styles/Theme';
 
 const RequestSpeakerFormContent = ({
   inputHandler,
   fData,
   clearField,
 }) => {
-  const { medium1 } = useTheme(theme);
+  // const { medium1 } = useTheme(theme);
 
   return (
     <>

@@ -43,7 +43,11 @@ const GlobalStyle = createGlobalStyle`
     &:required:invalid {
       color: grey;
     }
-}
+  }
+
+  button, input, select, textarea {
+    font-size: 0.73em;
+  }
 `;
 
 // body::before {

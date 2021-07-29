@@ -4,11 +4,11 @@ import axios from 'axios';
 // import Notification from '../styles/Notification';
 import { StForm, SendingAnimation } from '../FormStyles';
 import RequestSpeakerFormContent from './RequestSpeakerFormContent';
-import { Link, navigate } from 'gatsby';
+// import { Link, navigate } from 'gatsby';
 import Notification from '../../../styles/Notification';
 import { Context } from '../../RootElement';
-import { IoNuclearOutline } from 'react-icons/io5';
-import slugify from 'slugify';
+// import { IoNuclearOutline } from 'react-icons/io5';
+// import slugify from 'slugify';
 
 const RequestSpeakerForm = ({presenterId, closeHandler}) => {
   const { user } = useContext(Context);
@@ -58,7 +58,7 @@ const RequestSpeakerForm = ({presenterId, closeHandler}) => {
     try {
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:1337/requests',
+        url: `${process.env.GATSBY_STRAPI_URL}/requests`,
         data: fData,
         headers: {
           Authorization: `Bearer ${user.jwt}`

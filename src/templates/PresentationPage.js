@@ -45,9 +45,10 @@ const PresentationPage = ({ data }) => {
                 Presentation
               </H3>
               {pData.image ? (
-                <div
+                <button
                   onClick={() => setOpenVideo(true)}
                   style={{
+                    display: 'block',
                     width: '100%',
                     position: 'relative',
                     padding: '5px',
@@ -74,12 +75,12 @@ const PresentationPage = ({ data }) => {
                   />
                   {/* <div style={{position: 'absolute', top: '50%', left: '50%', marginTop: -10, marginLeft: -10, width: 0, height: 0, borderLeft: '40px solid white', borderTop: '20px solid transparent', borderBottom: '20px solid transparent', boxShadow: '3px 3px 8px 0px rgba(0, 0, 0, 0.75)', boxSizing: 'border-box'}}></div> */}
                   {/* <div style={{position: 'absolute', top: '50%', left: '50%', marginTop: -10, marginLeft: -10, width: 40, height: 0, borderLeft: '40px solid white', borderTop: '20px solid transparent', borderBottom: '20px solid transparent', boxShadow: '3px 3px 8px 0px rgba(0, 0, 0, 0.75)', boxSizing: 'border-box'}}></div> */}
-                </div>
+                </button>
               ) : (
                 <img
-                  src='http://localhost:1337/uploads/placeholder_e8d28bfc61.png'
+                  src={`${process.env.GATSBY_STRAPI_URL}/uploads/placeholder_e8d28bfc61.png`}
                   style={imgStyle}
-                  alt='Image Placeholder'
+                  alt='Placeholder'
                 />
               )}
               <H3 margin='1.5em auto' color='dark1'>

@@ -4,10 +4,10 @@ import axios from 'axios';
 // import Notification from '../styles/Notification';
 import { StForm, SendingAnimation } from '../FormStyles';
 import PresenterRegistrationFormContent from './PresenterRegistrationFormContent';
-import { Link, navigate } from 'gatsby';
+// import { Link, navigate } from 'gatsby';
 import Notification from '../../../styles/Notification';
 import { Context } from '../../RootElement';
-import { IoNuclearOutline } from 'react-icons/io5';
+// import { IoNuclearOutline } from 'react-icons/io5';
 import slugify from 'slugify';
 
 const PresenterRegistrationForm = () => {
@@ -107,7 +107,7 @@ const PresenterRegistrationForm = () => {
     try {
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:1337/presenters',
+        url: `${process.env.GATSBY_STRAPI_URL}/presenters`,
         data: formData,
         headers: {
           'Content-Type': 'multipart/form-data',

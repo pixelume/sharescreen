@@ -1,9 +1,12 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from './Header/Header';
 import { Footer } from './Footer';
+import 'sanitize.css';
+import 'sanitize.css/forms.css';
+import 'sanitize.css/typography.css';
 // import Modal from '../Modal';
-import { H1 } from './Body/StyledTags';
+// import { H1 } from './Body/StyledTags';
 // import { Context } from '../RootElement';
 // import { navigate } from 'gatsby';
 // import RequestSpeakerForm from '../Forms/RequestSpeakerForm/RequestSpeakerForm';

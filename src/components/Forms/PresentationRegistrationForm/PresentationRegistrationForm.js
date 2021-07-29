@@ -4,10 +4,10 @@ import axios from 'axios';
 // import Notification from '../styles/Notification';
 import { StForm, SendingAnimation } from '../FormStyles';
 import PresentationRegistrationFormContent from './PresentationRegistrationFormContent';
-import { Link, navigate } from 'gatsby';
+// import { Link, navigate } from 'gatsby';
 import Notification from '../../../styles/Notification';
 import { Context } from '../../RootElement';
-import { IoNuclearOutline } from 'react-icons/io5';
+// import { IoNuclearOutline } from 'react-icons/io5';
 import slugify from 'slugify';
 
 const PresentationRegistrationForm = () => {
@@ -46,7 +46,7 @@ const PresentationRegistrationForm = () => {
     console.log('e.target.value', e.target.value)
     if (id === 'videoLink') {
       const expression =
-        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+        /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi;
       // var regex = new RegExp(expression);
       if (value.match(expression)) {
         if (!isUrlValid) {
@@ -112,7 +112,7 @@ const PresentationRegistrationForm = () => {
     try {
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:1337/presentations',
+        url: `${process.env.GATSBY_STRAPI_URL}/presentations`,
         data: formData,
         headers: {
           'Content-Type': 'multipart/form-data',

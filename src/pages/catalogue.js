@@ -9,7 +9,7 @@ import {
 } from '../components/Forms/FormStyles';
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import useSortByPresentation from '../hooks/useSortbyPresenter';
+import useSortByPresentation from '../hooks/useSortbyPresentation';
 import { Context } from '../components/RootElement';
 import useSearchPresentation from '../hooks/useSearchPresentation';
 

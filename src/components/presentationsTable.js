@@ -28,7 +28,7 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
                 <Th
                   key={`heading-${idx}-${heading}`}
                   onClick={isSortable ? () => sortClickHandler(heading) : null}
-                  colSpan={idx == 0 ? 2 : 1}
+                  colSpan={idx === 0 ? 2 : 1}
                 >
                   {heading}
                   {isSortable ? (

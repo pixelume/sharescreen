@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
 import { Section, ColInSection, H1, H3 } from '../';
 import { Button } from '../../../styles/Buttons';
 import { Link } from 'gatsby';
 import treeSilhouette from '../../../svg/treeSilhouetteCompr.svg';
-import video from '../../../images/aboutVideo.mp4';
+// import video from '../../../images/aboutVideo.mp4';
 
 const StTreeSilhoutte = styled(treeSilhouette)`
   position: absolute;

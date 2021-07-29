@@ -44,6 +44,7 @@ const RootElement = ({ children, location }) => {
           tags
           presenter {
             fullName
+            surname
             id
             title
             slug
@@ -61,7 +62,6 @@ const RootElement = ({ children, location }) => {
         nodes {
           biography
           city
-          email
           role
           institution
           title

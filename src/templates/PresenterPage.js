@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Notification from '../styles/Notification';
+// import Notification from '../styles/Notification';
 import {
   Section,
   ColInSection,
@@ -8,7 +8,7 @@ import {
   imgStyle,
   SmallHeading,
 } from '../components/Layout';
-import Cards from '../components/Cards/Cards';
+// import Cards from '../components/Cards/Cards';
 import ReactMarkdown from 'react-markdown';
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { graphql, Link } from 'gatsby';
@@ -208,7 +208,7 @@ const SinglePresenter = ({ data }) => {
             closeHandler={() => setRequestSpeaker(false)}
             presenterId={pData.id.slice(pData.id.indexOf('_') + 1)}
           />}
-          {!user && <div style={{padding: '80px 30px'}} onClick={() => setRequestSpeaker(false)} >Please <Link style={{textDecoration: 'underline'}} to='/login'>Login</Link> or <Link style={{textDecoration: 'underline'}} to='/register'>Register</Link> to connect with this presenter</div>}
+          {!user && <button style={{display: 'block', padding: '80px 30px'}} onClick={() => setRequestSpeaker(false)} >Please <Link style={{textDecoration: 'underline'}} to='/login'>Login</Link> or <Link style={{textDecoration: 'underline'}} to='/register'>Register</Link> to connect with this presenter</button>}
         </Modal>
       )}
     </>

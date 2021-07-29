@@ -46,7 +46,7 @@ const LoginForm = () => {
     }
     setFormStatus("sending");
     try {
-      const response = await axios.post("http://localhost:1337/auth/local", {
+      const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/local`, {
         identifier: fData.email,
         password: fData.password,
       });

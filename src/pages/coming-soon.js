@@ -1,7 +1,7 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import styled from 'styled-components';
-import { H1, H3 } from '../components/Layout';
+import { H3 } from '../components/Layout';
 import ElephantSvg from '../svg/elephant_banner_optimised.svg';
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
 
