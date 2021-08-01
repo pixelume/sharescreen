@@ -9,9 +9,9 @@ import {
 } from '../components/Forms/FormStyles';
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import useSortByPresentation from '../hooks/useSortbyPresentation';
+import useSortByPresentation from '../hooks/useSortbyPresentation.js';
 import { Context } from '../components/RootElement';
-import useSearchPresentation from '../hooks/useSearchPresentation';
+import useSearchPresentation from '../hooks/useSearchPresentation.js';
 
 const SubHeader = styled.div`
   width: 100vw;

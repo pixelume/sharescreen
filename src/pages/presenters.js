@@ -9,8 +9,8 @@ import {
 } from '../components/Forms/FormStyles';
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import useSortByPresenter from '../hooks/useSortByPresenter';
-import useSearchPresenter from '../hooks/useSearchPresenter';
+import useSortByPresenter from '../hooks/useSortByPresenter.js';
+import useSearchPresenter from '../hooks/useSearchPresenter.js';
 import { Context } from '../components/RootElement';
 
 const SubHeader = styled.div`
