@@ -102,7 +102,7 @@ const ComingSoonPage = (props) => {
           }}
         >
           <StaticImage
-            src='../images/Sharescreen_logo.png'
+            src='../images/web_logo.png'
             layout='fixed'
             width={150}
             height={150}
