@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 import { FaUserCircle } from 'react-icons/fa';
 
 const ProfilePage = () => {
-  const { user } = useContext(Context);
+  const { user, setUser } = useContext(Context);
   const { radialGradientLight, headerHeightBig, medium1 } =
     useContext(ThemeContext);
 
@@ -90,36 +90,40 @@ const ProfilePage = () => {
               )}
               {user.user.role.name === 'Administrator' && (
                 <>
-                <div
-                  style={{
-                    textAlign: 'center',
-                    margin: '10px',
-                    color: medium1,
-                    textDecoration: 'underline',
-                  }}
-                >
-                  <Link to='/admin/presenterRegistration'>Add a new presenter</Link>
-                </div>
-                <div
-                  style={{
-                    textAlign: 'center',
-                    margin: '10px',
-                    color: medium1,
-                    textDecoration: 'underline',
-                  }}
-                >
-                  <Link to='/admin/register-presentation'>Add a new presentation</Link>
-                </div>
-                <div
-                  style={{
-                    textAlign: 'center',
-                    margin: '10px',
-                    color: medium1,
-                    textDecoration: 'underline',
-                  }}
-                >
-                  <Link to='#'>View connection requests</Link>
-                </div>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      margin: '10px',
+                      color: medium1,
+                      textDecoration: 'underline',
+                    }}
+                  >
+                    <Link to='/admin/presenterRegistration'>
+                      Add a new presenter
+                    </Link>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      margin: '10px',
+                      color: medium1,
+                      textDecoration: 'underline',
+                    }}
+                  >
+                    <Link to='/admin/register-presentation'>
+                      Add a new presentation
+                    </Link>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      margin: '10px',
+                      color: medium1,
+                      textDecoration: 'underline',
+                    }}
+                  >
+                    <Link to='#'>View connection requests</Link>
+                  </div>
                 </>
               )}
               <div
@@ -140,7 +144,13 @@ const ProfilePage = () => {
                   textDecoration: 'underline',
                 }}
               >
-                <Link to='#'>Logout</Link>
+                <Link
+                  as='button'
+                  key={idx}
+                  onClick={() => setUser(false)}
+                >
+                  Logout
+                </Link>
               </div>
             </nav>
           </div>

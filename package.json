@@ -48,5 +48,8 @@
     "sanitize.css": "^12.0.1",
     "slugify": "^1.6.0",
     "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@netlify/plugin-gatsby": "^1.0.3"
   }
 }
