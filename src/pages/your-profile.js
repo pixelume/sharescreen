@@ -98,7 +98,7 @@ const ProfilePage = () => {
                     textDecoration: 'underline',
                   }}
                 >
-                  <Link to='#'>Add a new presenter</Link>
+                  <Link to='/admin/presenterRegistration'>Add a new presenter</Link>
                 </div>
                 <div
                   style={{
@@ -108,7 +108,7 @@ const ProfilePage = () => {
                     textDecoration: 'underline',
                   }}
                 >
-                  <Link to='#'>Add a new presentation</Link>
+                  <Link to='/admin/register-presentation'>Add a new presentation</Link>
                 </div>
                 <div
                   style={{
