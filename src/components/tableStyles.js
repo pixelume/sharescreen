@@ -63,7 +63,7 @@ export const Th = styled.th`
 export const Tr = styled.tr`
   border-bottom: 1px solid rgb(238, 243, 246);
   &:nth-child(even) {
-    background-color: ${({theme}) => theme.whitish};
+    background-color: ${({theme}) => theme.warmWhite};
   }
 `;
 

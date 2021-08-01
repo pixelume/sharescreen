@@ -9,7 +9,9 @@ export const theme = {
   mediumLight1: '#e2e6e4',
   light1: '#b3d6ff',
   radialGradientLight: "radial-gradient(circle, white 33%, rgba(139, 156, 9, 0.05) 66%)", //#8c9c09
-  whitish: '#F7F9FB',
+  coolWhite: '#F7F9FB',
+  warmWhite: '#F9F9F2',
+  offWhite: '#F5F5F5',
   orange: {
     bg: '#ffe7d1',
     text: '#8c4400'
@@ -26,10 +28,10 @@ export const theme = {
     bg: '#d1e8ff',
     text: '#003870'
   },
-  offWhite: {
-    bg: '#f7f7f7',
-    text: 'lightgrey'
-  },
+  // offWhite: {
+  //   bg: '#f7f7f7',
+  //   text: 'lightgrey'
+  // },
   grey: {
     bg: 'grey',
     text: 'lightgrey'

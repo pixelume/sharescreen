@@ -53,8 +53,8 @@ module.exports = {
         singleTypes: [`privacy-policy`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).
         // loginData: {
-        //   identifier: "webdev@pixelume.com",
-        //   password: "g@tsby",
+        //   identifier: "",
+        //   password: "",
         // },
       },
     },

@@ -22,6 +22,7 @@ const ModalBg = styled.div`
 const ModalBody= styled.div`
   padding: ${({padding}) => padding || '50px 0px'} ;
   position: relative;
+  ${({margin}) => margin? css`margin: ${margin};`: null}
   /* top: ${({theme}) => theme.headerHeightBig + 20}px; */
   background-color: ${({backgroundColor}) => backgroundColor || 'white'};
   animation: ${fadeIn} 0.3s ease-out ${(props) => props.idx * 0.3 || '0'}s both;
@@ -64,12 +65,12 @@ const CloseBtn = styled.button`
 //   margin-top: 30px;
 // `
 
-const Modal = ({children, closeHandler, width, height, bgPadding, alignBody}) => {
+const Modal = ({children, closeHandler, width, height, bgPadding, alignBody, margin}) => {
 
   return (
     //JSX
     <ModalBg onClick={closeHandler}>
-      <ModalBody onClick={e => e.stopPropagation()} {...{width, height, bgPadding, alignBody}}>
+      <ModalBody onClick={e => e.stopPropagation()} {...{width, height, bgPadding, alignBody, margin}}>
         <CloseBtn onClick={closeHandler}>&times;</CloseBtn>
         {children}
       </ModalBody>

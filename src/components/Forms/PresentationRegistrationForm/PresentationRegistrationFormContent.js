@@ -186,7 +186,7 @@ const PresentationRegistrationFormContent = ({
       </Formfield>
       <Formfield width='50%'>
         <Input
-          placeholder='Video Link (https:// )'
+          placeholder='Youtube link to video (https:// )'
           id='videoLink'
           type='text'
           aria-label='videoLink'

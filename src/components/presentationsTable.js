@@ -73,7 +73,7 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
                     </div> */}
                   </StLink>
                 </Td>
-                <Td style={{verticalAlign: 'middle'}}>
+                <Td width='30%' style={{verticalAlign: 'middle'}}>
                   {/* <TdChildMultiLine style={{ fontWeight: 'bold' }}>
                     {headings[0]}
                   </TdChildMultiLine> */}

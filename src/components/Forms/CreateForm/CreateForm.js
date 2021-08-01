@@ -9,10 +9,11 @@ import React, { useState, useContext, useEffect } from "react";
 import {Button} from "../../../styles/Buttons";
 import axios from "axios";
 // import Notification from '../styles/Notification';
-import {StForm, SendingAnimation} from '../FormStyles'
+import {StForm} from '../FormStyles'
 import CreateFormContent from "./CreateFormContent";
 import { Link } from 'gatsby';
 import { Context } from '../../../App';
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const CreateForm = () => {
   const initialFData = {
@@ -89,7 +90,7 @@ const CreateForm = () => {
         />
       )}
       {formStatus === "sending" && (
-        <SendingAnimation size="5em" color="salmon" />
+        <LoadAnimation />
       )}
       {formStatus === "sent" && (
         <>

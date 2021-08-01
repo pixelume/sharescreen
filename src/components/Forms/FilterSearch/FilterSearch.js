@@ -11,7 +11,7 @@ import { OpenBtn } from "../../Layout/SideDrawer";
 import { IoFunnelOutline } from "react-icons/io5";
 import { H3 } from "../../Layout";
 // import { gql } from "@apollo/client";
-// import LoadAnimation from "../../../styles/LoadAnimation";
+// import LoadAnimation2 from "../../../styles/LoadAnimation2";
 // import Notification from '../../../styles/Notification';
 import { Select } from 'grommet';
 
@@ -135,7 +135,7 @@ const FilterSearch = (props) => {
           </FlexBox>
           <FlexBox wrap="wrap">{keywords? keywords.map((keyw, idx) => <KeywordContainer key={`keyw${idx}`}>{keyw}<KeywCloseBtn onClick={() => removeKeyw(keyw)}>&times;</KeywCloseBtn></KeywordContainer>): null}</FlexBox>
         </form>
-      {/* {loading && <LoadAnimation />}
+      {/* {loading && <LoadAnimation2 />}
       {data && data.tags && (
         <form>
           <FlexBox>

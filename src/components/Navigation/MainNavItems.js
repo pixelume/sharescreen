@@ -1,48 +1,50 @@
-import React, { useContext } from "react";
-import styled, { css } from "styled-components";
-import { Context } from "../RootElement";
+import React, { useContext } from 'react';
+import styled, { css } from 'styled-components';
+import { Context } from '../RootElement';
 import { Link } from 'gatsby';
 
 const NavLink = styled(Link).attrs({
-  activeClassName: "active"
+  activeClassName: 'active',
 })`
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  padding: 10px 10px;
-  color: ${({highlite}) => highlite? "white": "grey"};
+  padding: 10px 20px;
+  color: ${({ highlite }) => (highlite ? 'white' : 'grey')};
   border-bottom: 5px solid transparent;
   border-top: 5px solid transparent;
-  border-left: 1px solid lightgrey;
+  /* border-left: 1px solid lightgrey; */
   font-size: inherit;
   background-color: inherit;
   cursor: pointer;
+  ${({ large }) =>
+      large
+        ? css`
+            font-size: 3em;
+          `
+        : null}
+  ${({ highlite }) =>
+      highlite
+        ? css`
+            color: lightcoral;
+          `
+        : null}
   @media (min-width: ${({ theme }) => theme.mobileMenu}) {
     /* border-right: 1px solid lightgrey; */
-    ${({highlite}) => highlite? css`
-      background-color: lightcoral;
-      color: white;
-      ${'' /* &::before {
-        content: "";
-        position: absolute;
-        left: 2%;
-        top: calc(0.25 * ${({theme}) => theme.headerHeightBig}px - 5px);
-        width: 96%;
-        height: calc(0.5 * ${({theme}) => theme.headerHeightBig}px);
-        background-color: lightcoral;
-        border-radius: 10px;
-        z-index: -10;
-      } */}
-    `
-      : null}
-    &:hover, &.active {
-      /* box-sizing: border-box; */
-      padding: 0px 10px;
-    }
-    &:hover {
-      border-bottom: 5px solid ${({ theme }) => theme.medium1};
-    }
+      ${({ large }) =>
+      !large
+        ? css`
+            &:hover,
+            &.active {
+              /* box-sizing: border-box; */
+              padding: 0px 20px;
+            }
+            &:hover {
+              border-bottom: 5px solid ${({ theme }) => theme.medium1};
+            }
+          `
+        : null}
     &.active {
       border-bottom: 5px solid ${({ theme }) => theme.dark1};
     }
@@ -60,7 +62,7 @@ const NavLink = styled(Link).attrs({
     /* text-decoration: underline; */
   }
   @media (max-width: ${({ theme }) => theme.mobileMenu}) {
-    font-size: 1rem;
+    /* font-size: 1em; */
     text-align: center;
     padding: 20px 0px;
     border-bottom: 1px solid lightgrey;
@@ -68,41 +70,96 @@ const NavLink = styled(Link).attrs({
       border-top: 1px solid lightgrey;
     }
   }
-`
+`;
 
-const MainNavItems = ({setNavOpen, navOpen, navData}) => {
+// const NavButton = styled(Link)`
+//   display: flex;
+//   position: relative;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 5px 10px;
+//   font-size: inherit;
+//   background-color: transparent;
+//   border: 1px solid ${({theme}) => theme.medium1};
+//   color: ${({theme}) => theme.medium1};
+//   border-radius: 5px;
+//   cursor: pointer;
+//   align-self: center;
+//   ${({solid}) => solid? css`
+//     background-color: ${({theme}) => theme.medium1};
+//     color: white;
+//   `: null}
+//   @media (min-width: ${({ theme }) => theme.mobileMenu}) {
+//     &:nth-last-child(2) {
+//       margin-left: 8vw;
+//       margin-right: 15px;
+//     }
+//     &:last-child {
+//       margin-right: 8vw;
+//     }
+//   }
+//   @media (max-width: ${({ theme }) => theme.mobileMenu}) {
+//     font-size: 1em;
+//     margin-top: 20px
+//     /* text-align: center; */
+//     /* padding: 20px 0px; */
+//   }
+// `;
+
+const MainNavItems = ({ setNavOpen, navOpen, navData }) => {
   const { user, setUser } = useContext(Context);
 
   return navData.map((navItem, idx) => {
     if (
-      ((!user) && navItem.show !== "loggedIn") || // signed out
-      (user.jwt && navItem.show !== "loggedOut" && ["Any", user.user.role.name].includes(navItem.role)) // signed in
+      (!user && navItem.show !== 'loggedIn') || // signed out
+      (user.jwt &&
+        navItem.show !== 'loggedOut' &&
+        ['Any', user.user.role.name].includes(navItem.role)) // signed in
     ) {
-      if (navItem.text === "Sign Out") {
+      if (navItem.text === 'Sign Out') {
         return (
-          <NavLink 
-            as="button" 
-            key={idx} 
+          <NavLink
+            as='button'
+            key={idx}
             onClick={() => {
-              setUser(false)
+              setUser(false);
               if (navOpen) {
-                setNavOpen(false)
+                setNavOpen(false);
               }
             }}
           >
             {navItem.icon}&nbsp;{navItem.text}
           </NavLink>
-        )
-      } else {
+        );
+      } /* else if (['Sign In', 'Register'].includes(navItem.id)) {
         return (
-          <NavLink 
+          <NavButton
+            solid={navItem.id === 'Register'}
             key={idx}
             to={navItem.link}
-            highlite={navItem.text === 'Admin'} 
+            highlite={navItem.text === 'Admin'}
+            large={navItem.id === 'MyProfile'}
             exact
             onClick={() => {
               if (navOpen) {
-                setNavOpen(false)
+                setNavOpen(false);
+              }
+            }}
+          >
+            {navItem.icon}&nbsp;{navItem.text}
+          </NavButton>
+        )
+      } */ else {
+        return (
+          <NavLink
+            key={idx}
+            to={navItem.link}
+            highlite={navItem.text === 'Admin'}
+            large={navItem.id === 'MyProfile'}
+            exact
+            onClick={() => {
+              if (navOpen) {
+                setNavOpen(false);
               }
             }}
           >

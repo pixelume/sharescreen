@@ -22,6 +22,7 @@ import { Context } from '../components/RootElement';
 const ReqBtn = styled(Button)`
   font-size: 0.9em;
   background-color: ${({ theme }) => theme.medium1};
+  color: white;
   margin: 2em auto;
 `;
 
@@ -100,9 +101,18 @@ const SinglePresenter = ({ data }) => {
                 </p>
               ) : null}
             </ColInSection>
+            
+            <ColInSection col={3}>
+              <H3 margin='0 auto 1.5em' textAlign='center'>
+                Biography
+              </H3>
+              <ReactMarkdown components={components}>
+                {pData.biography}
+              </ReactMarkdown>
+            </ColInSection>
             <ColInSection
               col={3}
-              backgroundColor='whitish'
+              backgroundColor='coolWhite'
               boxShadow='1px 1px 5px rgba(0, 0, 0, 0.1)'
               borderRadius='5px'
             >
@@ -161,7 +171,7 @@ const SinglePresenter = ({ data }) => {
                         }}
                         alt={presentation.name}
                       />
-                      <span style={{ textAlign: 'center' }}>
+                      <span style={{ textAlign: 'center', fontSize: '0.8em' }}>
                         {presentation.name}
                       </span>
                     </div>
@@ -186,19 +196,11 @@ const SinglePresenter = ({ data }) => {
                 Connect with{` ${pData.title} ${pData.surname}`}
               </ReqBtn>
             </ColInSection>
-            <ColInSection col={3}>
-              <H3 margin='0 auto 1.5em' textAlign='center'>
-                Biography
-              </H3>
-              <ReactMarkdown components={components}>
-                {pData.biography}
-              </ReactMarkdown>
-            </ColInSection>
           </Section>
         </>
       )}
       {requestSpeaker && (
-        <Modal closeHandler={() => setRequestSpeaker(false)}>
+        <Modal margin='20px 0px 0px' closeHandler={() => setRequestSpeaker(false)}>
           <H3
             style={{ padding: '0px 20px' }}
             textAlign='center'

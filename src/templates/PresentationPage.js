@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Notification from '../styles/Notification';
 import { Link } from 'gatsby';
-// import LoadAnimation from "../styles/LoadAnimation";
+// import LoadAnimation2 from "../styles/LoadAnimation2";
 import {
   Section,
   ColInSection,
@@ -175,7 +175,7 @@ const PresentationPage = ({ data }) => {
         </>
       )}
       {/* {error && <Notification color="red">{error}</Notification>}
-      {loading && <LoadAnimation />} */}
+      {loading && <LoadAnimation2 />} */}
     </>
   );
 };

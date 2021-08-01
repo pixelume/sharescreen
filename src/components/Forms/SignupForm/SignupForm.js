@@ -7,6 +7,7 @@ import SignupFormContent from "./SignupFormContent";
 import { Link, navigate } from "gatsby";
 import { Context } from "../../../components/RootElement";
 import Notification from "../../../styles/Notification";
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const SignupForm = () => {
   const initialFData = {
@@ -87,7 +88,7 @@ const SignupForm = () => {
         />
       )}
       {formStatus === "sending" && (
-        <SendingAnimation size="5em" color="salmon" />
+        <LoadAnimation />
       )}
       {formStatus === "sent" && (
         <>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../../App";
 import Cards from "../Cards/Cards";
-import LoadAnimation from "../../styles/LoadAnimation";
+import LoadAnimation2 from "../../styles/LoadAnimation2";
 import Notification from '../../styles/Notification';
 
 const Presenters = () => {
@@ -11,7 +11,7 @@ const Presenters = () => {
     <>
       {presenterData && <Cards presenterData={presenterData}/>}
       {presenterError && <Notification color="red">{presenterError}</Notification>}
-      {presenterLoading && <LoadAnimation />}
+      {presenterLoading && <LoadAnimation2 />}
     </>
   );
 };

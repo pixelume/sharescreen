@@ -6,12 +6,14 @@ import { Button } from '../../../styles/Buttons';
 import { Link } from 'gatsby';
 import treeSilhouette from '../../../svg/treeSilhouetteCompr.svg';
 // import video from '../../../images/aboutVideo.mp4';
+import { Context } from '../../RootElement';
 
 const StTreeSilhoutte = styled(treeSilhouette)`
   position: absolute;
   top: 80px;
   left: 0px;
   opacity: 0.03;
+  z-index: -1;
   @media screen and (orientation: landscape) {
     height: calc(100vh - 80px);
   }
@@ -20,12 +22,16 @@ const StTreeSilhoutte = styled(treeSilhouette)`
   }
 `;
 
-const VideoWithHeading = (props) => {
-  const theme = useContext(ThemeContext);
-  //Logic
+const VideoWithHeading = () => {
+  const { radialGradientLight, headerHeightBig } = useContext(ThemeContext);
+  const {user} = useContext(Context)
 
   return (
-    <Section padding='10px 0px 50px' background={theme.radialGradientLight}>
+    <Section
+      padding='10px 0px 50px'
+      background={radialGradientLight}
+      minHeight={`calc(100vh - ${headerHeightBig}px)`}
+    >
       <StTreeSilhoutte />
       <ColInSection>
         <H1>Bringing experts into the classroom</H1>
@@ -36,7 +42,13 @@ const VideoWithHeading = (props) => {
         <iframe
           // width='560'
           // height='315'
-          style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%' }}
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+          }}
           src='https://www.youtube.com/embed/vulhF15fTDk'
           title='YouTube video player'
           frameBorder={0}
@@ -61,17 +73,19 @@ const VideoWithHeading = (props) => {
             height="100%"
           /> */}
       </ColInSection>
-      <ColInSection col={1} textAlign='center' padding='50px'>
-        <Button
-          as={Link}
-          to='/register'
-          display='inline-block'
-          bgColor='dark1'
-          textColor='white'
-        >
-          Register Free
-        </Button>
-      </ColInSection>
+      {!user && (
+        <ColInSection col={1} textAlign='center' padding='50px'>
+          <Button
+            as={Link}
+            to='/register'
+            display='inline-block'
+            bgColor='dark1'
+            style={{ color: 'white', cursor: 'pointer' }}
+          >
+            Register Free
+          </Button>
+        </ColInSection>
+      )}
     </Section>
   );
 };

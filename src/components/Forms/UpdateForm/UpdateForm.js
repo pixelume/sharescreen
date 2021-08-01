@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Button } from "../../../styles/Buttons";
 import axios from "axios";
-import { StForm, SendingAnimation } from "../FormStyles";
+import { StForm } from "../FormStyles";
 import UpdateFormContent from "./UpdateFormContent";
 import { Context } from "../../../App";
 import Notification from "../../../styles/Notification";
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const UpdateForm = ({ id, dismissDialog, reFetchPosts }) => {
   const initialFData = {
@@ -104,7 +105,7 @@ const UpdateForm = ({ id, dismissDialog, reFetchPosts }) => {
         />
       )}
       {formStatus === "sending" && (
-        <SendingAnimation size="5em" color="salmon" />
+        <LoadAnimation />
       )}
       {formStatus === "sent" && (
         <>

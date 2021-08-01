@@ -8,7 +8,7 @@ const Register = () => {
 
   return (
     <div>
-      <H3 textAlign='center' margin='30px auto'>Sign In</H3>
+      <H3 textAlign='center' margin='30px auto'>Register</H3>
       {/* {`<LoginForm/>`} */}
       <SignupForm/>
     </div>

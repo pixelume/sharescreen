@@ -17,7 +17,7 @@ const SubHeader = styled.div`
   width: 100vw;
   padding: 5px 5vw;
   margin-top: 5px;
-  background-color: ${({ theme }) => theme.whitish};
+  background-color: ${({ theme }) => theme.coolWhite};
   @media only screen and (min-width: 768) {
     padding: 5px 5px;
   }

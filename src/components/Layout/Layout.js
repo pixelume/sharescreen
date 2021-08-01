@@ -32,7 +32,7 @@ const Layout = ({ children, location }) => {
   // const didMount = React.useRef(false);
 
   // useEffect(() => {
-  //   if (!user || (user && user.user.role.name !== 'SSA-Admin')) {
+  //   if (!user || (user && user.user.role.name !== 'Administrator')) {
   //     if (pathname !== '/login') {
   //       navigate('/coming-soon')
   //     }
@@ -46,11 +46,6 @@ const Layout = ({ children, location }) => {
         <Footer />
       </MainContainer>
       <Header />
-      {/* {requestSpeaker && (
-        <Modal>
-          <RequestSpeakerForm/>
-        </Modal>
-      )} */}
     </LayoutContext.Provider>
   ) : children;
 };

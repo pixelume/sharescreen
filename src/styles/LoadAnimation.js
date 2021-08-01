@@ -30,7 +30,7 @@ const LdsEllipsis = styled.div`
   position: relative;
   width: 80px;
   height: 80px;
-  margin-top: 200px;
+  margin: 50px auto;
 `
 
 const LdsEllipsisChild = styled.div`

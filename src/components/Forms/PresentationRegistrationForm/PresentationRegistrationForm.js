@@ -9,6 +9,7 @@ import Notification from '../../../styles/Notification';
 import { Context } from '../../RootElement';
 // import { IoNuclearOutline } from 'react-icons/io5';
 import slugify from 'slugify';
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const PresentationRegistrationForm = () => {
   const initialFData = {
@@ -38,6 +39,8 @@ const PresentationRegistrationForm = () => {
     }
   }, [formStatus]);
 
+  let embedVideoLink = '';
+
   const inputHandler = (e) => {
     if (formError) {
       setFormError(false);
@@ -46,18 +49,19 @@ const PresentationRegistrationForm = () => {
     console.log('e.target.value', e.target.value)
     if (id === 'videoLink') {
       const expression =
-        /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi;
-      // var regex = new RegExp(expression);
-      if (value.match(expression)) {
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+      const match = value.match(expression)
+      if (match && match[7].length === 11) {
         if (!isUrlValid) {
           setIsUrlValid(true)
+          embedVideoLink = `https://youtube.com/embed/${match[7]}`
         }
       } else {
         if (isUrlValid) {
           setIsUrlValid(false)
         }
       }
-    }
+    } else {}
     setFData((prevData) => ({ ...prevData, [id]: value }));
   };
 
@@ -106,7 +110,7 @@ const PresentationRegistrationForm = () => {
     setFormStatus('sending');
     console.log(JSON.stringify({ ...fData, slug: slug }));
     const formData = new FormData();
-    formData.append('data', JSON.stringify({ ...fData, slug: slug }));
+    formData.append('data', JSON.stringify({ ...fData, slug: slug, videoLink: embedVideoLink }));
     formData.append('files.image', file);
 
     try {
@@ -146,7 +150,7 @@ const PresentationRegistrationForm = () => {
         />
       )}
       {formStatus === 'sending' && (
-        <SendingAnimation size='5em' color='salmon' />
+        <LoadAnimation />
       )}
       {formStatus === 'sent' && (
         <>

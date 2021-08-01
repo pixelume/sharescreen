@@ -20,6 +20,7 @@ const TitleCont = styled(Link)`
   /* margin-left: 20px; */
   cursor: pointer;
   color: #84986b;
+  flex-shrink: 0;
 `
 // export const StLogo = styled(Logo)`
 //   height: ${({theme}) => theme.headerHeightBig}px;

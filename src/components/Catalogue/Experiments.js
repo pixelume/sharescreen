@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useQuery, gql } from '@apollo/client';
 // import Cards from '../Cards/Cards';
 import Notification from '../../styles/Notification';
-import LoadAnimation from '../../styles/LoadAnimation';
+import LoadAnimation2 from '../../styles/LoadAnimation2';
 
 const EXPERIMENT_DATA = gql`
   query GetExperimentData {
@@ -35,7 +35,7 @@ const Experiments = () => {
         </React.Fragment>
       ))}
       {error && <Notification color="red">{error}</Notification>}
-      {loading && <LoadAnimation />}
+      {loading && <LoadAnimation2 />}
     </>
   )
 }

@@ -3,13 +3,17 @@ import React, { useState } from "react"
 import Burger from "./Burger"
 import MainNavItems from "../../Navigation/MainNavItems";
 import navData from '../../../data/navData';
+import authBtnsData from '../../../data/authBtnsData';
+import AuthBtnItems from '../../Navigation/AuthBtnItems';
 
 export const StyledMenu = styled.nav`
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   text-align: left;
   /* padding: 2rem; */
   transition: all 0.3s ease-in-out;
+  font-size: 0.9em;
   @media only screen and (min-width: ${({ theme }) => theme.mobileMenu}) {
     height: 100%;
     align-items: stretch;
@@ -17,7 +21,7 @@ export const StyledMenu = styled.nav`
   @media only screen and (max-width: ${({ theme }) => theme.mobileMenu}) {
     width: 85%;
     /* background: transparent; */
-    background: ${({ theme }) => theme.whitish};
+    background: ${({ theme }) => theme.coolWhite};
     flex-direction: column;
     position: absolute;
     height: 100vh;
@@ -61,7 +65,10 @@ const MainNavContainer = () => {
       {navOpen && <OpenDimBg onClick={() => setNavOpen(false)} />}
       <StyledMenu open={navOpen}>
         <MainNavItems navOpen={navOpen} setNavOpen={setNavOpen} navData={navData}/>
+        <AuthBtnItems navOpen={navOpen} setNavOpen={setNavOpen} authBtnsData={authBtnsData}/>
       </StyledMenu>
+      {/* <StyledMenu open={navOpen}>
+      </StyledMenu> */}
       <Burger
         clickHandler={() => setNavOpen(navOpen => !navOpen)}
         open={navOpen}

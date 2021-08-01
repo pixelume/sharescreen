@@ -9,6 +9,7 @@ import Notification from '../../../styles/Notification';
 import { Context } from '../../RootElement';
 // import { IoNuclearOutline } from 'react-icons/io5';
 // import slugify from 'slugify';
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const RequestSpeakerForm = ({presenterId, closeHandler}) => {
   const { user } = useContext(Context);
@@ -90,7 +91,7 @@ const RequestSpeakerForm = ({presenterId, closeHandler}) => {
         />
       )}
       {formStatus === 'sending' && (
-        <SendingAnimation size='5em' color='salmon' />
+        <LoadAnimation />
       )}
       {formStatus === 'sent' && (
         <>

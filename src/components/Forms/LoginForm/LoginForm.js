@@ -7,6 +7,7 @@ import LoginFormContent from "./LoginFormContent";
 import { Link, navigate } from "gatsby";
 import Notification from "../../../styles/Notification";
 import { Context } from '../../RootElement';
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const LoginForm = () => {
   const initialFData = {
@@ -22,7 +23,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (formStatus === 'sent') {
-      setTimeout(() => navigate('/'), 1000);
+      setTimeout(() => navigate(-1), 1000);
     }
   }, [formStatus])
   
@@ -69,7 +70,7 @@ const LoginForm = () => {
         />
       )}
       {formStatus === "sending" && (
-        <SendingAnimation size="5em" color="salmon" />
+        <LoadAnimation />
       )}
       {formStatus === "sent" && (
         <>

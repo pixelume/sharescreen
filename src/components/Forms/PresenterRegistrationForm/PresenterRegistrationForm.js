@@ -9,6 +9,7 @@ import Notification from '../../../styles/Notification';
 import { Context } from '../../RootElement';
 // import { IoNuclearOutline } from 'react-icons/io5';
 import slugify from 'slugify';
+import LoadAnimation from '../../../styles/LoadAnimation';
 
 const PresenterRegistrationForm = () => {
   const initialFData = {
@@ -143,7 +144,7 @@ const PresenterRegistrationForm = () => {
         />
       )}
       {formStatus === 'sending' && (
-        <SendingAnimation size='5em' color='salmon' />
+        <LoadAnimation />
       )}
       {formStatus === 'sent' && (
         <>

@@ -7,7 +7,7 @@ export const StForm = styled.form`
   justify-content: space-between;
   flex-flow: row wrap;
   border-radius: 15px;
-  background-color: #f5f5f5;
+  background-color: ${({theme}) => theme.offWhite};
   padding: 10px 30px 30px;
   box-sizing: border-box;
   width: 95%;
