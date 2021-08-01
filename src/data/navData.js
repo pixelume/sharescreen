@@ -74,14 +74,14 @@ const navData = [
   //   role: 'Any',
   //   icon: <AiOutlineUserAdd />,
   // },
-  {
-    text: 'Admin',
-    id: 'Admin',
-    link: '/admin/presenterRegistration',
-    show: 'loggedIn',
-    role: 'Administrator',
-    icon: <IoCreateOutline />,
-  },
+  // {
+  //   text: 'Admin',
+  //   id: 'Admin',
+  //   link: '/admin/presenterRegistration',
+  //   show: 'loggedIn',
+  //   role: 'Administrator',
+  //   icon: <IoCreateOutline />,
+  // },
   {
     text: '',
     id: 'MyProfile',

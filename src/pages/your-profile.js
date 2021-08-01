@@ -138,19 +138,22 @@ const ProfilePage = () => {
               </div>
               <div
                 style={{
-                  textAlign: 'center',
                   margin: '10px',
                   color: medium1,
-                  textDecoration: 'underline',
+                  textAlign: 'center'
                 }}
               >
-                <Link
+                <button
+                  style={{
+                    textDecoration: 'underline',
+                    fontSize: 'inherit',
+                    cursor: 'pointer'
+                  }}
                   as='button'
-                  key={idx}
                   onClick={() => setUser(false)}
                 >
                   Logout
-                </Link>
+                </button>
               </div>
             </nav>
           </div>

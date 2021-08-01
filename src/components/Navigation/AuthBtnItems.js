@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components';
 import { Context } from '../RootElement';
 import { Link } from 'gatsby';
 
-const NavButton = styled(Link)`
+export const NavButton = styled(Link)`
   display: flex;
   position: relative;
   align-items: center;
@@ -18,6 +18,7 @@ const NavButton = styled(Link)`
   cursor: pointer;
   align-self: center;
   width: 115px;
+  white-space: nowrap;
   ${({solid}) => solid? css`
     background-color: ${({theme}) => theme.medium1};
     color: white;

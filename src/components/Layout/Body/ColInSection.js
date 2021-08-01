@@ -22,8 +22,8 @@ const ColInSection = styled.div`
   background-color: ${({theme, backgroundColor}) => theme[backgroundColor] || backgroundColor || "transparent"};
   border-radius: ${(props) => props.borderRadius || "none"};
   overflow: hidden;
-  padding: ${(props) => props.paddingMobile || props.padding || "0px 5vw"};
-  color: ${(props) => props.theme[props.color] || "inherit"};
+  padding: ${(props) => props.paddingMobile || props.padding || "10px 5vw"};
+  color: ${(props) => props.theme[props.color]? props.theme[props.color]: props.color || "inherit"};
   font-size: ${(props) => props.fontSize || "inherit"};
   line-height: ${(props) => props.lineHeight || "normal"};
   ${(props) =>
