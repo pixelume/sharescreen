@@ -1,8 +1,6 @@
 import React /* , { useState, useContext } */ from 'react';
 import SortArrows from '../svg/sort_arrows.svg';
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
-// import { Context } from './RootElement';
-// import useSortBy from '../hooks/useSortby';
 import {
   TableContainer,
   Table,

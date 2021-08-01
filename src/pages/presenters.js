@@ -9,9 +9,38 @@ import {
 } from '../components/Forms/FormStyles';
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import useSortByPresenter from '../hooks/useSortByPresenter.js';
-import useSearchPresenter from '../hooks/useSearchPresenter.js';
 import { Context } from '../components/RootElement';
+
+const useSortByPresenter = (arrayToSort, headings) => {
+  const [sortBy, setSortBy] = useState(false)
+  
+  const sortedArray = () => {
+    switch (sortBy.heading) {
+      case headings[0]: // by Presenter
+        const arr0 = arrayToSort.sort((a, b) => `${a.surname}${a.name}`.localeCompare(`${b.surname}${b.name}`))
+        return sortBy.ascending? arr0: arr0.reverse()
+      case headings[2]: // by Current Institution
+        const arr1 = arrayToSort.sort((a, b) => a.institution.localeCompare(b.institution))
+        return sortBy.ascending? arr1: arr1.reverse()
+      default:
+        return arrayToSort;
+    }
+  }
+    return [sortBy, setSortBy, sortedArray(sortBy)];
+}
+
+const useSearchPresenter = (arrayToFilter) => {
+  const [searchString, setSearchString] = useState('');
+  const filteredArray = arrayToFilter.filter(
+    (presenter) => {
+      const searchFullName = presenter.fullName? presenter.fullName.toLowerCase().includes(searchString.toLowerCase().trim()): false;
+      const searchInstitution = presenter.institution? presenter.institution.toLowerCase().includes(searchString.toLowerCase().trim()): false;
+      const searchSubjectMatter = presenter.subjectMatter? presenter.subjectMatter.join(',').toLowerCase().includes(searchString.toLowerCase().trim()): false;
+      return (searchFullName || searchInstitution || searchSubjectMatter)
+    }
+  );
+  return [searchString, setSearchString, filteredArray];
+};
 
 const SubHeader = styled.div`
   width: 100vw;

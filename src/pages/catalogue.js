@@ -9,9 +9,36 @@ import {
 } from '../components/Forms/FormStyles';
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import useSortByPresentation from '../hooks/useSortbyPresentation.js';
 import { Context } from '../components/RootElement';
-import useSearchPresentation from '../hooks/useSearchPresentation.js';
+
+const useSortByPresentation = (arrayToSort, headings) => {
+  const [sortBy, setSortBy] = useState(false)
+  
+  const sortedArray = () => {
+    switch (sortBy.heading) {
+      case headings[0]: // by Name
+        const arr0 = arrayToSort.sort((a, b) => a.name.localeCompare(b.name))
+        return sortBy.ascending? arr0: arr0.reverse()
+      case headings[4]: // by Presenter
+        const arr1 = arrayToSort.sort((a, b) => a.presenter.surname.localeCompare(b.presenter.surname))
+        return sortBy.ascending? arr1: arr1.reverse()
+      default:
+        return arrayToSort;
+    }
+  }
+    return [sortBy, setSortBy, sortedArray(sortBy)];
+}
+
+const useSearchPresentation = (arrayToFilter) => {
+  const [searchString, setSearchString] = useState('');
+  const filteredArray = arrayToFilter.filter((presentation) =>{
+    const searchInName = presentation.name?presentation.name.toLowerCase().includes(searchString.toLowerCase().trim()):false;
+    const searchInDescription = presentation.description? presentation.description.toLowerCase().includes(searchString.toLowerCase().trim()):false;
+    const searchInTags = presentation.tags? presentation.tags.join(',').toLowerCase().includes(searchString.toLowerCase().trim()): false
+    return (searchInName || searchInDescription || searchInTags)
+  });
+  return [searchString, setSearchString, filteredArray];
+};
 
 const SubHeader = styled.div`
   width: 100vw;
