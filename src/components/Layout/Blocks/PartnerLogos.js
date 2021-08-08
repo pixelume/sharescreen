@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 const LogoContainer = styled.div`
   height: 80px;
-  padding-bottom: 50px;
+  margin-bottom: 50px;
 `
 
 const PartnerLogos = props => {
@@ -32,7 +32,7 @@ const PartnerLogos = props => {
         <ColInSection
           col={1}
           display='flex'
-          justifyContent='space-between'
+          justifyContent='space-evenly'
           flexFlow='row wrap'
         >
           {logos.map((logo, idx) => (

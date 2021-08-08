@@ -12,12 +12,19 @@ import {
   Tr,
   Ul,
   StLink,
+  StCol,
 } from './tableStyles';
 
 const PresentersTable = ({ sortedArray, headings, sortClickHandler }) => {
   return (
     <TableContainer>
       <Table>
+        <StCol minWidth='140px' />
+        <StCol minWidth='140px' />
+        <StCol minWidth='140px' />
+        <StCol minWidth='140px' />
+        <StCol minWidth='140px' />
+        <StCol minWidth='250px' />
         <Thead>
           <Tr>
             {headings.map((heading, idx) => {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
 export const TableContainer = styled.div`
@@ -7,7 +7,7 @@ export const TableContainer = styled.div`
   margin: 25px auto auto;
   overflow-x: auto;
   font-size: 0.7em;
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${({theme}) => theme.mobileMenu}) {
     /* width: 80%; */
     font-size: 0.9em;
   }
@@ -31,8 +31,9 @@ export const Td = styled.td`
     background-color: ${({ theme }) => theme.mediumLight1};
     padding: 30px;
   }
-  & a, a:visited {
-    color: inherit
+  & a,
+  a:visited {
+    color: inherit;
   }
 `;
 
@@ -63,7 +64,7 @@ export const Th = styled.th`
 export const Tr = styled.tr`
   border-bottom: 1px solid rgb(238, 243, 246);
   &:nth-child(even) {
-    background-color: ${({theme}) => theme.warmWhite};
+    background-color: ${({ theme }) => theme.warmWhite};
   }
 `;
 
@@ -72,4 +73,18 @@ export const Ul = styled.ul`
 `;
 export const StLink = styled(Link)`
   cursor: pointer;
+`;
+export const StCol = styled.col`
+  ${({ width }) =>
+    width
+      ? css`
+          width: ${width};
+        `
+      : null}
+  ${({ minWidth }) =>
+    minWidth
+      ? css`
+          min-width: ${minWidth};
+        `
+      : null}
 `;

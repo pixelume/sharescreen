@@ -1,6 +1,8 @@
 import React /* , { useState, useContext } */ from 'react';
 import SortArrows from '../svg/sort_arrows.svg';
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+// import { Context } from './RootElement';
+// import useSortBy from '../hooks/useSortby';
 import {
   TableContainer,
   Table,
@@ -12,12 +14,17 @@ import {
   Tr,
   Ul,
   StLink,
+  StCol
 } from './tableStyles';
 
 const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
   return (
     <TableContainer>
       <Table>
+        <StCol minWidth='140px' />
+        <StCol minWidth='200px' />
+        <StCol minWidth='300px' />
+        <StCol minWidth='140px' />
         <Thead>
           <Tr>
             {headings.map((heading, idx) => {
@@ -43,7 +50,7 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
           {sortedArray.map((presentation, idx) => {
             return (
               <Tr key={`row-${idx}`}>
-                <Td style={{verticalAlign: 'middle'}}>
+                <Td style={{ verticalAlign: 'middle' }}>
                   <StLink to={`/${presentation.slug}`}>
                     {presentation.image.localFile ? (
                       <GatsbyImage
@@ -71,11 +78,13 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
                     </div> */}
                   </StLink>
                 </Td>
-                <Td width='30%' style={{verticalAlign: 'middle'}}>
+                <Td width='30%' style={{ verticalAlign: 'middle' }}>
                   {/* <TdChildMultiLine style={{ fontWeight: 'bold' }}>
                     {headings[0]}
                   </TdChildMultiLine> */}
-                  <TdChildMultiLine style={{ fontWeight: 'bold', marginBottom: 15 }}>
+                  <TdChildMultiLine
+                    style={{ fontWeight: 'bold', marginBottom: 15 }}
+                  >
                     {presentation.name}
                     {/* <Ul>
                       {presentation.qualifications &&
@@ -89,7 +98,7 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
                     </Ul> */}
                   </TdChildMultiLine>
                   <TdChildMultiLine>
-                    <span style={{fontWeight: 'bold'}}>By:</span>&nbsp;
+                    <span style={{ fontWeight: 'bold' }}>By:</span>&nbsp;
                     <StLink
                       to={
                         presentation.presenter
@@ -103,15 +112,18 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
                     </StLink>
                   </TdChildMultiLine>
                   <TdChildMultiLine>
-                  <span style={{fontWeight: 'bold'}}>Topic:</span>&nbsp;{presentation.topic ? presentation.topic : '-'}
+                    <span style={{ fontWeight: 'bold' }}>Topic:</span>&nbsp;
+                    {presentation.topic ? presentation.topic : '-'}
                   </TdChildMultiLine>
                   <TdChildMultiLine>
-                  <span style={{fontWeight: 'bold'}}>Duration:</span>&nbsp;
+                    <span style={{ fontWeight: 'bold' }}>Duration:</span>&nbsp;
                     {presentation.duration ? presentation.duration : '-'}
                   </TdChildMultiLine>
                 </Td>
                 <Td width='40%'>
-                  <TdChildMultiLine style={{ fontWeight: 'bold', marginBottom: 15 }}>
+                  <TdChildMultiLine
+                    style={{ fontWeight: 'bold', marginBottom: 15 }}
+                  >
                     {headings[1]}
                   </TdChildMultiLine>
                   <TdChildMultiLine>
@@ -124,8 +136,7 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
                   </TdChildMultiLine>
                   <TdChildMultiLine>
                     <Ul>
-                      {presentation.tags &&
-                      presentation.tags.length > 0 ? (
+                      {presentation.tags && presentation.tags.length > 0 ? (
                         presentation.tags.map((tag, idx2) => (
                           <li key={`tag-${idx2}`}>{tag}</li>
                         ))

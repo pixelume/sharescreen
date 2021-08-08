@@ -1,6 +1,6 @@
 export const theme = {
   headerHeightBig: 80,
-  mobileMenu: '500px',
+  mobileMenu: '950px',
   textDark1: '#232e27',
   textMedium1: "#7C7C80",
   dark1: '#576b4e',
