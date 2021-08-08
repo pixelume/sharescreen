@@ -15,7 +15,6 @@ const Cards = ({
     if (presentersArr) {
       if (typeof presentersArr === "object") {
         return presentersArr.map((card, idx) => {
-          // const profilePic = getImage(card.profilePicture.localFile)
           return (
           <Tile 
             to={`/${card.slug}`} 
@@ -52,7 +51,6 @@ const Cards = ({
         return presentationsArr
           .slice(0, limit || presentationsArr.length)
           .map((card, idx) => {
-            // const presentationImage = getImage(card.Image.localFile)
             return (
               <Tile
                 to={`/${card.slug}`}
