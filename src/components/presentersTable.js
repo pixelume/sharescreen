@@ -55,7 +55,7 @@ const PresentersTable = ({ sortedArray, headings, sortClickHandler }) => {
               <Tr key={`row-${idx}`}>
                 <Td>
                   <StLink to={`/${presenter.slug}`}>
-                    {presenter.profilePicture.localFile ? (
+                    {presenter.profilePicture ? (
                       <GatsbyImage
                         // image={getImage(pData[idx].profilePicture.localFile)}
                         image={getImage(presenter.profilePicture.localFile)}

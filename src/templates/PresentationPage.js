@@ -26,7 +26,7 @@ const PresentationPage = ({ data }) => {
   };
 
   const pData = data.strapiPresentation;
-  const profilePic = getImage(pData.presenter.profilePicture.localFile);
+  const profilePic = pData.presenter.profilePicture? getImage(pData.presenter.profilePicture.localFile): null;
   const presentationPic = getImage(pData.image.localFile);
 
   return (
@@ -120,7 +120,7 @@ const PresentationPage = ({ data }) => {
                 <>
                   {/* <Link to={`/presenters/${pData.presenter.id}`}> */}
                   <Link to={`/${pData.presenter.slug}`}>
-                    {pData.presenter.profilePicture ? (
+                    {profilePic ? (
                       <GatsbyImage
                         image={profilePic}
                         alt={pData.presenter.fullName}
