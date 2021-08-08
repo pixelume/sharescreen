@@ -52,7 +52,7 @@ const PresentationsTable = ({ sortedArray, headings, sortClickHandler }) => {
               <Tr key={`row-${idx}`}>
                 <Td style={{ verticalAlign: 'middle' }}>
                   <StLink to={`/${presentation.slug}`}>
-                    {presentation.image.localFile ? (
+                    {presentation.image? (
                       <GatsbyImage
                         // image={getImage(pData[idx].profilePicture.localFile)}
                         image={getImage(presentation.image.localFile)}

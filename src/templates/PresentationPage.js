@@ -27,7 +27,7 @@ const PresentationPage = ({ data }) => {
 
   const pData = data.strapiPresentation;
   const profilePic = pData.presenter.profilePicture? getImage(pData.presenter.profilePicture.localFile): null;
-  const presentationPic = getImage(pData.image.localFile);
+  const presentationPic = pData.image? getImage(pData.image.localFile): null;
 
   return (
     <>

@@ -18,36 +18,6 @@ const ProfilePage = () => {
       minHeight={`calc(100vh - ${headerHeightBig}px)`}
       justifyContent='center'
     >
-      {/* <ColInSection col={3}>
-        <H3 margin='0 auto 1.5em' textAlign='center'>
-          Presenter
-        </H3>
-        {pData.profilePicture ? (
-          <GatsbyImage
-            image={profilePic}
-            alt={pData.fullName}
-            style={imgStyle}
-          />
-        ) : (
-          <StaticImage
-            src='../images/placeholder_image.png'
-            layout='fixed'
-            width={350}
-            height={233}
-          />
-        )}
-        <H3 margin='1em auto' color='dark1'>
-          {pData.title ? pData.title + ' ' : null}
-          {pData.fullName}
-        </H3>
-        {pData.qualifications ? (
-          <p>
-            {pData.qualifications.map((qual, idx) => (
-              <span key={`qual-${idx}`}>{qual},&nbsp;</span>
-            ))}
-          </p>
-        ) : null}
-      </ColInSection> */}
 
       {user.user && (
         <ColInSection
@@ -173,92 +143,6 @@ const ProfilePage = () => {
         </ColInSection>
       )}
 
-      {/* <ColInSection
-        col={3}
-        backgroundColor='coolWhite'
-        boxShadow='1px 1px 5px rgba(0, 0, 0, 0.1)'
-        borderRadius='5px'
-      >
-        <H3 margin='0 auto 1.5em' textAlign='center'>
-          About
-        </H3>
-        <p>
-          <SmallHeading>Institution: </SmallHeading>
-          <br />
-          {pData.institution}
-        </p>
-        <p>
-          <SmallHeading>Role: </SmallHeading>
-          <br />
-          {pData.role}
-        </p>
-        <p>
-          <SmallHeading>Country: </SmallHeading>
-          <br />
-          {pData.country}
-        </p>
-        {pData.subjectMatter ? (
-          <p>
-            <SmallHeading style={{ fontWeight: 'bold' }}>
-              Subjects:{' '}
-            </SmallHeading>
-            <br />
-            {pData.subjectMatter.map((qual, idx) => (
-              <span key={`qual-${idx}`}>{qual},&nbsp;</span>
-            ))}
-          </p>
-        ) : null}
-        <p>
-          <SmallHeading>Presentations: </SmallHeading>
-        </p>
-        {pData.presentations && pData.presentations.length > 0 ? (
-          pData.presentations.map((presentation, idx) => (
-            <Link to={`/${presentation.slug}`} key={presentation.name}>
-              <div
-                style={{
-                  marginTop: 10,
-                  borderRadius: 5,
-                  boxSizing: 'border-box',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: 5,
-                  backgroundColor: mediumLight1,
-                }}
-              >
-                <GatsbyImage
-                  image={getImage(presentation.image.localFile)}
-                  style={{
-                    marginRight: 10,
-                    height: 100,
-                    flexShrink: 0,
-                  }}
-                  alt={presentation.name}
-                />
-                <span style={{ textAlign: 'center', fontSize: '0.8em' }}>
-                  {presentation.name}
-                </span>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <div
-            style={{
-              borderRadius: 5,
-              boxSizing: 'border-box',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 5,
-              backgroundColor: mediumLight1,
-            }}
-          >
-            Coming Soon
-          </div>
-        )}
-        <ReqBtn type='button' onClick={() => setRequestSpeaker(true)}>
-          Connect with{` ${pData.title} ${pData.surname}`}
-        </ReqBtn>
-      </ColInSection> */}
     </Section>
   );
 };

@@ -37,7 +37,7 @@ const SinglePresenter = ({ data }) => {
   };
 
   const pData = data.strapiPresenter;
-  const profilePic = getImage(pData.profilePicture.localFile);
+  const profilePic = pData.profilePicture? getImage(pData.profilePicture.localFile): null;
 
   // const getPresentationColData = () => {
   //   const presentationsArr = pData.presentations;
@@ -162,7 +162,8 @@ const SinglePresenter = ({ data }) => {
                         backgroundColor: mediumLight1,
                       }}
                     >
-                      <GatsbyImage
+                      {presentation.image? (
+                        <GatsbyImage
                         image={getImage(presentation.image.localFile)}
                         style={{
                           marginRight: 10,
@@ -171,6 +172,19 @@ const SinglePresenter = ({ data }) => {
                         }}
                         alt={presentation.name}
                       />
+                      ): (
+                        <StaticImage
+                        src='../images/placeholder_image.png'
+                        style={{
+                          marginRight: 10,
+                          height: 100,
+                          flexShrink: 0,
+                        }}
+                        layout='fixed'
+                        width={150}
+                        height={100}
+                      />
+                      )}
                       <span style={{ textAlign: 'center', fontSize: '0.8em' }}>
                         {presentation.name}
                       </span>

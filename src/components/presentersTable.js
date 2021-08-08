@@ -57,7 +57,6 @@ const PresentersTable = ({ sortedArray, headings, sortClickHandler }) => {
                   <StLink to={`/${presenter.slug}`}>
                     {presenter.profilePicture ? (
                       <GatsbyImage
-                        // image={getImage(pData[idx].profilePicture.localFile)}
                         image={getImage(presenter.profilePicture.localFile)}
                         style={{ borderRadius: '50%', width: 100, height: 100 }}
                         alt={presenter.fullName}
@@ -146,15 +145,26 @@ const PresentersTable = ({ sortedArray, headings, sortClickHandler }) => {
                                   alignItems: 'center',
                                 }}
                               >
-                                <GatsbyImage
-                                  image={getImage(presentation.image.localFile)}
-                                  style={{
-                                    marginRight: 10,
-                                    width: 100,
-                                    flexShrink: 0,
-                                  }}
-                                  alt={presentation.name}
-                                />
+                                {presentation.image ? (
+                                  <GatsbyImage
+                                    image={getImage(
+                                      presentation.image.localFile
+                                    )}
+                                    style={{
+                                      marginRight: 10,
+                                      width: 100,
+                                      flexShrink: 0,
+                                    }}
+                                    alt={presentation.name}
+                                  />
+                                ) : (
+                                  <StaticImage
+                                    src='../images/placeholder_image.png'
+                                    layout='fixed'
+                                    width={100}
+                                    height={100}
+                                  />
+                                )}
                                 <span style={{ color: 'grey' }}>
                                   {presentation.name}
                                 </span>
