@@ -15,7 +15,8 @@ const SignupForm = () => {
     email: "",
     password: "",
     passwordVer: "",
-    // role: "Editor"
+    passwordVer: "",
+    agreeToPolicies: false
   };
 
   const [fData, setFData] = useState(initialFData);
@@ -56,24 +57,37 @@ const SignupForm = () => {
     document.getElementById(field).focus();
   };
 
+  const checkBoxHandler = (e) => {
+    if (e.target.checked) {
+      setFData((prevData) => ({...prevData, agreeToPolicies: true}))
+    } else { // Checkbox unchecked
+      setFData((prevData) => ({...prevData, agreeToPolicies: false}))
+    }
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (formError) {
-      setFormError(false);
-    }
-    setFormStatus("sending");
-    try {
-      const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/local/register`, {
-        username: fData.email,
-        email: fData.email,
-        password: fData.password,
-        role: fData.role
-      });
-      setUser(response.data);
-      setFormStatus("sent");
-    } catch (error) {
-      setFormError(error.response.data.message[0].messages[0].message);
-      setFormStatus("unSent");
+    if (!fData.agreeToPolicies) {
+      setFormError('You must agree to our policies before registering.')
+    } else {
+      if (formError) {
+        setFormError(false);
+      }
+      setFormStatus("sending");
+      try {
+        const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/local/register`, {
+          username: fData.email,
+          email: fData.email,
+          password: fData.password,
+          role: fData.role,
+          agreeToPolicies: fData.agreeToPolicies
+        });
+        setUser(response.data);
+        setFormStatus("sent");
+      } catch (error) {
+        setFormError(error.response.data.message[0].messages[0].message);
+        setFormStatus("unSent");
+      }
     }
   };
 
@@ -86,6 +100,7 @@ const SignupForm = () => {
           clearField={clearField}
           // errorDisplay={formError}
           validated={validated}
+          checkBoxHandler={checkBoxHandler}
         />
       )}
       {formStatus === "sending" && (
@@ -96,7 +111,7 @@ const SignupForm = () => {
           <H3 style={{ margin: "auto", textAlign: "center" }}>
             Please verify you email address:
           </H3>
-          <P>Click on the verification link sent to {fData.email} to verify you email address.</P>
+          <P style={{marginTop: 50, textAlign: 'center'}}>Click on the verification link sent to {fData.email} to verify your email address.</P>
         </>
       )}
       {formError && <Notification animate color="red">{formError}</Notification>}

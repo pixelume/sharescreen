@@ -1,22 +1,28 @@
-import React/* , { useContext } */ from "react";
-// import ReactMarkdown from "react-markdown";
-// import { Context } from "../components/RootElement";
-import { P, H3, Section, ColInSection } from "../components/Layout";
-import { Link } from 'gatsby';
+import React, { useState, useEffect } from 'react';
+import { P, H3, Section, ColInSection } from '../components/Layout';
+import { navigate } from 'gatsby';
 
 const EmailConfirmed = () => {
-  // const { cookiePolicies } = useContext(Context);
-  // const components = {
-  //   h1: ({ children }) => <H1 style={{fontSize: '2.1em'}}>{children}</H1>,
-  //   p: ({ children }) => <P margin="1.2em auto">{children}</P>,
-  //   h3: ({ children }) => <H3 style={{fontSize: '1.2em'}}>{children}</H3>,
-  // };
+  const [count, setCount] = useState(5);
+
+  useEffect(() => {
+    if (count > 0) {
+      setTimeout(() => setCount((c) => c - 1), 1000);
+    } else {
+      navigate('/login')
+    }
+  }, [count]);
+
   return (
     <Section justifyContent='center'>
       <ColInSection col={1.3}>
-        <H3>Thank You</H3>
-        <P>Your email is confirmed. <Link to='/login'>Login?</Link> <Link to='/'>Home?</Link></P>
-        {/* <ReactMarkdown components={components}>{cookiePolicies}</ReactMarkdown> */}
+        <H3 textAlign='center'>Thank You</H3>
+        <P textAlign='center'>
+          Your email is confirmed. You will automatically be re-directed to the login page in...
+        </P>
+        <P textAlign='center' style={{fontWeight: 'bold', marginTop: 20}}>
+        {count} seconds
+        </P>
       </ColInSection>
     </Section>
   );

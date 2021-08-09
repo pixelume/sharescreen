@@ -11,17 +11,23 @@ import {
 import { MdClear } from "react-icons/md";
 import {HiOutlineMail} from "react-icons/hi";
 import {RiKey2Line} from "react-icons/ri";
+import { Link } from "gatsby";
 // import {IoPeopleOutline} from "react-icons/io5";
 
 const InputSignup = styled(Input)`
   padding-left: 2.5em;
 `
 
+const StLink = styled(Link)`
+  text-decoration: underline;
+`
+
 const LoginFormContent = ({
   inputHandler,
   fData,
   clearField,
-  validated
+  validated,
+  checkBoxHandler
 }) => {
   return (
   <>
@@ -73,40 +79,19 @@ const LoginFormContent = ({
         <MdClear style={clearBtnStyle} onClick={() => clearField("passwordVer")} />
       )}
     </Formfield>
-    {/* <Formfield radio onChange={inputHandler}>
-    <span style={{display: 'block', fontSize: '1.1em', fontWeight: 'bold'}}>Register as a</span>
-      <RadioLabel>
-      <input
-        name="role"
-        id="Client"
-        type="radio"
-        value="Client"
-        checked={fData.role === "Client"}
+    <Formfield
+      style={{display: 'flex', justifyContent: 'center', alignItems: 'start', marginTop: 40}}
+    >
+      <Input 
+        style={{height: '3em', width: '3em', marginRight: 15}}
+        id='agreeToPolicies'
+        type="checkbox" 
+        value={fData.agreeToPolicies}
+        checked={fData.agreeToPolicies}
+        onChange={checkBoxHandler}
       />
-      Client
-      </RadioLabel>
-      <RadioLabel>
-      <input
-        name="role"
-        id="Service Provider"
-        type="radio"
-        value="Service Provider"
-        checked={fData.role === "Service Provider"}
-      />
-      Service Provider
-      </RadioLabel>
-      <RadioLabel>
-      <input
-        name="role"
-        id="Editor"
-        type="radio"
-        value="Editor"
-        checked={fData.role === "Editor"}
-      />
-      Editor
-      </RadioLabel>
-      <IoPeopleOutline style={iconStyle} />
-    </Formfield> */}
+      <label htmlFor='agreeToPolicies' style={{fontSize: '0.8em'}}>I acknowledge that I have read, and agree to the sharescreenafrica.org <StLink to='/terms-conditions'>terms &amp; conditions,</StLink>{' '}<StLink to='/privacy'>{`privacy policy`}</StLink>{` and `}<StLink to='/cookie-policies'>cookie policy</StLink>.</label>
+    </Formfield>
     <Button disabled={!validated} margin="20px auto" type="submit" color={validated? "green": "grey"}>
       Submit
     </Button>

@@ -80,7 +80,7 @@ const LoginForm = () => {
         </>
       )}
       {formError && <Notification animate color="red">{formError}</Notification>}
-      <div style={{textAlign: 'center', color: "darkgrey"}}>Don't have an account? <Link style={{textDecoration: 'underline'}} to='/signup'>Sign up here</Link></div>
+      {formStatus !== 'sent' && <div style={{textAlign: 'center', color: "darkgrey"}}>Don't have an account? <Link style={{textDecoration: 'underline'}} to='/signup'>Sign up here</Link></div>}
     </StForm>
   );
 };
