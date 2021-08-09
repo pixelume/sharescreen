@@ -47,15 +47,8 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: process.env.STRAPI_URL,
-        // queryLimit: 100, // Default to 100
         collectionTypes: [`user`, `presenter`, `presentation`, `request`],
-        //If using single types place them in this array.
-        singleTypes: [`privacy-policy`],
-        // Possibility to login with a strapi user, when content types are not publically available (optional).
-        // loginData: {
-        //   identifier: "",
-        //   password: "",
-        // },
+        singleTypes: [`privacy-policy`, `cookie-policies`, `terms-and-conditions-page`],
       },
     },
     {

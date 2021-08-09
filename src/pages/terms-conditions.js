@@ -4,7 +4,7 @@ import { Context } from "../components/RootElement";
 import { P, H3, H1, Section, ColInSection } from "../components/Layout";
 
 const Privacy = () => {
-  const { privacyPolicy } = useContext(Context);
+  const { termsConditions } = useContext(Context);
   const components = {
     h1: ({ children }) => <H1 style={{fontSize: '2.1em'}}>{children}</H1>,
     p: ({ children }) => <P margin="1.2em auto">{children}</P>,
@@ -13,7 +13,7 @@ const Privacy = () => {
   return (
     <Section justifyContent='center'>
       <ColInSection col={1.3}>
-        <ReactMarkdown components={components}>{privacyPolicy}</ReactMarkdown>
+        <ReactMarkdown components={components}>{termsConditions}</ReactMarkdown>
       </ColInSection>
     </Section>
   );

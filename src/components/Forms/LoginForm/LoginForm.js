@@ -23,7 +23,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (formStatus === 'sent') {
-      setTimeout(() => navigate(-1), 1000);
+      setTimeout(() => navigate('/'), 1000);
     }
   }, [formStatus])
   

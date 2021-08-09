@@ -8,6 +8,7 @@ import { Link, navigate } from "gatsby";
 import { Context } from "../../../components/RootElement";
 import Notification from "../../../styles/Notification";
 import LoadAnimation from '../../../styles/LoadAnimation';
+import { H3, P } from "../../Layout";
 
 const SignupForm = () => {
   const initialFData = {
@@ -24,11 +25,11 @@ const SignupForm = () => {
 
   const { setUser } = useContext(Context);
 
-  useEffect(() => {
-    if (formStatus === 'sent') {
-      setTimeout(() => navigate('/'), 1000);
-    }
-  }, [formStatus])
+  // useEffect(() => {
+  //   if (formStatus === 'sent') {
+  //     setTimeout(() => navigate('/'), 1000);
+  //   }
+  // }, [formStatus])
 
   const {email, password, passwordVer} = fData
   useEffect(() => {
@@ -92,13 +93,14 @@ const SignupForm = () => {
       )}
       {formStatus === "sent" && (
         <>
-          <h2 style={{ margin: "auto", textAlign: "center" }}>
-            Signup Successful.
-          </h2>
+          <H3 style={{ margin: "auto", textAlign: "center" }}>
+            Please verify you email address:
+          </H3>
+          <P>Click on the verification link sent to {fData.email} to verify you email address.</P>
         </>
       )}
       {formError && <Notification animate color="red">{formError}</Notification>}
-      <div style={{textAlign: 'center', color: "darkgrey"}}>Already have an account? <Link style={{textDecoration: 'underline'}} to='/login'>Sign in here</Link></div>
+      {formStatus !== 'sent' && <div style={{textAlign: 'center', color: "darkgrey"}}>Already have an account? <Link style={{textDecoration: 'underline'}} to='/login'>Sign in here</Link></div>}
     </StForm>
   );
 };

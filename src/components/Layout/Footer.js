@@ -65,8 +65,8 @@ const Footer = (props) => {
         <h4>LEGAL</h4>
         <Ul>
           <Li><Link to="/privacy">Privacy Policy</Link></Li>
-          <Li>Terms & Conditions</Li>
-          <Li>Cookie Preferences</Li>
+          <Li><Link to="/terms-conditions">Terms & Conditions</Link></Li>
+          <Li><Link to="/cookie-policies">Cookie Preferences</Link></Li>
         </Ul>
       </FooterColItem>
       <FooterColItem>
