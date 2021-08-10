@@ -3,29 +3,30 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 // import Notification from '../styles/Notification';
 import { StForm, SendingAnimation } from "../FormStyles";
-import LoginFormContent from "./LoginFormContent";
+import ForgotPasswordFormContent from "./ForgotPasswordFormContent";
 import { Link, navigate } from "gatsby";
 import Notification from "../../../styles/Notification";
 import { Context } from '../../RootElement';
 import LoadAnimation from '../../../styles/LoadAnimation';
+import { H3, P } from "../../Layout";
 
-const LoginForm = () => {
+const ForgotPasswordForm = () => {
   const initialFData = {
     email: "",
-    password: "",
+    // password: "",
   };
 
   const [fData, setFData] = useState(initialFData);
   const [formStatus, setFormStatus] = useState("unSent");
   const [formError, setFormError] = useState(false);
 
-  const { setUser } = useContext(Context);
+  // const { setUser } = useContext(Context);
 
-  useEffect(() => {
-    if (formStatus === 'sent') {
-      setTimeout(() => navigate('/'), 1000);
-    }
-  }, [formStatus])
+  // useEffect(() => {
+  //   if (formStatus === 'sent') {
+  //     setTimeout(() => navigate('/'), 1000);
+  //   }
+  // }, [formStatus])
   
   const inputHandler = (e) => {
     if (formError) {
@@ -47,11 +48,11 @@ const LoginForm = () => {
     }
     setFormStatus("sending");
     try {
-      const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/local`, {
-        identifier: fData.email,
-        password: fData.password,
+      const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/forgot-password`, {
+        email: fData.email,
+        // password: fData.password,
       });
-      setUser(response.data);
+      // setUser(response.data);
       setFormStatus("sent");
     } catch (error) {
       setFormError(error.response.data.message[0].messages[0].message);
@@ -62,7 +63,7 @@ const LoginForm = () => {
   return (
     <StForm onSubmit={submitHandler}>
       {formStatus === "unSent" && (
-        <LoginFormContent
+        <ForgotPasswordFormContent
           inputHandler={inputHandler}
           fData={fData}
           clearField={clearField}
@@ -74,20 +75,16 @@ const LoginForm = () => {
       )}
       {formStatus === "sent" && (
         <>
-          <h2 style={{ margin: "auto", textAlign: "center" }}>
-            Login Successful.
-          </h2>
+          <H3 style={{ margin: "auto", textAlign: "center" }}>
+            Please check your email:
+          </H3>
+          <P style={{marginTop: 50, textAlign: 'center'}}>Click on the password-reset link sent to {fData.email} to reset yout password.</P>
         </>
       )}
       {formError && <Notification animate color="red">{formError}</Notification>}
-      {formStatus !== 'sent' &&
-      <>
-      <div style={{textAlign: 'center', color: "darkgrey"}}>Don't have an account? <Link style={{textDecoration: 'underline'}} to='/register'>Sign up here</Link></div>
-      <div style={{textAlign: 'center', color: "darkgrey"}}>Forgot your password? <Link style={{textDecoration: 'underline'}} to='/forgot-password'>Reset Password</Link></div>
-      </>
-      }
+      {formStatus !== 'sent' && <div style={{textAlign: 'center', color: "darkgrey"}}>Go Back to&nbsp;<Link style={{textDecoration: 'underline'}} to='/login'>Login Page?</Link></div>}
     </StForm>
   );
 };
 
-export default LoginForm;
+export default ForgotPasswordForm;

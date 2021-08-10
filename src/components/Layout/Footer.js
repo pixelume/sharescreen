@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
 import { ColInSection } from "./Body/ColInSection";
 // import { StLogo } from "./Header/Title";
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+import { LayoutContext } from './Layout';
 
 const FooterContainer = styled.footer`
   position: absolute;
@@ -35,8 +36,8 @@ const FooterColItem = ({ children }) => (
   </ColInSection>
 );
 
-const Footer = (props) => {
-  //Logic
+const Footer = () => {
+  const {setSubmitContact} = useContext(LayoutContext)
 
   return (
     <FooterContainer padding="20px 5vw" color="medium1">
@@ -72,7 +73,7 @@ const Footer = (props) => {
       <FooterColItem>
         <h4>HELP</h4>
         <Ul>
-          <Li>Contact Us</Li>
+          <Li role='button' style={{cursor: 'pointer'}} onClick={() => setSubmitContact(true)}>Contact Us</Li>
           <Li>FAQ</Li>
         </Ul>
       </FooterColItem>
