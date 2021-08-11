@@ -55,6 +55,7 @@ const CloseBtn = styled.button`
   top: 5px;
   right: 5px;
   cursor: pointer;
+  font-size: 3em;
   background-color: transparent;
 `
 

@@ -145,6 +145,8 @@ export const CloseBtnRound = styled.button.attrs({type: 'button'})`
   align-items: center;
   border-radius: 50%;
   padding: 0px;
+  font-size: 1.2em;
+  line-height: 0px;
 `
 
 export const SendingAnimation = styled(MdMailOutline)`

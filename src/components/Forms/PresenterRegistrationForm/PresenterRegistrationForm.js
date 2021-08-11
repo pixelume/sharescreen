@@ -10,36 +10,98 @@ import { Context } from '../../RootElement';
 // import { IoNuclearOutline } from 'react-icons/io5';
 import slugify from 'slugify';
 import LoadAnimation from '../../../styles/LoadAnimation';
+import { Button } from '../../../styles/Buttons';
+import Modal from '../../Modal';
+import { H3 } from '../../Layout';
 
-const PresenterRegistrationForm = () => {
-  const initialFData = {
-    name: '',
-    surname: '',
-    title: '',
-    email: '',
-    phone: '',
-    country: '',
-    city: '',
-    qualifications: null,
-    institution: '',
-    role: '',
-    biography: '',
-    subjectMatter: null,
-    industryMemberships: null,
-    availableHours: null,
-  };
+const PresenterRegistrationForm = ({
+  editData,
+  presenterId,
+  setEditProfile,
+}) => {
+  const initialFData = editData
+    ? { ...editData }
+    : {
+        name: '',
+        surname: '',
+        title: '',
+        email: '',
+        phone: '',
+        country: '',
+        city: '',
+        qualifications: null,
+        institution: '',
+        role: '',
+        biography: '',
+        subjectMatter: null,
+        industryMemberships: null,
+        availableHours: null,
+      };
 
   const [fData, setFData] = useState(initialFData);
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null);
   const [formStatus, setFormStatus] = useState('unSent');
   const [formError, setFormError] = useState(false);
+  const [confirmSubmit, setConfirmSubmit] = useState(false);
 
   const { user } = useContext(Context);
 
   useEffect(() => {
+    console.log(presenterId);
     if (formStatus === 'sent') {
       // setTimeout(() => navigate('/'), 1000);
       setTimeout(() => setFormStatus('unSent'), 1000);
+    } else if (formStatus === 'sending') {
+      const slug = slugify(`${fData.name} ${fData.surname}`, {
+        lower: true,
+        remove: /[*+~.()'"!:@]/g,
+      });
+      // setFormStatus('sending');
+      const formData = new FormData();
+      formData.append('data', JSON.stringify({ ...fData, slug: slug }));
+      if (file) {
+        formData.append('files.profilePicture', file);
+      }
+
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
+      const submitForm = async () => {
+        const postReqOptions = {
+          method: 'post',
+          url: `${process.env.GATSBY_STRAPI_URL}/presenters`,
+          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${user.jwt}`,
+          }
+        };
+        const putReqOptions = {
+          method: 'put',
+          url: `${process.env.GATSBY_STRAPI_URL}/presenters/${presenterId}`,
+          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${user.jwt}`,
+          }
+        }
+        try {
+          const response = await axios(presenterId? putReqOptions: postReqOptions);
+          setFormStatus('sent');
+          if (presenterId) {
+            setEditProfile('done');
+          }
+          setFData(initialFData);
+          setFile(null);
+          // doReFetchData();
+          // console.log("response", response);
+        } catch (error) {
+          console.log(error.response.data);
+          setFormError(error.response.data.message);
+          setFormStatus('unSent');
+        }
+      };
+      submitForm();
     }
   }, [formStatus]);
 
@@ -89,77 +151,85 @@ const PresenterRegistrationForm = () => {
     }
   };
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     // return null; // remove when done testing
     e.preventDefault();
     if (formError) {
       setFormError(false);
     }
-    const slug = slugify(`${fData.name} ${fData.surname}`, {lower: true, remove: /[*+~.()'"!:@]/g})
-    setFormStatus('sending');
-    const formData = new FormData();
-    formData.append('data', JSON.stringify({...fData, slug: slug}));
-    formData.append("files.profilePicture", file);
-
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
-
-    try {
-      const response = await axios({
-        method: 'post',
-        url: `${process.env.GATSBY_STRAPI_URL}/presenters`,
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${user.jwt}`
-        },
-      });
-      setFormStatus('sent');
-      setFData(initialFData);
-      setFile(null);
-      // doReFetchData();
-      // console.log("response", response);
-    } catch (error) {
-      console.log(error.response.data);
-      setFormError(error.response.data.message);
-      setFormStatus('unSent');
-    }
+    setConfirmSubmit(true);
   };
 
   return (
-    <StForm onSubmit={submitHandler} display='flex' id="presentationRegForm">
-      {formStatus === 'unSent' && (
-        <PresenterRegistrationFormContent
-          inputHandler={inputHandler}
-          arrayInputHandler={arrayInputHandler}
-          fData={fData}
-          file={file}
-          clearField={clearField}
-          clearFile={() => setFile(null)}
-          errorDisplay={formError}
-          deletePillHandler={deletePillHandler}
-          // fileSelectHandler={(e) => setFile(e.target.files[0])}
-          fileSelectHandler={(file, event) => setFile(file)}
-        />
+    <>
+      <StForm onSubmit={submitHandler} display='flex' id='presentationRegForm'>
+        {formStatus === 'unSent' && (
+          <PresenterRegistrationFormContent
+            inputHandler={inputHandler}
+            arrayInputHandler={arrayInputHandler}
+            fData={fData}
+            file={file}
+            clearField={clearField}
+            clearFile={() => setFile(null)}
+            errorDisplay={formError}
+            deletePillHandler={deletePillHandler}
+            // fileSelectHandler={(e) => setFile(e.target.files[0])}
+            fileSelectHandler={(file, event) => setFile(file)}
+          />
+        )}
+        {formStatus === 'sending' && <LoadAnimation />}
+        {formStatus === 'sent' && (
+          <>
+            <h2 style={{ margin: 'auto', textAlign: 'center' }}>
+              Presenter Successfully Created.
+            </h2>
+          </>
+        )}
+        {formError && (
+          <Notification animate color='red'>
+            {formError}
+          </Notification>
+        )}
+        {/* <div style={{textAlign: 'center', color: "darkgrey"}}>Don't have an account? <Link style={{textDecoration: 'underline'}} to='/signup'>Sign up here</Link></div> */}
+      </StForm>
+      {confirmSubmit && (
+        <Modal
+          margin='20px 0px 0px'
+          closeHandler={() => setConfirmSubmit(false)}
+        >
+          <H3
+            style={{ padding: '0px 20px' }}
+            textAlign='center'
+            margin='auto auto 20px'
+          >
+            Confirm Submission?
+          </H3>
+          {/* <P style={{padding: '15px 20px'}}>We are constantly working on the platform and you will soon be able to edit your profile here. For the time being please contact us if you would like to make any edits.</P> */}
+          <Button
+            type='button'
+            color='red'
+            margin='auto 10px'
+            display='inline-block'
+            onClick={() => setConfirmSubmit(false)}
+          >
+            Go Back
+          </Button>
+          <Button
+            type='button'
+            color='green'
+            autofocus
+            margin='auto 10px'
+            display='inline-block'
+            onClick={() => {
+              setFormStatus('sending');
+              setConfirmSubmit(false);
+            }}
+          >
+            Yes Confirm
+          </Button>
+        </Modal>
       )}
-      {formStatus === 'sending' && (
-        <LoadAnimation />
-      )}
-      {formStatus === 'sent' && (
-        <>
-          <h2 style={{ margin: 'auto', textAlign: 'center' }}>
-            Presenter Successfully Created.
-          </h2>
-        </>
-      )}
-      {formError && (
-        <Notification animate color='red'>
-          {formError}
-        </Notification>
-      )}
-      {/* <div style={{textAlign: 'center', color: "darkgrey"}}>Don't have an account? <Link style={{textDecoration: 'underline'}} to='/signup'>Sign up here</Link></div> */}
-    </StForm>
+    </>
   );
 };
 

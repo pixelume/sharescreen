@@ -178,7 +178,7 @@ const PresenterRegistrationFormContent = ({
           value={fData.country}
           defaultValue=''
           onChange={inputHandler}
-          selected=''
+          selected={fData.country}
           required
         >
           <option value='' disabled hidden>

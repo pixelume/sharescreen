@@ -80,7 +80,8 @@ const SignupForm = () => {
           email: fData.email,
           password: fData.password,
           role: fData.role,
-          agreeToPolicies: fData.agreeToPolicies
+          agreeToPolicies: fData.agreeToPolicies,
+          createdOwnPassword: true
         });
         setUser(response.data);
         setFormStatus("sent");

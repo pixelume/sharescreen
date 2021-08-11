@@ -3,9 +3,8 @@ import styled, { css } from "styled-components";
 export const Button = styled.button`
   display: ${({ display }) => display || "block"};
   border-radius: 10px;
-  background-color: ${({ theme, color }) =>
-    color ? theme[color].bg : "#f7f7f7"};
-  /* color: ${({ theme, color }) => (color ? theme[color].text : "#000")}; */
+  background-color: ${({ theme, color }) => color ? theme[color].bg : "#f7f7f7"};
+  color: ${({ theme, color }) => (color ? theme[color].text : "#000")};
   ${({ theme, bgColor }) =>
     bgColor
       ? theme[bgColor]

@@ -19,6 +19,7 @@ import Modal from '../components/Modal';
 import RequestSpeakerForm from '../components/Forms/RequestSpeakerForm/RequestSpeakerForm';
 import { Context } from '../components/RootElement';
 import { FiEdit } from 'react-icons/fi';
+import PresenterRegistrationForm from '../components/Forms/PresenterRegistrationForm/PresenterRegistrationForm';
 
 const ReqBtn = styled(Button)`
   font-size: 0.9em;
@@ -240,24 +241,66 @@ const SinglePresenter = ({ data }) => {
         </Modal>
       )}
       {editProfile && (
-        <Modal
-          margin='20px 0px 0px'
-          closeHandler={() => setEditProfile(false)}
-        >
+        <Modal margin='20px 0px 0px' closeHandler={() => setEditProfile(false)}>
           <H3
             style={{ padding: '0px 20px' }}
             textAlign='center'
             margin='auto auto 20px'
-          >Edit Your Speaker Profile</H3>
-          <P style={{padding: '15px 20px'}}>We are constantly working on the platform and you will soon be able to edit your profile here. For the time being please contact us if you would like to make any edits.</P>
+          >
+            Edit Speaker Profile
+          </H3>
+          {/* <P style={{padding: '15px 20px'}}>We are constantly working on the platform and you will soon be able to edit your profile here. For the time being please contact us if you would like to make any edits.</P> */}
+          {editProfile === 'edit' && (
+            <PresenterRegistrationForm
+              editData={{
+                name: pData.name || '',
+                surname: pData.surname || '',
+                title: pData.title || '',
+                email: '' || '',
+                phone: '' || '',
+                country: pData.country || '',
+                city: pData.city || '',
+                qualifications: pData.qualifications || null,
+                institution: pData.institution || '',
+                role: pData.role || '',
+                biography: pData.biography || '',
+                subjectMatter: pData.subjectMatter || null,
+                industryMemberships: pData.industryMemberships || null,
+                availableHours: pData.availableHours || '',
+              }}
+              presenterId={pData.id.slice(pData.id.indexOf('_') + 1)}
+              setEditProfile={setEditProfile}
+            />
+          )}
+          {editProfile === 'done' && (
+            <>
+              <P style={{ padding: '0px 30px', marginTop: 50 }}>
+                Profile Successfully Updated. Changes are pending review and may take up to 24 hours to
+                reflect.
+              </P>
+              <Button
+                type='button'
+                color='red'
+                onClick={() => setEditProfile(false)}
+              >
+                Close
+              </Button>
+            </>
+          )}
         </Modal>
       )}
-      {user && pData.User && pData.User.id && pData.User.id === user.user.id && (
-        <EditBtn type='button' onClick={() => setEditProfile(true)}>
-          <FiEdit />
-          &nbsp;&nbsp;Edit Your Profile
-        </EditBtn>
-      )}
+      {(user &&
+        pData.User &&
+        pData.User.id &&
+        pData.User.id === user.user.id) ||
+        (user && user.user.role.name === 'Administrator' && (
+          <EditBtn type='button' onClick={() => setEditProfile('edit')}>
+            <FiEdit />
+            &nbsp;&nbsp;Edit&nbsp;
+            {user.user.role.name === 'Administrator' ? 'Speaker' : 'Your'}
+            &nbsp;Profile
+          </EditBtn>
+        ))}
     </>
   );
 
@@ -283,13 +326,17 @@ export const pageQuery = graphql`
   query ($slug: String!) {
     strapiPresenter(slug: { eq: $slug }) {
       title
-      fullName
+      name
       surname
+      fullName
       qualifications
       institution
       role
       country
+      city
       subjectMatter
+      industryMemberships
+      availableHours
       biography
       id
       profileVerified
