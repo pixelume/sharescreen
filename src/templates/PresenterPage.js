@@ -275,8 +275,8 @@ const SinglePresenter = ({ data }) => {
           {editProfile === 'done' && (
             <>
               <P style={{ padding: '0px 30px', marginTop: 50 }}>
-                Profile Successfully Updated. Changes are pending review and may take up to 24 hours to
-                reflect.
+                Profile Successfully Updated. Changes are pending review and may
+                take up to 24 hours to reflect.
               </P>
               <Button
                 type='button'
@@ -289,18 +289,19 @@ const SinglePresenter = ({ data }) => {
           )}
         </Modal>
       )}
-      {(user &&
-        pData.User &&
-        pData.User.id &&
-        pData.User.id === user.user.id) ||
-        (user && user.user.role.name === 'Administrator' && (
-          <EditBtn type='button' onClick={() => setEditProfile('edit')}>
-            <FiEdit />
-            &nbsp;&nbsp;Edit&nbsp;
-            {user.user.role.name === 'Administrator' ? 'Speaker' : 'Your'}
-            &nbsp;Profile
-          </EditBtn>
-        ))}
+      {pData &&
+        (user &&
+          pData.User &&
+          pData.User.id &&
+          pData.User.id === user.user.id) ||
+        (user && user.user.role.name === 'Administrator') ? (
+        <EditBtn type='button' onClick={() => setEditProfile('edit')}>
+          <FiEdit />
+          &nbsp;&nbsp;Edit&nbsp;
+          {user.user.role.name === 'Administrator' ? 'Speaker' : 'Your'}
+          &nbsp;Profile
+        </EditBtn>
+      ) : null}
     </>
   );
 
