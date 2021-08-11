@@ -13,7 +13,7 @@ const ModalBg = styled.div`
   align-items: flex-start;
   justify-content: center;
   overflow-y: auto;
-  z-index: 3;
+  z-index: 10;
   padding: ${({theme}) => theme.headerHeightBig+ 30}px auto ${({theme}) => theme.headerHeightBig+ 30}px;
   ${({bgPadding}) => bgPadding? css`padding: ${bgPadding};`:null}
   box-sizing: border-box;
