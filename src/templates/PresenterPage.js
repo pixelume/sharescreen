@@ -37,31 +37,11 @@ const SinglePresenter = ({ data }) => {
   };
 
   const pData = data.strapiPresenter;
-  const profilePic = pData.profilePicture? getImage(pData.profilePicture.localFile): null;
+  const profilePic = pData.profilePicture
+    ? getImage(pData.profilePicture.localFile)
+    : null;
 
-  // const getPresentationColData = () => {
-  //   const presentationsArr = pData.presentations;
-  //   if (presentationsArr) {
-  //     if (presentationsArr && presentationsArr.length > 0) {
-  //       return (
-  //         <Cards
-  //           cardMargin='auto'
-  //           withoutContainer
-  //           presentationsArr={presentationsArr}
-  //           fullName={pData.fullName}
-  //         />
-  //       );
-  //     } else {
-  //       return (
-  //         <Notification color='blue'>
-  //           <h2>No Presentations Yet</h2>
-  //         </Notification>
-  //       );
-  //     }
-  //   }
-  // };
-
-  return (
+  const renderProfile = (
     <>
       {pData && (
         <>
@@ -101,7 +81,7 @@ const SinglePresenter = ({ data }) => {
                 </p>
               ) : null}
             </ColInSection>
-            
+
             <ColInSection col={3}>
               <H3 margin='0 auto 1.5em' textAlign='center'>
                 Biography
@@ -162,28 +142,28 @@ const SinglePresenter = ({ data }) => {
                         backgroundColor: mediumLight1,
                       }}
                     >
-                      {presentation.image? (
+                      {presentation.image ? (
                         <GatsbyImage
-                        image={getImage(presentation.image.localFile)}
-                        style={{
-                          marginRight: 10,
-                          height: 100,
-                          flexShrink: 0,
-                        }}
-                        alt={presentation.name}
-                      />
-                      ): (
+                          image={getImage(presentation.image.localFile)}
+                          style={{
+                            marginRight: 10,
+                            height: 100,
+                            flexShrink: 0,
+                          }}
+                          alt={presentation.name}
+                        />
+                      ) : (
                         <StaticImage
-                        src='../images/placeholder_image.png'
-                        style={{
-                          marginRight: 10,
-                          height: 100,
-                          flexShrink: 0,
-                        }}
-                        layout='fixed'
-                        width={150}
-                        height={100}
-                      />
+                          src='../images/placeholder_image.png'
+                          style={{
+                            marginRight: 10,
+                            height: 100,
+                            flexShrink: 0,
+                          }}
+                          layout='fixed'
+                          width={150}
+                          height={100}
+                        />
                       )}
                       <span style={{ textAlign: 'center', fontSize: '0.8em' }}>
                         {presentation.name}
@@ -214,21 +194,54 @@ const SinglePresenter = ({ data }) => {
         </>
       )}
       {requestSpeaker && (
-        <Modal margin='20px 0px 0px' closeHandler={() => setRequestSpeaker(false)}>
+        <Modal
+          margin='20px 0px 0px'
+          closeHandler={() => setRequestSpeaker(false)}
+        >
           <H3
             style={{ padding: '0px 20px' }}
             textAlign='center'
             margin='auto auto 20px'
           >{`Connect with ${pData.title} ${pData.fullName}`}</H3>
-          {user && <RequestSpeakerForm
-            closeHandler={() => setRequestSpeaker(false)}
-            presenterId={pData.id.slice(pData.id.indexOf('_') + 1)}
-          />}
-          {!user && <button style={{display: 'block', padding: '80px 30px'}} onClick={() => setRequestSpeaker(false)} >Please <Link style={{textDecoration: 'underline'}} to='/login'>Login</Link> or <Link style={{textDecoration: 'underline'}} to='/register'>Register</Link> to connect with this presenter</button>}
+          {user && (
+            <RequestSpeakerForm
+              closeHandler={() => setRequestSpeaker(false)}
+              presenterId={pData.id.slice(pData.id.indexOf('_') + 1)}
+            />
+          )}
+          {!user && (
+            <button
+              style={{ display: 'block', padding: '80px 30px' }}
+              onClick={() => setRequestSpeaker(false)}
+            >
+              Please{' '}
+              <Link style={{ textDecoration: 'underline' }} to='/login'>
+                Login
+              </Link>{' '}
+              or{' '}
+              <Link style={{ textDecoration: 'underline' }} to='/register'>
+                Register
+              </Link>{' '}
+              to connect with this presenter
+            </button>
+          )}
         </Modal>
       )}
     </>
   );
+
+  const renderUnverified = (
+    <Section>
+      <ColInSection textAlign='center' col={1}>
+        <H3 textAlign='center'>This Profile is pending verification</H3>
+      </ColInSection>
+    </Section>
+  );
+
+  return pData &&
+    (pData.profileVerified || (user && pData.User && pData.User.id && pData.User.id === user.user.id) || (user && user.user.role === 'Administrator'))
+    ? renderProfile
+    : renderUnverified;
 };
 
 export default SinglePresenter;
@@ -246,6 +259,10 @@ export const pageQuery = graphql`
       subjectMatter
       biography
       id
+      profileVerified
+      User {
+        id
+      }
       profilePicture {
         localFile {
           childImageSharp {

@@ -77,6 +77,10 @@ const RootElement = ({ children, location }) => {
           slug
           subjectMatter
           qualifications
+          profileVerified
+          User {
+            id
+          }
           presentations {
             name
             slug

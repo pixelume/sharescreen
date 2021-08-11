@@ -165,7 +165,7 @@ const PresentersTable = ({ sortedArray, headings, sortClickHandler }) => {
                                     height={100}
                                   />
                                 )}
-                                <span style={{ color: 'grey' }}>
+                                <span style={{ color: 'grey', minWidth: 150}}>
                                   {presentation.name}
                                 </span>
                               </div>

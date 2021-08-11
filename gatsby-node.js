@@ -44,51 +44,51 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 };
 
-exports.onCreateNode = async ({
-  node,
-  actions: { createNode },
-  store,
-  cache,
-  createNodeId,
-}) => {
-  if (node.internal.type === "StrapiAboutPage") {
-    if (node.Content !== null && node.Content.length) {
-      let contentImages = [];
-      for (let i = 0, len = node.Content.length; i < len; i++) {
-        const block = node.Content[i];
-        const blockImage = {};
-        if (
-          block.strapi_component === "layout.2-column-section" &&
-          block.image !== null //&&
-          // block.images.length
-        ) {
-          const fileNode = await createRemoteFileNode({
-            url: `${process.env.GATSBY_STRAPI_URL}${block.image.url}`, // string that points to the URL of the image
-            parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
-            createNode, // helper function in gatsby-node to generate the node
-            createNodeId, // helper function in gatsby-node to generate the node id
-            cache, // Gatsby's cache
-            store, // Gatsby's Redux store
-          });
-          console.log(fileNode)
-          blockImage.image = fileNode ? { localFile___NODE: fileNode.id } : {};
-          // for (let j = 0, len2 = block.images.length; j < len2; j++) {
-          //   let fileNode = await createRemoteFileNode({
-          //     url: `${CMS_URL}${block.images[j].url}`, // string that points to the URL of the image
-          //     parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
-          //     createNode, // helper function in gatsby-node to generate the node
-          //     createNodeId, // helper function in gatsby-node to generate the node id
-          //     cache, // Gatsby's cache
-          //     store, // Gatsby's Redux store
-          //   });
-          //   blockImages.images.push(
-          //     fileNode ? { localFile___NODE: fileNode.id } : {}
-          //   );
-          // }
-        }
-        contentImages.push(blockImage);
-      }
-      node.contentImages = contentImages;
-    }
-  }
-};
+// exports.onCreateNode = async ({
+//   node,
+//   actions: { createNode },
+//   store,
+//   cache,
+//   createNodeId,
+// }) => {
+//   if (node.internal.type === "StrapiAboutPage") {
+//     if (node.Content !== null && node.Content.length) {
+//       let contentImages = [];
+//       for (let i = 0, len = node.Content.length; i < len; i++) {
+//         const block = node.Content[i];
+//         const blockImage = {};
+//         if (
+//           block.strapi_component === "layout.2-column-section" &&
+//           block.image !== null //&&
+//           // block.images.length
+//         ) {
+//           const fileNode = await createRemoteFileNode({
+//             url: `${process.env.GATSBY_STRAPI_URL}${block.image.url}`, // string that points to the URL of the image
+//             parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+//             createNode, // helper function in gatsby-node to generate the node
+//             createNodeId, // helper function in gatsby-node to generate the node id
+//             cache, // Gatsby's cache
+//             store, // Gatsby's Redux store
+//           });
+//           console.log(fileNode)
+//           blockImage.image = fileNode ? { localFile___NODE: fileNode.id } : {};
+//           // for (let j = 0, len2 = block.images.length; j < len2; j++) {
+//           //   let fileNode = await createRemoteFileNode({
+//           //     url: `${CMS_URL}${block.images[j].url}`, // string that points to the URL of the image
+//           //     parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+//           //     createNode, // helper function in gatsby-node to generate the node
+//           //     createNodeId, // helper function in gatsby-node to generate the node id
+//           //     cache, // Gatsby's cache
+//           //     store, // Gatsby's Redux store
+//           //   });
+//           //   blockImages.images.push(
+//           //     fileNode ? { localFile___NODE: fileNode.id } : {}
+//           //   );
+//           // }
+//         }
+//         contentImages.push(blockImage);
+//       }
+//       node.contentImages = contentImages;
+//     }
+//   }
+// };

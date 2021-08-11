@@ -39,6 +39,8 @@ export const Td = styled.td`
 
 export const TdChildMultiLine = styled.div`
   margin-bottom: 5px;
+  word-break: normal;
+  overflow-wrap: anywhere;
   &:nth-last-child() {
     margin-bottom: 0px;
   }
