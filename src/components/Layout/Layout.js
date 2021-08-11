@@ -23,11 +23,12 @@ const MainContainer = styled.div`
   font-family: montserrat;
 `;
 
-export const LayoutContext = React.createContext()
+export const LayoutContext = React.createContext();
 
 const Layout = ({ children, location }) => {
   const { pathname } = location;
   const [requestSpeaker, setRequestSpeaker] = useState(false);
+  const [editProfile, setEditProfile] = useState(false);
   const [openVideo, setOpenVideo] = useState(false);
   const [submitContact, setSubmitContact] = useState(false);
   // const {user} = useContext(Context)
@@ -42,7 +43,17 @@ const Layout = ({ children, location }) => {
   // }, [user, pathname])
 
   return pathname !== '/coming-soon' ? (
-    <LayoutContext.Provider value={{requestSpeaker, setRequestSpeaker, openVideo, setOpenVideo, setSubmitContact}}>
+    <LayoutContext.Provider
+      value={{
+        requestSpeaker,
+        setRequestSpeaker,
+        editProfile,
+        setEditProfile,
+        openVideo,
+        setOpenVideo,
+        setSubmitContact,
+      }}
+    >
       <MainContainer>
         {children}
         <Footer />
@@ -54,14 +65,16 @@ const Layout = ({ children, location }) => {
             style={{ padding: '0px 20px' }}
             textAlign='center'
             margin='auto auto 20px'
-          >Contact Us</H3>
-          <ContactUsForm
-            closeHandler={() => setSubmitContact(false)}
-          />
+          >
+            Contact Us
+          </H3>
+          <ContactUsForm closeHandler={() => setSubmitContact(false)} />
         </Modal>
       )}
     </LayoutContext.Provider>
-  ) : children;
+  ) : (
+    children
+  );
 };
 
 export default Layout;

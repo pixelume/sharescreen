@@ -18,6 +18,7 @@ import { LayoutContext } from '../components/Layout/Layout';
 import Modal from '../components/Modal';
 import RequestSpeakerForm from '../components/Forms/RequestSpeakerForm/RequestSpeakerForm';
 import { Context } from '../components/RootElement';
+import { FiEdit } from 'react-icons/fi';
 
 const ReqBtn = styled(Button)`
   font-size: 0.9em;
@@ -26,11 +27,22 @@ const ReqBtn = styled(Button)`
   margin: 2em auto;
 `;
 
+const EditBtn = styled(Button)`
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: ${({ theme }) => theme.mediumDark1};
+  color: white;
+  font-size: 0.9em;
+  z-index: 1;
+`;
+
 const SinglePresenter = ({ data }) => {
   const { user } = useContext(Context);
   const { radialGradientLight, mediumLight1, headerHeightBig } =
     useContext(ThemeContext);
   const { requestSpeaker, setRequestSpeaker } = useContext(LayoutContext);
+  const { editProfile, setEditProfile } = useContext(LayoutContext);
 
   const components = {
     p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
@@ -227,6 +239,25 @@ const SinglePresenter = ({ data }) => {
           )}
         </Modal>
       )}
+      {editProfile && (
+        <Modal
+          margin='20px 0px 0px'
+          closeHandler={() => setEditProfile(false)}
+        >
+          <H3
+            style={{ padding: '0px 20px' }}
+            textAlign='center'
+            margin='auto auto 20px'
+          >Edit Your Speaker Profile</H3>
+          <P style={{padding: '15px 20px'}}>We are constantly working on the platform and you will soon be able to edit your profile here. For the time being please contact us if you would like to make any edits.</P>
+        </Modal>
+      )}
+      {user && pData.User && pData.User.id && pData.User.id === user.user.id && (
+        <EditBtn type='button' onClick={() => setEditProfile(true)}>
+          <FiEdit />
+          &nbsp;&nbsp;Edit Your Profile
+        </EditBtn>
+      )}
     </>
   );
 
@@ -239,7 +270,9 @@ const SinglePresenter = ({ data }) => {
   );
 
   return pData &&
-    (pData.profileVerified || (user && pData.User && pData.User.id && pData.User.id === user.user.id) || (user && user.user.role === 'Administrator'))
+    (pData.profileVerified ||
+      (user && pData.User && pData.User.id && pData.User.id === user.user.id) ||
+      (user && user.user.role.name === 'Administrator'))
     ? renderProfile
     : renderUnverified;
 };
