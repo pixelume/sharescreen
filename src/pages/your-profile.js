@@ -176,7 +176,7 @@ const ProfilePage = () => {
                     textDecoration: 'underline',
                   }}
                 >
-                  <Link to='/reset-password'>Change your password</Link>
+                  <Link to='/forgot-password'>Change your password</Link>
                 </div>
                 <div
                   style={{
