@@ -11,9 +11,21 @@ import { Button } from '../styles/Buttons';
 const ProfilePage = () => {
   const [rebuildReq, setRebuildReq] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { user, setUser } = useContext(Context);
+  const { user, setUser, presentersArr } = useContext(Context);
   const { radialGradientLight, headerHeightBig, medium1 } =
     useContext(ThemeContext);
+
+  const presenterSlug = () => {
+    if (user && user.user.role.name === 'Presenter') {
+      let slug = '#'
+      const findPresenter = presentersArr.filter((presenter, index) => presenter.User? presenter.User.id === user.user.id: false )
+      if (findPresenter && findPresenter.length === 1) {
+        slug = findPresenter[0].slug
+      }
+      return slug;
+    }
+    return null;
+  }
 
   useEffect(() => {
     if (rebuildReq === 'trigger') {
@@ -80,6 +92,20 @@ const ProfilePage = () => {
                   >
                     <Link to='#'>Become a contibuter</Link>
                   </div>
+                )}
+                {user.user.role.name === 'Presenter' && (
+                  <>
+                    <div
+                      style={{
+                        textAlign: 'center',
+                        margin: '10px',
+                        color: medium1,
+                        textDecoration: 'underline',
+                      }}
+                    >
+                      <Link to={`/${presenterSlug()}`}>View & edit your presenter profile</Link>
+                    </div>
+                  </>
                 )}
                 {user.user.role.name === 'Administrator' && (
                   <>
@@ -150,7 +176,7 @@ const ProfilePage = () => {
                     textDecoration: 'underline',
                   }}
                 >
-                  <Link to='#'>Change your password</Link>
+                  <Link to='/reset-password'>Change your password</Link>
                 </div>
                 <div
                   style={{
@@ -191,34 +217,39 @@ const ProfilePage = () => {
       </Section>
       {showModal && (
         <Modal alignBody='center' closeHandler={() => setShowModal(false)}>
-          <H3
-            style={{ padding: '0px 20px' }}
-            textAlign='center'
-            margin='auto auto 50px'
-          >
-            Trigger new build?
-          </H3>
-          <Button
-            type='button'
-            color='red'
-            margin='auto 10px'
-            display='inline-block'
-            onClick={() => setShowModal(false)}
-          >
-            Go Back
-          </Button>
-          <Button
-            type='button'
-            color='green'
-            autofocus
-            margin='auto 10px'
-            display='inline-block'
-            onClick={() => {
-              setRebuildReq('trigger');
-            }}
-          >
-            Yes Confirm
-          </Button>
+          {!rebuildReq && (
+            <>
+              <H3
+                style={{ padding: '0px 20px' }}
+                textAlign='center'
+                margin='auto auto 50px'
+              >
+                Trigger new build?
+              </H3>
+              <Button
+                type='button'
+                color='red'
+                margin='auto 10px'
+                display='inline-block'
+                onClick={() => setShowModal(false)}
+              >
+                Go Back
+              </Button>
+              <Button
+                type='button'
+                color='green'
+                autofocus
+                margin='auto 10px'
+                display='inline-block'
+                onClick={() => {
+                  setRebuildReq('trigger');
+                  // setShowModal(false);
+                }}
+              >
+                Yes Confirm
+              </Button>
+            </>
+          )}
           {rebuildReq === 'trigger' && (
             <H3
               style={{ padding: '0px 20px' }}
@@ -229,14 +260,29 @@ const ProfilePage = () => {
             </H3>
           )}
           {rebuildReq === 'done' && (
-            <H3
-              style={{ padding: '0px 20px' }}
-              textAlign='center'
-              margin='auto auto 20px'
-            >
-              Re-build triggered. Please allow up to 10 minutes for the updates
-              to be applied and then refresh the page.
-            </H3>
+            <>
+              <H3
+                style={{ padding: '0px 20px' }}
+                textAlign='center'
+                margin='auto auto 20px'
+              >
+                Re-build triggered. Please allow up to 10 minutes for the
+                updates to be applied and then refresh the page.
+              </H3>
+              <Button
+                type='button'
+                color='blue'
+                autofocus
+                margin='auto 10px'
+                display='inline-block'
+                onClick={() => {
+                  setShowModal(false);
+                  // setShowModal(false);
+                }}
+              >
+                Close
+              </Button>
+            </>
           )}
           {rebuildReq === 'error' && (
             <H3

@@ -215,7 +215,7 @@ const SinglePresenter = ({ data }) => {
             style={{ padding: '0px 20px' }}
             textAlign='center'
             margin='auto auto 20px'
-          >{`Connect with ${pData.title} ${pData.fullName}`}</H3>
+          >{`Connect me with ${pData.title} ${pData.fullName}`}</H3>
           {user && (
             <RequestSpeakerForm
               closeHandler={() => setRequestSpeaker(false)}
