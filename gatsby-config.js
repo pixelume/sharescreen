@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: "src/images/icon_ssa.png",
       },
     },
     "gatsby-transformer-remark",
@@ -48,7 +48,7 @@ module.exports = {
       options: {
         apiURL: process.env.STRAPI_URL,
         collectionTypes: [`user`, `presenter`, `presentation`, `request`],
-        singleTypes: [`privacy-policy`, `cookie-policies`, `terms-and-conditions-page`],
+        singleTypes: [`privacy-policy`, `cookie-policies`, `terms-and-conditions-page`, `about-page`],
       },
     },
     {

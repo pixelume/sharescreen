@@ -3,3 +3,9 @@ node_modules/
 public
 .env.development
 .env.production
+
+# Local Netlify folder
+.netlify
+# @netlify/plugin-gatsby ignores start
+netlify/functions/gatsby
+# @netlify/plugin-gatsby ignores end

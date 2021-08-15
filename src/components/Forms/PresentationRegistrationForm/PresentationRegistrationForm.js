@@ -61,8 +61,9 @@ const PresentationRegistrationForm = () => {
           setIsUrlValid(false)
         }
       }
-    } else {}
-    setFData((prevData) => ({ ...prevData, [id]: value }));
+    } else {
+      setFData((prevData) => ({ ...prevData, [id]: value }));
+    }
   };
 
   const arrayInputHandler = (el, val) => {

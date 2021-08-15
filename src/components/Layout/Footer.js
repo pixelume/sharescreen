@@ -84,7 +84,7 @@ const Footer = () => {
       <FooterColItem>
         <h4>ABOUT</h4>
         <Ul>
-          <Li>About Us</Li>
+          <Li><Link to='/about' >About Us</Link></Li>
           <Li
             role='button'
             style={{ cursor: 'pointer' }}

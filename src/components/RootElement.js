@@ -37,6 +37,9 @@ const RootElement = ({ children, location }) => {
       strapiCookiePolicies {
         content
       }
+      strapiAboutPage {
+        pageContent
+      }
       allStrapiPresentation(sort: { fields: published_at, order: DESC }) {
         nodes {
           description
@@ -115,6 +118,7 @@ const RootElement = ({ children, location }) => {
   const privacyPolicy = data.strapiPrivacyPolicy.content;
   const termsConditions = data.strapiTermsAndConditionsPage.content;
   const cookiePolicies = data.strapiCookiePolicies.content;
+  const aboutPage = data.strapiAboutPage.pageContent;
 
   useEffect(() => {
     if (didMount.current) {
@@ -148,7 +152,8 @@ const RootElement = ({ children, location }) => {
     // tagsArr,
     privacyPolicy,
     termsConditions,
-    cookiePolicies
+    cookiePolicies,
+    aboutPage
   };
 
   return (
