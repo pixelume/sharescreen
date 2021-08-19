@@ -143,12 +143,13 @@ const PresenterRegistrationFormContent = ({
       </Formfield>
       <Formfield width='50%'>
         <Input
-          placeholder='Phone number'
+          placeholder='Phone number *'
           id='phone'
           type='text'
           aria-label='phone'
           onChange={inputHandler}
           value={fData.phone}
+          required
         />
         {/* <RiKey2Line style={iconStyle} /> */}
         {fData.phone && (

@@ -19,13 +19,17 @@ const LoginForm = () => {
   const [formStatus, setFormStatus] = useState("unSent");
   const [formError, setFormError] = useState(false);
 
-  const { setUser } = useContext(Context);
+  const { user, setUser } = useContext(Context);
 
   useEffect(() => {
-    if (formStatus === 'sent') {
-      setTimeout(() => navigate('/'), 1000);
+    if (user && user.user.id) {
+      if (user.user.changeRoleToPresenter) {
+        setTimeout(() => navigate('/complete-presenter-profile'), 1000);
+      } else {
+        setTimeout(() => navigate('/'), 1000);
+      }
     }
-  }, [formStatus])
+  }, [user])
   
   const inputHandler = (e) => {
     if (formError) {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 // import Notification from '../styles/Notification';
 import {
   Section,
@@ -19,7 +19,9 @@ import Modal from '../components/Modal';
 import RequestSpeakerForm from '../components/Forms/RequestSpeakerForm/RequestSpeakerForm';
 import { Context } from '../components/RootElement';
 import { FiEdit } from 'react-icons/fi';
-import PresenterRegistrationForm from '../components/Forms/PresenterRegistrationForm/PresenterRegistrationForm';
+// import PresenterRegistrationForm from '../components/Forms/PresenterRegistrationForm/PresenterRegistrationForm';
+import EditProfile from '../components/editProfile';
+import {gql, useQuery} from '@apollo/client';
 
 const ReqBtn = styled(Button)`
   font-size: 0.9em;
@@ -38,21 +40,72 @@ const EditBtn = styled(Button)`
   z-index: 1;
 `;
 
-const SinglePresenter = ({ data }) => {
+const GET_PRESENTER_BY_ID = gql`
+  query getPresenterById($id: ID!) {
+    presenter(id: $id) {
+      title
+      name
+      surname
+      fullName
+      email
+      phone
+      qualifications
+      institution
+      role
+      country
+      city
+      subjectMatter
+      industryMemberships
+      availableHours
+      biography
+      id
+      profileVerified
+      User {
+        id
+      }
+      profilePicture {
+        url
+      }
+    }
+  }
+`
+
+const SinglePresenter = (props) => {
   const { user } = useContext(Context);
   const { radialGradientLight, mediumLight1, headerHeightBig } =
-    useContext(ThemeContext);
+  useContext(ThemeContext);
   const { requestSpeaker, setRequestSpeaker } = useContext(LayoutContext);
   const { editProfile, setEditProfile } = useContext(LayoutContext);
+  const pData = props.data.strapiPresenter;
+  console.log('pData', pData);
+  const presenterId = pData.id.slice(pData.id.indexOf('_')+1)
+  const {loading, error, data} = useQuery(GET_PRESENTER_BY_ID, {variables: {id: parseInt(presenterId)}})
 
   const components = {
     p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
   };
 
-  const pData = data.strapiPresenter;
   const profilePic = pData.profilePicture
     ? getImage(pData.profilePicture.localFile)
     : null;
+  
+  const editData = data?{
+    name: data.presenter.name || '',
+    surname: data.presenter.surname || '',
+    title: data.presenter.title || '',
+    email: data.presenter.email || '',
+    phone: data.presenter.phone || '',
+    country: data.presenter.country || '',
+    city: data.presenter.city || '',
+    qualifications: data.presenter.qualifications || null,
+    institution: data.presenter.institution || '',
+    role: data.presenter.role || '',
+    biography: data.presenter.biography || '',
+    subjectMatter: data.presenter.subjectMatter || null,
+    industryMemberships:
+      data.presenter.industryMemberships || null,
+    availableHours: data.presenter.availableHours || '',
+  }: null
 
   const renderProfile = (
     <>
@@ -240,61 +293,12 @@ const SinglePresenter = ({ data }) => {
           )}
         </Modal>
       )}
-      {editProfile && (
-        <Modal margin='20px 0px 0px' closeHandler={() => setEditProfile(false)}>
-          <H3
-            style={{ padding: '0px 20px' }}
-            textAlign='center'
-            margin='auto auto 20px'
-          >
-            Edit Speaker Profile
-          </H3>
-          {/* <P style={{padding: '15px 20px'}}>We are constantly working on the platform and you will soon be able to edit your profile here. For the time being please contact us if you would like to make any edits.</P> */}
-          {editProfile === 'edit' && (
-            <PresenterRegistrationForm
-              editData={{
-                name: pData.name || '',
-                surname: pData.surname || '',
-                title: pData.title || '',
-                email: '' || '',
-                phone: '' || '',
-                country: pData.country || '',
-                city: pData.city || '',
-                qualifications: pData.qualifications || null,
-                institution: pData.institution || '',
-                role: pData.role || '',
-                biography: pData.biography || '',
-                subjectMatter: pData.subjectMatter || null,
-                industryMemberships: pData.industryMemberships || null,
-                availableHours: pData.availableHours || '',
-              }}
-              presenterId={pData.id.slice(pData.id.indexOf('_') + 1)}
-              setEditProfile={setEditProfile}
-            />
-          )}
-          {editProfile === 'done' && (
-            <>
-              <P style={{ padding: '0px 30px', marginTop: 50 }}>
-                Profile Successfully Updated. Changes are pending review and may
-                take up to 24 hours to reflect.
-              </P>
-              <Button
-                type='button'
-                color='red'
-                onClick={() => setEditProfile(false)}
-              >
-                Close
-              </Button>
-            </>
-          )}
-        </Modal>
-      )}
-      {pData &&
-        (user &&
-          pData.User &&
-          pData.User.id &&
-          pData.User.id === user.user.id) ||
-        (user && user.user.role.name === 'Administrator') ? (
+      {(pData &&
+        user &&
+        pData.User &&
+        pData.User.id &&
+        pData.User.id === user.user.id) ||
+      (user && user.user.role.name === 'Administrator') ? (
         <EditBtn type='button' onClick={() => setEditProfile('edit')}>
           <FiEdit />
           &nbsp;&nbsp;Edit&nbsp;
@@ -302,6 +306,7 @@ const SinglePresenter = ({ data }) => {
           &nbsp;Profile
         </EditBtn>
       ) : null}
+      {editProfile && data && <EditProfile {...{editProfile, setEditProfile, loading, error, editData, presenterId}}/>}
     </>
   );
 
@@ -313,10 +318,16 @@ const SinglePresenter = ({ data }) => {
     </Section>
   );
 
-  return pData &&
-    (pData.profileVerified ||
-      (user && pData.User && pData.User.id && pData.User.id === user.user.id) ||
-      (user && user.user.role.name === 'Administrator'))
+  const shouldRender =
+    pData.profileVerified ||
+    (user && pData.User && pData.User.id && pData.User.id === user.user.id) ||
+    (user && user.user.role.name === 'Administrator');
+
+    useEffect(() => {
+      console.log(data)
+    }, [data])
+
+  return pData && shouldRender
     ? renderProfile
     : renderUnverified;
 };

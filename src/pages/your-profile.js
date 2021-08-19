@@ -7,25 +7,96 @@ import { FaUserCircle } from 'react-icons/fa';
 import axios from 'axios';
 import Modal from '../components/Modal';
 import { Button } from '../styles/Buttons';
+import { LayoutContext } from '../components/Layout/Layout';
+import EditProfile from '../components/editProfile';
+import { gql, useQuery } from '@apollo/client';
+
+const GET_PRESENTER_BY_USER_ID = gql`
+  query getPresenterByUserId($userId: ID!) {
+    presenters(limit: 1, where: { User: { id: $userId } }) {
+      title
+      name
+      surname
+      fullName
+      email
+      phone
+      qualifications
+      institution
+      role
+      country
+      city
+      subjectMatter
+      industryMemberships
+      availableHours
+      biography
+      id
+      profileVerified
+      User {
+        id
+      }
+      profilePicture {
+        url
+      }
+    }
+  }
+`;
 
 const ProfilePage = () => {
   const [rebuildReq, setRebuildReq] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const { user, setUser, presentersArr } = useContext(Context);
+  const [confirmBuildModal, setConfirmBuildModal] = useState(false);
+  const { editProfile, setEditProfile, refetchPresenterProfile, setRefetchPresenterProfile } = useContext(LayoutContext);
+  const { user, setUser } = useContext(Context);
+  const userId = user ? user.user.id : null;
   const { radialGradientLight, headerHeightBig, medium1 } =
     useContext(ThemeContext);
+  const { loading, error, data, refetch } = useQuery(GET_PRESENTER_BY_USER_ID, {
+    variables: { userId },
+  });
 
-  const presenterSlug = () => {
-    if (user && user.user.role.name === 'Presenter') {
-      let slug = '#'
-      const findPresenter = presentersArr.filter((presenter, index) => presenter.User? presenter.User.id === user.user.id: false )
-      if (findPresenter && findPresenter.length === 1) {
-        slug = findPresenter[0].slug
+  const editData = (data && data.presenters && data.presenters.length === 1)? {
+        name: data.presenters[0].name || '',
+        surname: data.presenters[0].surname || '',
+        title: data.presenters[0].title || '',
+        email: data.presenters[0].email || '',
+        phone: data.presenters[0].phone || '',
+        country: data.presenters[0].country || '',
+        city: data.presenters[0].city || '',
+        qualifications: data.presenters[0].qualifications || null,
+        institution: data.presenters[0].institution || '',
+        role: data.presenters[0].role || '',
+        biography: data.presenters[0].biography || '',
+        subjectMatter: data.presenters[0].subjectMatter || null,
+        industryMemberships: data.presenters[0].industryMemberships || null,
+        availableHours: data.presenters[0].availableHours || '',
       }
-      return slug;
+    : null;
+
+  const presenterId = (data && data.presenters && data.presenters.length === 1)? data.presenters[0].id: null;
+
+  useEffect(() => {
+    if (refetchPresenterProfile) {
+      setRefetchPresenterProfile(false)
+      refetch()
     }
-    return null;
-  }
+  }, [refetchPresenterProfile])
+
+  // const { loading, error, data } = useQuery(GET_PRESENTER_BY_ID, {variables: {userId}})
+
+  // const presenterSlug = () => {
+  //   if (user && user.user.role.name === 'Presenter') {
+  //     let slug = '#'
+  //     const findPresenter = presentersArr.filter((presenter, index) => presenter.User? presenter.User.id === user.user.id: false )
+  //     if (findPresenter && findPresenter.length === 1) {
+  //       slug = findPresenter[0].slug
+  //     }
+  //     return slug;
+  //   }
+  //   return null;
+  // }
+
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
 
   useEffect(() => {
     if (rebuildReq === 'trigger') {
@@ -90,7 +161,9 @@ const ProfilePage = () => {
                       textDecoration: 'underline',
                     }}
                   >
-                    <Link to='#'>Become a contibuter</Link>
+                    <Link to='/complete-presenter-profile'>
+                      Register as a presenter
+                    </Link>
                   </div>
                 )}
                 {user.user.role.name === 'Presenter' && (
@@ -103,7 +176,20 @@ const ProfilePage = () => {
                         textDecoration: 'underline',
                       }}
                     >
-                      <Link to={`/${presenterSlug()}`}>View & edit your presenter profile</Link>
+                      {/* <Link to={`/${presenterSlug()}`}>Edit your presenter profile</Link> */}
+                      <button
+                        style={{
+                          color: medium1,
+                          textDecoration: 'underline',
+                          fontSize: '1em',
+                          fontWeight: 'bold',
+                          cursor: 'pointer',
+                        }}
+                        type='button'
+                        onClick={() => setEditProfile('edit')}
+                      >
+                        Edit your presenter profile
+                      </button>
                     </div>
                   </>
                 )}
@@ -152,7 +238,6 @@ const ProfilePage = () => {
                       {rebuildReq !== 'done' && (
                         <button
                           style={{
-                            color: medium1,
                             textDecoration: 'underline',
                             fontSize: '1em',
                             color: 'red',
@@ -160,7 +245,7 @@ const ProfilePage = () => {
                             cursor: 'pointer',
                           }}
                           type='button'
-                          onClick={() => setShowModal(true)}
+                          onClick={() => setConfirmBuildModal(true)}
                         >
                           Trigger new build (Run only after updates completed)
                         </button>
@@ -215,8 +300,11 @@ const ProfilePage = () => {
           </ColInSection>
         )}
       </Section>
-      {showModal && (
-        <Modal alignBody='center' closeHandler={() => setShowModal(false)}>
+      {confirmBuildModal && (
+        <Modal
+          alignBody='center'
+          closeHandler={() => setConfirmBuildModal(false)}
+        >
           {!rebuildReq && (
             <>
               <H3
@@ -231,7 +319,7 @@ const ProfilePage = () => {
                 color='red'
                 margin='auto 10px'
                 display='inline-block'
-                onClick={() => setShowModal(false)}
+                onClick={() => setConfirmBuildModal(false)}
               >
                 Go Back
               </Button>
@@ -243,7 +331,7 @@ const ProfilePage = () => {
                 display='inline-block'
                 onClick={() => {
                   setRebuildReq('trigger');
-                  // setShowModal(false);
+                  // setConfirmBuildModal(false);
                 }}
               >
                 Yes Confirm
@@ -276,8 +364,8 @@ const ProfilePage = () => {
                 margin='auto 10px'
                 display='inline-block'
                 onClick={() => {
-                  setShowModal(false);
-                  // setShowModal(false);
+                  setConfirmBuildModal(false);
+                  // setConfirmBuildModal(false);
                 }}
               >
                 Close
@@ -294,6 +382,9 @@ const ProfilePage = () => {
             </H3>
           )}
         </Modal>
+      )}
+      {editProfile && (
+        <EditProfile {...{ editData, presenterId, loading, error }} />
       )}
     </>
   );

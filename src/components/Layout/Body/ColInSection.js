@@ -47,7 +47,7 @@ const ColInSection = styled.div`
           ? "100%"
           : `${90 / props.col}vw`
         : "44vw"};
-    margin: 0px;
+    margin: 0px auto;
     padding: ${(props) => props.paddingDesktop || props.padding || "1vw"};
     ${({boxShadow}) => boxShadow? css`box-shadow: ${boxShadow}`: null}
     /* &:nth-child(2) {

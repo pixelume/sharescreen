@@ -29,6 +29,7 @@ const Layout = ({ children, location }) => {
   const { pathname } = location;
   const [requestSpeaker, setRequestSpeaker] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
+  const [refetchPresenterProfile, setRefetchPresenterProfile] = useState(false)
   const [openVideo, setOpenVideo] = useState(false);
   const [submitContact, setSubmitContact] = useState(false);
   // const {user} = useContext(Context)
@@ -52,6 +53,8 @@ const Layout = ({ children, location }) => {
         openVideo,
         setOpenVideo,
         setSubmitContact,
+        refetchPresenterProfile,
+        setRefetchPresenterProfile
       }}
     >
       <MainContainer>

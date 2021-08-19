@@ -12,20 +12,27 @@ import slugify from 'slugify';
 import LoadAnimation from '../../../styles/LoadAnimation';
 import { Button } from '../../../styles/Buttons';
 import Modal from '../../Modal';
-import { H3 } from '../../Layout';
+import { H3, P } from '../../Layout';
+import {BiArrowBack} from 'react-icons/bi';
+import { LayoutContext } from '../../Layout/Layout';
 
 const PresenterRegistrationForm = ({
-  editData,
-  presenterId,
-  setEditProfile,
+  editData, // user edit profile view
+  presenterId, // user edit profile view
+  setEditProfile, // user edit profile view
+  email, // user create profile view
+  id, // user create profile view
+  name, // user create profile view
+  surname, // user create profile view
+  setIsDoneCreating // user create profile view
 }) => {
   const initialFData = editData
     ? { ...editData }
     : {
-        name: '',
-        surname: '',
+        name: name? name: '',
+        surname: surname? surname: '',
         title: '',
-        email: '',
+        email: email? email: '',
         phone: '',
         country: '',
         city: '',
@@ -36,6 +43,7 @@ const PresenterRegistrationForm = ({
         subjectMatter: null,
         industryMemberships: null,
         availableHours: null,
+        User: id? id: null
       };
 
   const [fData, setFData] = useState(initialFData);
@@ -44,21 +52,23 @@ const PresenterRegistrationForm = ({
   const [formError, setFormError] = useState(false);
   const [confirmSubmit, setConfirmSubmit] = useState(false);
 
-  const { user } = useContext(Context);
+  const { user, setUser } = useContext(Context);
+  const { refetchPresenterProfile, setRefetchPresenterProfile } = useContext(LayoutContext);
 
   useEffect(() => {
-    console.log(presenterId);
     if (formStatus === 'sent') {
-      // setTimeout(() => navigate('/'), 1000);
       setTimeout(() => setFormStatus('unSent'), 1000);
     } else if (formStatus === 'sending') {
       const slug = slugify(`${fData.name} ${fData.surname}`, {
         lower: true,
         remove: /[*+~.()'"!:@]/g,
       });
-      // setFormStatus('sending');
       const formData = new FormData();
-      formData.append('data', JSON.stringify({ ...fData, slug: slug }));
+      let json = JSON.stringify({ ...fData, slug: slug });
+      if (id) {
+        json = JSON.stringify({ ...fData, slug: slug })
+      }
+      formData.append('data', json);
       if (file) {
         formData.append('files.profilePicture', file);
       }
@@ -91,10 +101,26 @@ const PresenterRegistrationForm = ({
           if (presenterId) {
             setEditProfile('done');
           }
+          if (id) { // Profile is being created or updated by a registered user
+            try {
+              const res2 = await axios({
+                method: 'put',
+                url: `${process.env.GATSBY_STRAPI_URL}/users/${id}`,
+                data: {changeRoleToPresenter: false, role: 5},
+                headers: {
+                  Authorization: `Bearer ${user.jwt}`
+                }
+              })
+              console.log('res2', res2)
+              setUser(user => ({...user, user: {...res2.data}}))
+              setIsDoneCreating(true)
+            } catch (error) {
+              setFormError(error.response.data.message[0].messages[0].message);
+            }
+          }
           setFData(initialFData);
           setFile(null);
-          // doReFetchData();
-          // console.log("response", response);
+          setRefetchPresenterProfile(true)
         } catch (error) {
           console.log(error.response.data);
           setFormError(error.response.data.message);
@@ -196,25 +222,35 @@ const PresenterRegistrationForm = ({
         <Modal
           margin='20px 0px 0px'
           closeHandler={() => setConfirmSubmit(false)}
+          alignBody='center'
         >
           <H3
             style={{ padding: '0px 20px' }}
             textAlign='center'
             margin='auto auto 20px'
           >
-            Confirm Submission?
+            Confirm and Submit ?
           </H3>
+          <P
+            style={{ padding: '0px 20px' }}
+            textAlign='center'
+            margin='auto auto 20px'
+          >
+            Your presenter profile will be marked for pusbilshing and will be made public within 24 hours pending review.
+          </P>
           {/* <P style={{padding: '15px 20px'}}>We are constantly working on the platform and you will soon be able to edit your profile here. For the time being please contact us if you would like to make any edits.</P> */}
           <Button
+            style={{fontWeight: 'bold'}}
             type='button'
             color='red'
             margin='auto 10px'
             display='inline-block'
             onClick={() => setConfirmSubmit(false)}
           >
-            Go Back
+            <BiArrowBack/>{' '}Oops... Continue Editing
           </Button>
           <Button
+            style={{fontWeight: 'bold'}}
             type='button'
             color='green'
             autofocus

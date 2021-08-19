@@ -15,7 +15,8 @@ import '@fontsource/montserrat';
 const client = new ApolloClient({
   // uri: "http://localhost:1337/graphql",
   cache: new InMemoryCache(),
-  link: new HttpLink({ uri: '/graphql', fetch }),
+  link: new HttpLink({ uri: `${process.env.GATSBY_STRAPI_URL}/graphql`, fetch }),
+  // link: new HttpLink({ uri: 'http://localhost:1337/graphql', fetch }),
 });
 
 export const Context = React.createContext();

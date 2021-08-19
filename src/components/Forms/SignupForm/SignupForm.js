@@ -12,11 +12,14 @@ import { H3, P } from "../../Layout";
 
 const SignupForm = () => {
   const initialFData = {
+    name: "",
+    surname: "",
     email: "",
     password: "",
     passwordVer: "",
     passwordVer: "",
-    agreeToPolicies: false
+    agreeToPolicies: false,
+    changeRoleToPresenter: false
   };
 
   const [fData, setFData] = useState(initialFData);
@@ -58,10 +61,23 @@ const SignupForm = () => {
   };
 
   const checkBoxHandler = (e) => {
-    if (e.target.checked) {
-      setFData((prevData) => ({...prevData, agreeToPolicies: true}))
-    } else { // Checkbox unchecked
-      setFData((prevData) => ({...prevData, agreeToPolicies: false}))
+    switch (e.target.id) {
+      case 'agreeToPolicies':
+        if (e.target.checked) {
+          setFData((prevData) => ({...prevData, agreeToPolicies: true}))
+        } else { // Checkbox unchecked
+          setFData((prevData) => ({...prevData, agreeToPolicies: false}))
+        }
+        break;
+      case 'changeRoleToPresenter':
+        if (e.target.checked) {
+          setFData((prevData) => ({...prevData, changeRoleToPresenter: true}))
+        } else { // Checkbox unchecked
+          setFData((prevData) => ({...prevData, changeRoleToPresenter: false}))
+        }
+        break;
+      default:
+        break;
     }
   }
 
@@ -76,11 +92,13 @@ const SignupForm = () => {
       setFormStatus("sending");
       try {
         const response = await axios.post(`${process.env.GATSBY_STRAPI_URL}/auth/local/register`, {
+          name: fData.name,
+          surname: fData.surname,
           username: fData.email,
           email: fData.email,
           password: fData.password,
-          role: fData.role,
           agreeToPolicies: fData.agreeToPolicies,
+          changeRoleToPresenter: fData.changeRoleToPresenter,
           createdOwnPassword: true
         });
         setUser(response.data);
@@ -93,7 +111,7 @@ const SignupForm = () => {
   };
 
   return (
-    <StForm onSubmit={submitHandler}>
+    <StForm onSubmit={submitHandler} display='flex'>
       {formStatus === "unSent" && (
         <SignupFormContent
           inputHandler={inputHandler}
@@ -116,7 +134,7 @@ const SignupForm = () => {
         </>
       )}
       {formError && <Notification animate color="red">{formError}</Notification>}
-      {formStatus !== 'sent' && <div style={{textAlign: 'center', color: "darkgrey"}}>Already have an account? <Link style={{textDecoration: 'underline'}} to='/login'>Sign in here</Link></div>}
+      {formStatus !== 'sent' && <div style={{width:'100%', textAlign: 'center', color: "darkgrey"}}>Already have an account? <Link style={{textDecoration: 'underline'}} to='/login'>Sign in here</Link></div>}
     </StForm>
   );
 };

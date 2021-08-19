@@ -4,6 +4,7 @@ import { bounceOutRight } from '../../styles/animations';
 
 export const StForm = styled.form`
   display: ${({display}) => display || 'block'};
+  margin: auto;
   justify-content: space-between;
   flex-flow: row wrap;
   border-radius: 15px;
