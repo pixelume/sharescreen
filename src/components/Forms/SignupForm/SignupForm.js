@@ -19,13 +19,14 @@ const SignupForm = () => {
     passwordVer: "",
     passwordVer: "",
     agreeToPolicies: false,
-    changeRoleToPresenter: false
+    // changeRoleToPresenter: false,
+    registrationType: '' // user | presenter
   };
 
   const [fData, setFData] = useState(initialFData);
   const [formStatus, setFormStatus] = useState("unSent");
   const [formError, setFormError] = useState(false);
-  const [validated, setValidated] = useState(false)
+  const [validated, setValidated] = useState(false);
 
   const { setUser } = useContext(Context);
 
@@ -35,9 +36,10 @@ const SignupForm = () => {
   //   }
   // }, [formStatus])
 
-  const {email, password, passwordVer} = fData
+  const {email, password, passwordVer, registrationType} = fData
   useEffect(() => {
-    if ((email !== "") && (password === passwordVer)) {
+    console.log('fData', fData)
+    if ((email !== "") && (password === passwordVer) && !["user", "presenter"].includes(registrationType)) {
       if (!validated)
       setValidated(true)
     } else {
@@ -45,7 +47,7 @@ const SignupForm = () => {
         setValidated(false)
       }
     }
-  }, [email, password, passwordVer, validated])
+  }, [email, password, passwordVer, validated, registrationType])
   
   const inputHandler = (e) => {
     if (formError) {
@@ -60,6 +62,13 @@ const SignupForm = () => {
     document.getElementById(field).focus();
   };
 
+  const radioChangeHandler = (field, value) => {
+    if (formError) {
+      setFormError(false);
+    }
+    setFData((prevData) => ({ ...prevData, [field]: value }));
+  }
+
   const checkBoxHandler = (e) => {
     switch (e.target.id) {
       case 'agreeToPolicies':
@@ -69,13 +78,13 @@ const SignupForm = () => {
           setFData((prevData) => ({...prevData, agreeToPolicies: false}))
         }
         break;
-      case 'changeRoleToPresenter':
-        if (e.target.checked) {
-          setFData((prevData) => ({...prevData, changeRoleToPresenter: true}))
-        } else { // Checkbox unchecked
-          setFData((prevData) => ({...prevData, changeRoleToPresenter: false}))
-        }
-        break;
+      // case 'changeRoleToPresenter':
+      //   if (e.target.checked) {
+      //     setFData((prevData) => ({...prevData, changeRoleToPresenter: true}))
+      //   } else { // Checkbox unchecked
+      //     setFData((prevData) => ({...prevData, changeRoleToPresenter: false}))
+      //   }
+      //   break;
       default:
         break;
     }
@@ -98,7 +107,7 @@ const SignupForm = () => {
           email: fData.email,
           password: fData.password,
           agreeToPolicies: fData.agreeToPolicies,
-          changeRoleToPresenter: fData.changeRoleToPresenter,
+          changeRoleToPresenter: fData.registrationType === "presenter"? true: false,
           createdOwnPassword: true
         });
         setUser(response.data);
@@ -120,6 +129,7 @@ const SignupForm = () => {
           // errorDisplay={formError}
           validated={validated}
           checkBoxHandler={checkBoxHandler}
+          radioChangeHandler={radioChangeHandler}
         />
       )}
       {formStatus === "sending" && (

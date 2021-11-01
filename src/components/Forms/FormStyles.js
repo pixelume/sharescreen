@@ -18,7 +18,7 @@ export const StForm = styled.form`
 `;
 
 export const Formfield = styled.div`
-  width: 100%;
+  width: ${({width}) => width || '100%'};
   /* height: 4em; */
   padding: 0.5px;
   box-sizing: border-box;
@@ -31,7 +31,7 @@ export const Formfield = styled.div`
           border-width: 0px;
           border-radius: 5px;
           box-sizing: border-box;
-          background-color: white;
+          ${'' /* background-color: white; */}
           padding: 0.2em 0em 0.2em 2.5em;
           &:focus {
             background-color: rgba(255, 140, 105, 0.1);
@@ -50,11 +50,19 @@ export const RadioLabel = styled.label`
   margin: 1em 0em;
 `;
 
+export const RadioGroupContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+`
+
 export const Input = styled.input`
-  display: block;
+  display: ${({display}) => display || 'block'};
   position: relative;
   /* margin: 0px auto 5px; */
-  width: 100%;
+  ${({type}) => type && type === 'radio'? css`margin-right: 10px;`: css`width: 100%; height: 4em;`}
+  /* width: 100%; */
   border-width: 0px;
   /* border: 1px solid white; */
   /* border-color: white; */
@@ -69,7 +77,7 @@ export const Input = styled.input`
     border-color: salmon; */
   }
   transition: all 0.2s ease-out;
-  height: 4em;
+  /* height: 4em; */
   /* height: 100%; */
   font-family: montserrat;
 `;

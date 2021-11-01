@@ -79,7 +79,7 @@ const VideoWithHeading = () => {
             as={Link}
             to='/register'
             display='inline-block'
-            bgColor='dark1'
+            bgColor='5'
             style={{ color: 'white', cursor: 'pointer' }}
           >
             Register Free

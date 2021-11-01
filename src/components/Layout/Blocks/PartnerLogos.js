@@ -23,7 +23,7 @@ const PartnerLogos = props => {
   ]
 
   return (
-    <Section slanted='3' backgroundColor="mediumLight1" padding="0px 0px 40px">
+    <Section slanted='3' backgroundColor="1" padding="0px 0px 40px">
         <ColInSection col={1} paddingDesktop="30px 0px">
           <H3 as="h2" textAlign="center" color="textDark1">
             Our Partners

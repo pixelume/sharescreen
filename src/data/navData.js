@@ -7,6 +7,7 @@ import { IoCreateOutline, IoPeopleOutline } from 'react-icons/io5';
 import { RiHomeLine } from 'react-icons/ri';
 import { VscLibrary } from 'react-icons/vsc';
 import {FaUserCircle} from 'react-icons/fa';
+import {AiOutlineInfoCircle} from 'react-icons/ai';
 import React from 'react';
 
 const navData = [
@@ -27,22 +28,21 @@ const navData = [
     icon: <IoPeopleOutline />,
   },
   {
-    text: 'Catalogue',
-    id: 'Catalogue',
-    link: '/catalogue',
-    // link: '/catalogue/presentations',
+    text: 'Video Library',
+    id: 'Video Library',
+    link: '/video-library',
     show: 'both',
     role: 'Any',
     icon: <VscLibrary />,
   },
-  // {
-  //   text: "Catalogue",
-  //   id: "Catalogue",
-  //   link: "/catalogue",
-  //   show: "both",
-  //   role: "Any",
-  //   icon: <VscLibrary />
-  // },
+  {
+    text: 'About',
+    id: 'About',
+    link: '/about',
+    show: 'both',
+    role: 'Any',
+    icon: <AiOutlineInfoCircle />,
+  },
   {
     text: 'Create',
     id: 'Create',
@@ -51,14 +51,6 @@ const navData = [
     role: 'Editor',
     icon: <IoCreateOutline />,
   },
-  // {
-  //   text: 'Sign In',
-  //   id: 'Sign In',
-  //   link: '/login',
-  //   show: 'loggedOut',
-  //   role: 'Any',
-  //   icon: <AiOutlineLogin />,
-  // },
   {
     text: 'Sign Out',
     id: 'Sign Out',
@@ -66,22 +58,6 @@ const navData = [
     role: 'Any',
     icon: <AiOutlineLogout />,
   },
-  // {
-  //   text: 'Register',
-  //   id: 'Register',
-  //   link: '/register',
-  //   show: 'loggedOut',
-  //   role: 'Any',
-  //   icon: <AiOutlineUserAdd />,
-  // },
-  // {
-  //   text: 'Admin',
-  //   id: 'Admin',
-  //   link: '/admin/presenterRegistration',
-  //   show: 'loggedIn',
-  //   role: 'Administrator',
-  //   icon: <IoCreateOutline />,
-  // },
   {
     text: '',
     id: 'MyProfile',

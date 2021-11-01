@@ -8,7 +8,7 @@ import {
   HttpLink,
 } from '@apollo/client';
 import fetch from 'cross-fetch';
-import { theme, grommetTheme } from '../styles/Theme';
+import { theme, grommetTheme, brandColors } from '../styles/Theme';
 import { useStaticQuery, graphql } from 'gatsby';
 import '@fontsource/montserrat';
 
@@ -161,7 +161,7 @@ const RootElement = ({ children, location }) => {
     <Grommet theme={grommetTheme}>
       <ApolloProvider client={client}>
         <Context.Provider value={providerValue}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <ThemeProvider theme={brandColors}>{children}</ThemeProvider>
         </Context.Provider>
       </ApolloProvider>
     </Grommet>

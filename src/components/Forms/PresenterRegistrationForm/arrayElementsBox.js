@@ -16,11 +16,13 @@ const ElementPill = styled.div`
   color: white;
   position: relative;
   padding: 5px 8px;
-  background-color: ${({theme}) => theme.medium1};
+  background-color: ${({theme}) => theme[5]};
   border-radius: 3px;
   margin: 5px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   font-size: 0.8em;
+  max-width: 100%;
+  /* overflow: auto; */
   /* &::after {
     position: absolute;
     content: 'x';

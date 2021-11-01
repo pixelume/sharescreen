@@ -10,6 +10,7 @@ import {
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
 import { Context } from '../components/RootElement';
+import PresentersCards from '../components/presentersCards';
 
 const useSortByPresenter = (arrayToSort, headings) => {
   const [sortBy, setSortBy] = useState(false)
@@ -97,7 +98,8 @@ const PresentersPage = () => {
       </SubHeader>
       <Section>
         <ColInSection col={1} textAlign='center'>
-          <PresentersTable {...{ sortedArray, headings, sortClickHandler }} />
+          {/* <PresentersTable {...{ sortedArray, headings, sortClickHandler }} /> */}
+          <PresentersCards {...{ sortedArray, headings, sortClickHandler }}/>
         </ColInSection>
       </Section>
     </>

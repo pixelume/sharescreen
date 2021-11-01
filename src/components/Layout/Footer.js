@@ -16,9 +16,9 @@ const FooterContainer = styled.footer`
   align-items: flex-start;
   justify-content: space-between;
   width: 100vw;
-  background-color: ${({ color, theme }) =>
-    theme[color] || color || 'LightBlue'};
+  background-color: ${({ bgColor, theme }) => theme[bgColor]};
   padding: ${(props) => props.padding || '20px 0px 0px 0px'};
+  color: ${({theme, color}) => theme[color]}
 `;
 
 const Ul = styled.ul`
@@ -41,13 +41,15 @@ const Footer = () => {
   const { setSubmitContact } = useContext(LayoutContext);
 
   return (
-    <FooterContainer padding='20px 5vw' color='medium1'>
+    <FooterContainer padding='20px 5vw' color='warmWhite' bgColor='3'>
       <FooterColItem>
         <StaticImage
           width={70}
           height={70}
           src='../../images/web_logo.png'
           alt='Logo'
+          style={{overflow: 'visible'}}
+          imgStyle={{filter: 'drop-shadow(1px 1px 5px rgba(0,0,0,0.75))'}}
         />
         {/* <StLogo
           viewBox="0 0 455 243"

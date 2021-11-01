@@ -56,3 +56,42 @@ export const grommetTheme = {
     }
   }
 }
+
+export const brandColors = {
+  1: '#ccd1ae',
+  2: '#7fc940',
+  3: '#67a01f',
+  4: '#add272',
+  5: '#84986b',
+  charcoal: '#212121',
+  headerHeightBig: 80,
+  mobileMenu: '950px',
+  radialGradientLight: "radial-gradient(circle, white 33%, rgba(139, 156, 9, 0.05) 66%)", //#8c9c09
+  coolWhite: '#F7F9FB',
+  warmWhite: '#F9F9F2',
+  offWhite: '#F5F5F5',
+  orange: {
+    bg: '#ffe7d1',
+    text: '#8c4400'
+  },
+  red: {
+    bg: '#ffd1d1',
+    text: '#750000'
+  },
+  green: {
+    bg: '#d1ffd3',
+    text: '#007006'
+  },
+  blue: {
+    bg: '#d1e8ff',
+    text: '#003870'
+  },
+  // offWhite: {
+  //   bg: '#f7f7f7',
+  //   text: 'lightgrey'
+  // },
+  grey: {
+    bg: 'grey',
+    text: 'lightgrey'
+  }
+}

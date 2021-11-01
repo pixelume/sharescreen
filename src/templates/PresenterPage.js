@@ -25,7 +25,7 @@ import {gql, useQuery} from '@apollo/client';
 
 const ReqBtn = styled(Button)`
   font-size: 0.9em;
-  background-color: ${({ theme }) => theme.medium1};
+  background-color: ${({ theme }) => theme[5]};
   color: white;
   margin: 2em auto;
 `;
@@ -34,7 +34,7 @@ const EditBtn = styled(Button)`
   position: fixed;
   bottom: 15px;
   right: 15px;
-  background-color: ${({ theme }) => theme.mediumDark1};
+  background-color: ${({ theme }) => theme['5']};
   color: white;
   font-size: 0.9em;
   z-index: 1;
