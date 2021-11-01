@@ -98,8 +98,8 @@ const PresentersPage = () => {
       </SubHeader>
       <Section>
         <ColInSection col={1} textAlign='center'>
-          {/* <PresentersTable {...{ sortedArray, headings, sortClickHandler }} /> */}
-          <PresentersCards {...{ sortedArray, headings, sortClickHandler }}/>
+          <PresentersTable {...{ sortedArray, headings, sortClickHandler }} />
+          {/* <PresentersCards {...{ sortedArray, headings, sortClickHandler }}/> */}
         </ColInSection>
       </Section>
     </>
