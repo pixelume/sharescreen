@@ -19,18 +19,19 @@ const IndexPage = ({ limit }) => {
   return (
     <>
       <VideoWithHeading />
-      <Section background='radial-gradient(ellipse, rgba(232,255,213,1) 0%, rgba(157,196,124,1) 100%)'>
-        <ColInSection col={3}>
+      <Section backgroundColor={theme.nature['dfdfce']}>
+      {/* <Section background='radial-gradient(ellipse, rgba(232,255,213,1) 0%, rgba(157,196,124,1) 100%)'> */}
+        <ColInSection col={6}>
           <StaticImage
-            width={350}
-            height={350}
+            width={100}
+            height={100}
             src='../images/logo-dropshadow-720px.png'
             alt='ShareScreen Logo'
             // style={{overflow: 'visible'}}
             // imgStyle={{filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.25))'}}
           />
         </ColInSection>
-        <ColInSection col={3 / 2}>
+        <ColInSection col={6 / 5}>
           <H3 textAlign='center' margin='0px auto 50px'>
             What is ShareScreen Africa?
           </H3>
@@ -40,15 +41,17 @@ const IndexPage = ({ limit }) => {
             conservation departments and related training institutions, as well
             as conservation-NGO’s.
           </P>
-          <Button
-            as={Link}
-            to='/about'
-            display='inline-block'
-            bgColor='5'
-            style={{ color: 'white', cursor: 'pointer' }}
-          >
-            Learn More...
-          </Button>
+          <div style={{textAlign: 'right'}}>
+            <Button
+              as={Link}
+              to='/about'
+              display='inline-block'
+              bgColor='5'
+              style={{ color: 'white', cursor: 'pointer', margin: 'auto' }}
+            >
+              Learn More...
+            </Button>
+          </div>
         </ColInSection>
       </Section>
       <IconsWithDescriptions />

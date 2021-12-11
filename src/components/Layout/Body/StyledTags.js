@@ -28,6 +28,20 @@ const H3 = styled.h3`
     letter-spacing: ${baseSize.desktop / 50}em;
   }
 `;
+const H4 = styled.h4`
+  color: ${({ color, theme }) => theme[color] || color || theme.dark1};
+  /* color: slategrey; */
+  text-align: ${(props) => props.textAlign || "left"};
+  font-size: ${baseSize.mobile / 3}em;
+  /* text-transform: uppercase; */
+  font-weight: bold;
+  margin: ${(props) => props.margin || "auto"};
+  letter-spacing: ${baseSize.mobile / 50}em;
+  @media only screen and (orientation: landscape) {
+    font-size: ${baseSize.desktop / 4}em;
+    letter-spacing: ${baseSize.desktop / 50}em;
+  }
+`;
 
 const P = styled.p`
   color: ${({ color, theme }) => theme[color] || color || theme.textDark1};
@@ -71,4 +85,4 @@ const imgStyle = {
   cursor: 'pointer'
 }
 
-export { H1, H3, P, Img, imgStyle, SmallHeading };
+export { H1, H3, P, H4, Img, imgStyle, SmallHeading };

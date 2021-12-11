@@ -4,39 +4,39 @@ import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { Box, Card, CardBody, CardFooter, Grid, Text } from 'grommet';
 import { BsLink } from 'react-icons/bs';
-import { H3, P } from './Layout';
+import { H3, P, H4 } from './Layout';
 import { useTheme } from 'styled-components';
 import { brandColors } from '../styles/Theme';
 // import { Ul } from './tableStyles';
 
-const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
+const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
   const color = useTheme(brandColors);
 
-  const renderSubjectsSummary = (subjectMatter) => {
-    if (subjectMatter && subjectMatter.length > 0) {
-      const summary = subjectMatter.join('|').slice(0, 50).split('|');
-      return summary.map((subj, index) => {
-        const idxOfLastEl = summary.length - 1
-        return (
-        <li key={`subj-${index}`}>
-          {`${subj} `}{index === idxOfLastEl? <span style={{ color: color[5] }}>...see more</span>: null}
-        </li>
-      )
-    });
-    } else return null;
-  };
+  // const renderSubjectsSummary = (subjectMatter) => {
+  //   if (subjectMatter && subjectMatter.length > 0) {
+  //     const summary = subjectMatter.join('|').slice(0, 50).split('|');
+  //     return summary.map((subj, index) => {
+  //       const idxOfLastEl = summary.length - 1
+  //       return (
+  //       <li key={`subj-${index}`}>
+  //         {`${subj} `}{index === idxOfLastEl? <span style={{ color: color[5] }}>...see more</span>: null}
+  //       </li>
+  //     )
+  //   });
+  //   } else return null;
+  // };
 
   return (
     <Box pad='large' height='100%'>
       {/* <Grid gap='medium' columns={{ count: 'fill', size: 'small' }}> */}
       <Grid gap='medium' columns={'350px'}>
-        {sortedArray.map((presenter) => {
-          console.log(presenter.profilePicture ? 'has pic' : 'no pic');
+        {sortedArray.map((presentation) => {
+          console.log(presentation.image ? 'has pic' : 'no pic');
           return (
             <Card
               as={Link}
-              to={`/${presenter.slug}`}
-              key={presenter.id}
+              to={`/${presentation.slug}`}
+              key={presentation.id}
               // style={{maxWidth: '350px'}}
               // onClick={() => {
 
@@ -44,12 +44,12 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
               // }}
             >
               <CardBody pad='small'>
-                {presenter.profilePicture &&
-                presenter.profilePicture.localFile ? (
+                {presentation.image &&
+                presentation.image.localFile ? (
                   <GatsbyImage
-                    image={getImage(presenter.profilePicture.localFile)}
+                    image={getImage(presentation.image.localFile)}
                     // style={{ borderRadius: '50%', width: 100, height: 100 }}
-                    alt={presenter.fullName}
+                    alt={presentation.name}
                   />
                 ) : (
                   <StaticImage
@@ -72,27 +72,16 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
                 direction='column'
                 pad={{ horizontal: 'medium', vertical: 'small' }}
               >
-                <H3
+                <H4
                   textAlign='center'
-                  color='3'
-                >{`${presenter.title} ${presenter.fullName}`}</H3>
-                <ul style={{ textAlign: 'left' }}>
+                  color='charcoal'
+                >{`${presentation.name}`}</H4>
+                {/* <ul style={{ textAlign: 'left' }}>
                   {renderSubjectsSummary(presenter.subjectMatter)}
-                  {/* {presenter.subjectMatter && presenter.subjectMatter.length > 0
-                    ? presenter.subjectMatter.map((subject, idx) => {
-                        const idxOfLastEl = presenter.subjectMatter.length - 1;
-                        return idx < 4 ? (
-                          <li key={`subj-${idx}`}>
-                            {`${subject}${idx !== idxOfLastEl ? ', ' : ''}`}
-                          </li>
-                        ) : idx === idxOfLastEl ? (
-                          <span style={{ color: color[5] }}>...see more</span>
-                        ) : null;
-                      })
-                    : null} */}
-                </ul>
+                </ul> */}
                 <P color='5'>
-                  {presenter.qualifications &&
+                  {`${presentation.presenter?.title ?? ''} ${presentation.presenter?.fullName ?? ''}`}
+                  {/* {presenter.qualifications &&
                   presenter.qualifications.length > 0
                     ? presenter.qualifications.map((qualification, idx2) => (
                         <span key={`qual-${idx2}`}>{`${qualification}${
@@ -101,7 +90,7 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
                             : ''
                         }`}</span>
                       ))
-                    : null}
+                    : null} */}
                 </P>
                 {/* <Text size='xsmall'>{`${presenter.title} ${presenter.fullName}`}</Text> */}
               </CardFooter>
@@ -113,4 +102,4 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
   );
 };
 
-export default PresentersCards;
+export default PresentationsCards;

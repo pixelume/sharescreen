@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   button {
     outline: none;
     border: none;
+    cursor: pointer;
   }
   li {
     margin-bottom: 0.5em;

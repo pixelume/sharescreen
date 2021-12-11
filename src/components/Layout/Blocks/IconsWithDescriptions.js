@@ -20,9 +20,11 @@ const IconContainer = styled.div`
   /* width: 250px; */
   height: 250px;
   border-radius: 50px;
-  background-color: ${({ theme }) => theme[3]};
-  color: ${({ theme }) => theme[1]};
-  filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.25));
+  /* background-color: ${({ theme }) => theme[3]}; */
+  background-color: ${({ theme }) => theme.nature['b1b1a5']};
+  /* color: ${({ theme }) => theme[1]}; */
+  color: ${({ theme }) => theme.warmWhite};
+  /* filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.25)); */
 `;
 
 const IconsWithDescriptions = () => {

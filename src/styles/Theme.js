@@ -93,5 +93,21 @@ export const brandColors = {
   grey: {
     bg: 'grey',
     text: 'lightgrey'
-  }
+  },
+  nature: {
+    'b4bb7c': '#b4bb7c',
+    'dfdfce': '#dfdfce',
+    '7b8a4b': '#7b8a4b',
+    '96a760': '#96a760',
+    '5d7237': '#5d7237',
+    '515c35': '#515c35',
+    '88907d': '#88907d',
+    '3e452e': '#3e452e',
+    '42562b': '#42562b',
+    '9da7a4': '#9da7a4',
+    'b1b1a5': '#b1b1a5',
+    '5d6c6b': '#5d6c6b',
+  } 
 }
+
+// https://colorpalette.org/nature-tree-green-color-palette-2/

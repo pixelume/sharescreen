@@ -10,6 +10,8 @@ import {
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
 import { Context } from '../components/RootElement';
+import PresentationsCards from '../components/presentationsCards';
+import CategoriesNav from '../components/Navigation/CategoriesNav';
 
 const useSortByPresentation = (arrayToSort, headings) => {
   const [sortBy, setSortBy] = useState(false);
@@ -104,23 +106,27 @@ const VideoLibraryPage = () => {
 
   return (
     <>
-      <SubHeader>
-        <Formfield width='350px'>
+      <Section padding='40px 0px 0px'>
+        <CategoriesNav />
+        <ColInSection col={1}>
+        <Formfield width='350px' style={{margin: 'auto'}}>
           <SearchInput
             id={'search'}
             type='text'
-            placeholder='Search ( Name, Tags or Description )'
+            placeholder='Search ( Name, Institution or Subject Matter)'
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
           />
           <FiSearch style={searchIcnStyle} />
         </Formfield>
-      </SubHeader>
+        </ColInSection>
+      </Section>
       <Section>
         <ColInSection col={1} textAlign='center'>
-          <PresentationsTable
+          <PresentationsCards {...{ sortedArray, headings, sortClickHandler }} />
+          {/* <PresentationsTable
             {...{ sortedArray, headings, sortClickHandler }}
-          />
+          /> */}
         </ColInSection>
       </Section>
     </>
