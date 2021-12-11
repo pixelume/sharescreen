@@ -10,32 +10,56 @@ import {
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
 import { Context } from '../components/RootElement';
+import PresentationsCards from '../components/presentationsCards';
+import CategoriesNav from '../components/Navigation/CategoriesNav';
 
 const useSortByPresentation = (arrayToSort, headings) => {
-  const [sortBy, setSortBy] = useState(false)
-  
+  const [sortBy, setSortBy] = useState(false);
+
   const sortedArray = () => {
     switch (sortBy.heading) {
       case headings[0]: // by Name
-        const arr0 = arrayToSort.sort((a, b) => a.name.localeCompare(b.name))
-        return sortBy.ascending? arr0: arr0.reverse()
+        const arr0 = arrayToSort.sort((a, b) => a.name.localeCompare(b.name));
+        return sortBy.ascending ? arr0 : arr0.reverse();
       case headings[4]: // by Presenter
-        const arr1 = arrayToSort.sort((a, b) => a.presenter.surname.localeCompare(b.presenter.surname))
-        return sortBy.ascending? arr1: arr1.reverse()
+        const arr1 = arrayToSort.sort((a, b) =>
+          (a.presenter
+            ? a.presenter.surname
+              ? a.presenter.surname
+              : ''
+            : ''
+          ).localeCompare(
+            b.presenter ? (b.presenter.surname ? b.presenter.surname : '') : ''
+          )
+        );
+        return sortBy.ascending ? arr1 : arr1.reverse();
       default:
         return arrayToSort;
     }
-  }
-    return [sortBy, setSortBy, sortedArray(sortBy)];
-}
+  };
+  return [sortBy, setSortBy, sortedArray(sortBy)];
+};
 
 const useSearchPresentation = (arrayToFilter) => {
   const [searchString, setSearchString] = useState('');
-  const filteredArray = arrayToFilter.filter((presentation) =>{
-    const searchInName = presentation.name?presentation.name.toLowerCase().includes(searchString.toLowerCase().trim()):false;
-    const searchInDescription = presentation.description? presentation.description.toLowerCase().includes(searchString.toLowerCase().trim()):false;
-    const searchInTags = presentation.tags? presentation.tags.join(',').toLowerCase().includes(searchString.toLowerCase().trim()): false
-    return (searchInName || searchInDescription || searchInTags)
+  const filteredArray = arrayToFilter.filter((presentation) => {
+    const searchInName = presentation.name
+      ? presentation.name
+          .toLowerCase()
+          .includes(searchString.toLowerCase().trim())
+      : false;
+    const searchInDescription = presentation.description
+      ? presentation.description
+          .toLowerCase()
+          .includes(searchString.toLowerCase().trim())
+      : false;
+    const searchInTags = presentation.tags
+      ? presentation.tags
+          .join(',')
+          .toLowerCase()
+          .includes(searchString.toLowerCase().trim())
+      : false;
+    return searchInName || searchInDescription || searchInTags;
   });
   return [searchString, setSearchString, filteredArray];
 };
@@ -63,9 +87,10 @@ const headings = [
   // 'Presenter',
 ];
 
-const CataloguePage = () => {
+const VideoLibraryPage = () => {
   const { presentationsArr } = useContext(Context);
-  const [searchString, setSearchString, filteredArray] = useSearchPresentation(presentationsArr);
+  const [searchString, setSearchString, filteredArray] =
+    useSearchPresentation(presentationsArr);
   const [sortBy, setSortBy, sortedArray] = useSortByPresentation(
     filteredArray,
     headings
@@ -81,25 +106,31 @@ const CataloguePage = () => {
 
   return (
     <>
-      <SubHeader>
-        <Formfield width='350px'>
+      <Section padding='40px 0px 0px'>
+        <CategoriesNav />
+        <ColInSection col={1}>
+        <Formfield width='350px' style={{margin: 'auto'}}>
           <SearchInput
             id={'search'}
             type='text'
-            placeholder='Search ( Name, Tags or Description )'
+            placeholder='Search ( Name, Institution or Subject Matter)'
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
           />
           <FiSearch style={searchIcnStyle} />
         </Formfield>
-      </SubHeader>
+        </ColInSection>
+      </Section>
       <Section>
         <ColInSection col={1} textAlign='center'>
-          <PresentationsTable {...{ sortedArray, headings, sortClickHandler }} />
+          <PresentationsCards {...{ sortedArray, headings, sortClickHandler }} />
+          {/* <PresentationsTable
+            {...{ sortedArray, headings, sortClickHandler }}
+          /> */}
         </ColInSection>
       </Section>
     </>
   );
 };
 
-export default CataloguePage;
+export default VideoLibraryPage;

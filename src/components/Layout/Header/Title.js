@@ -33,7 +33,12 @@ const Title = () => {
 
   return (
     <TitleCont to="/">
-      <StaticImage width={70} height={70} src="../../../images/web_logo.png" alt="ShareScreen Logo"/>
+      <StaticImage width={70} 
+        height={70} src="../../../images/web_logo.png" 
+        alt="ShareScreen Logo"
+        // style={{overflow: 'visible'}}
+        // imgStyle={{filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.25))'}}
+      />
       <span style={{textAlign: "center"}}><span style={{fontWeight: "bold", marginLeft: 10}}>ShareScreen</span><br/><span>Africa</span></span>
       {/* <StLogo viewBox="0 0 455 243" width="100px" preserveAspectRatio="xMidYMid meet"/> */}
       {/* <Img fixed={logo} alt={title} title={title}/> */}

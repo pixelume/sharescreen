@@ -8,7 +8,7 @@ import {
   HttpLink,
 } from '@apollo/client';
 import fetch from 'cross-fetch';
-import { theme, grommetTheme } from '../styles/Theme';
+import { theme, grommetTheme, brandColors } from '../styles/Theme';
 import { useStaticQuery, graphql } from 'gatsby';
 import '@fontsource/montserrat';
 
@@ -25,6 +25,15 @@ const RootElement = ({ children, location }) => {
   const [user, setUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [keywords, setKeywords] = useState([]);
+  const [category, setCategory] = useState('')
+
+  // Climate Crisis
+  // Aquatic Ecosystems
+  // Human-Wildlife Interaction
+  // African Savannah Ecosystems
+  // Commercialization
+  // GIS
+
   const didMount = React.useRef(false);
 
   const data = useStaticQuery(graphql`
@@ -62,7 +71,7 @@ const RootElement = ({ children, location }) => {
           image {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, width: 350)
+                gatsbyImageData(layout: CONSTRAINED, width: 450, height: 253)
               }
             }
           }
@@ -82,6 +91,9 @@ const RootElement = ({ children, location }) => {
           subjectMatter
           qualifications
           profileVerified
+          categories {
+            name
+          }
           User {
             id
           }
@@ -99,7 +111,7 @@ const RootElement = ({ children, location }) => {
           profilePicture {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, width: 350)
+                gatsbyImageData(layout: CONSTRAINED, width: 450, height: 450)
               }
             }
           }
@@ -154,14 +166,16 @@ const RootElement = ({ children, location }) => {
     privacyPolicy,
     termsConditions,
     cookiePolicies,
-    aboutPage
+    aboutPage,
+    category,
+    setCategory
   };
 
   return (
     <Grommet theme={grommetTheme}>
       <ApolloProvider client={client}>
         <Context.Provider value={providerValue}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <ThemeProvider theme={brandColors}>{children}</ThemeProvider>
         </Context.Provider>
       </ApolloProvider>
     </Grommet>

@@ -12,15 +12,15 @@ export const NavButton = styled(Link)`
   font-size: inherit;
   font-weight: bold;
   background-color: transparent;
-  border: 2px solid ${({theme}) => theme.medium1};
-  color: ${({theme}) => theme.medium1};
+  border: 2px solid ${({theme}) => theme[5]};
+  color: ${({theme}) => theme[5]};
   border-radius: 5px;
   cursor: pointer;
   align-self: center;
   width: 115px;
   white-space: nowrap;
   ${({solid}) => solid? css`
-    background-color: ${({theme}) => theme.medium1};
+    background-color: ${({theme}) => theme[5]};
     color: white;
   `: null}
   @media (min-width: ${({ theme }) => theme.mobileMenu}) {

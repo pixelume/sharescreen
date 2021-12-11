@@ -16,6 +16,7 @@ const Section = styled.section`
         `
       : null}
   padding: ${(props) => props.padding || "40px 0px"};
+  color: ${({theme, color}) => color? theme[color]: 'inherit'};
   background-color: ${(props) =>
     props.theme[props.backgroundColor] ||
     props.backgroundColor ||

@@ -6,6 +6,7 @@ import {
   Input,
   iconStyle,
   clearBtnStyle,
+  RadioGroupContainer,
   // RadioLabel,
 } from '../FormStyles';
 import { MdClear } from 'react-icons/md';
@@ -15,6 +16,7 @@ import { BsPersonFill } from 'react-icons/bs';
 import { RiKey2Line } from 'react-icons/ri';
 import { Link } from 'gatsby';
 // import {IoPeopleOutline} from "react-icons/io5";
+import RadioButton from '../Radio/RadioButton';
 
 const InputSignup = styled(Input)`
   padding-left: 2.5em;
@@ -30,6 +32,7 @@ const LoginFormContent = ({
   clearField,
   validated,
   checkBoxHandler,
+  radioChangeHandler
 }) => {
   return (
     <>
@@ -38,7 +41,7 @@ const LoginFormContent = ({
           placeholder='First Name *'
           id='name'
           name='name'
-          type='name'
+          type='text'
           aria-label='name'
           onChange={inputHandler}
           value={fData.name}
@@ -54,7 +57,7 @@ const LoginFormContent = ({
           placeholder='Last Name *'
           id='surname'
           name='surname'
-          type='surname'
+          type='text'
           aria-label='surname'
           onChange={inputHandler}
           value={fData.surname}
@@ -119,7 +122,21 @@ const LoginFormContent = ({
           />
         )}
       </Formfield>
-      <Formfield
+      <RadioGroupContainer>
+        <RadioButton 
+          label="Register as a User"
+          description="This will allow you to request to be linked to expert-presenters who can share their expertise with your institution"
+          value={fData.registrationType === 'user'}
+          onChange={() => radioChangeHandler('registrationType', 'user')}
+        />
+        <RadioButton 
+          label="Register as a Presenter"
+          description="Select this option only if you intend to register as a presenter who will contribute to the platform in the form of a talk or presentation."
+          value={fData.registrationType === 'presenter'}
+          onChange={() => radioChangeHandler('registrationType', 'presenter')}
+        />
+      </RadioGroupContainer>
+      {/* <Formfield
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -144,7 +161,7 @@ const LoginFormContent = ({
           will contribute to the platform in the form of a talk or presentation. If you are registering as a user, leave
           this box un-ticked.
         </label>
-      </Formfield>
+      </Formfield> */}
       <Formfield
         style={{
           display: 'flex',
