@@ -47,7 +47,7 @@ const P = styled.p`
   color: ${({ color, theme }) => theme[color] || color || theme.textDark1};
   text-align: ${(props) => props.textAlign || "left"};
   margin: ${(props) => props.margin || "auto"};
-  font-size: ${baseSize.mobile / 3}em;
+  font-size: ${({sizeFactor}) => (baseSize.mobile / 3) * sizeFactor || 1}em;
   ${(props) =>
     props.lineHeight
       ? css`
@@ -59,7 +59,7 @@ const P = styled.p`
   @media only screen and (orientation: landscape) {
     /* padding-left: 15px;
     padding-right: 15px; */
-    font-size: ${baseSize.desktop / 3.6}em;
+    font-size: ${({sizeFactor}) => (baseSize.desktop / 3.6) * sizeFactor || 1}em;
     letter-spacing: ${baseSize.desktop / 50}em;
     box-sizing: border-box;
   }

@@ -20,7 +20,7 @@ import { ThemeContext } from 'grommet';
 
 const PresentationPage = ({ data }) => {
   const { openVideo, setOpenVideo } = useContext(LayoutContext);
-  const {headerHeightBig} = useContext(ThemeContext);
+  const {headerHeightBig, nature} = useContext(ThemeContext);
   const components = {
     p: ({ children }) => <P margin='1.2em auto'>{children}</P>,
   };
@@ -37,8 +37,8 @@ const PresentationPage = ({ data }) => {
             alignSelf='flex-start'
             alignItems='strecth'
             minHeight={`calc(100vh - ${headerHeightBig}px)`}
-            // background="linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(240,248,255,1) 35%, rgba(240,248,255,1) 65%, rgba(255,255,255,1) 65%)"
-            background='linear-gradient(90deg, aliceblue 25%, white 45%, white 55%, aliceblue 75%)'
+            // background='linear-gradient(90deg, #dfdfce 25%, white 45%, white 55%, #dfdfce 75%)'
+            backgroundColor={nature.dfdfce}
           >
             <ColInSection col={3}>
               <H3 margin='0 auto 1.5em' textAlign='center'>
