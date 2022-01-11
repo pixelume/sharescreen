@@ -27,9 +27,9 @@ const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
   // };
 
   return (
-    <Box pad='large' height='100%'>
+    <Box pad='large' height='100%' direction='row' wrap justify='center'>
       {/* <Grid gap='medium' columns={{ count: 'fill', size: 'small' }}> */}
-      <Grid gap='medium' columns={'350px'}>
+      {/* <Grid gap='medium' columns={'350px'}> */}
         {sortedArray.map((presentation) => {
           console.log(presentation.image ? 'has pic' : 'no pic');
           return (
@@ -37,13 +37,19 @@ const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
               as={Link}
               to={`/${presentation.slug}`}
               key={presentation.id}
+              width='350px'
+              flex={false}
+              margin='5px'
+              elevation='xsmall'
+              background={color.warmWhite}
+              round='xsmall'
               // style={{maxWidth: '350px'}}
               // onClick={() => {
 
               //   alert('Card was Clicked!');
               // }}
             >
-              <CardBody pad='small'>
+              <CardBody>
                 {presentation.image &&
                 presentation.image.localFile ? (
                   <GatsbyImage
@@ -55,10 +61,15 @@ const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
                   <StaticImage
                     src='../images/placeholder_image.png'
                     // layout='fixed'
-                    // width={100}
-                    // height={100}
+                    width={350}
+                    height={0.5625*350}
                   />
                 )}
+                <H4
+                  textAlign='center'
+                  color='charcoal'
+                  margin='10px 0px'
+                >{`${presentation.name}`}</H4>
                 {/* <Identifier
                 title={value.title}
                 subTitle={value.subTitle}
@@ -72,10 +83,7 @@ const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
                 direction='column'
                 pad={{ horizontal: 'medium', vertical: 'small' }}
               >
-                <H4
-                  textAlign='center'
-                  color='charcoal'
-                >{`${presentation.name}`}</H4>
+                
                 {/* <ul style={{ textAlign: 'left' }}>
                   {renderSubjectsSummary(presenter.subjectMatter)}
                 </ul> */}
@@ -97,7 +105,7 @@ const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
             </Card>
           );
         })}
-      </Grid>
+      {/* </Grid> */}
     </Box>
   );
 };

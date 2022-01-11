@@ -18,18 +18,18 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
       return summary.map((subj, index) => {
         const idxOfLastEl = summary.length - 1
         return (
-        <li key={`subj-${index}`}>
+        <P as='li' sizeFactor={0.9} key={`subj-${index}`}>
           {`${subj} `}{index === idxOfLastEl? <span style={{ color: color[5] }}>...see more</span>: null}
-        </li>
+        </P>
       )
     });
     } else return null;
   };
 
   return (
-    <Box pad='large' height='100%'>
+    <Box height='100%' direction='row' wrap justify='center'>
       {/* <Grid gap='medium' columns={{ count: 'fill', size: 'small' }}> */}
-      <Grid gap='medium' columns={'350px'}>
+      {/* <Grid gap='medium' columns={'350px'}> */}
         {sortedArray.map((presenter) => {
           console.log(presenter.profilePicture ? 'has pic' : 'no pic');
           return (
@@ -37,13 +37,19 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
               as={Link}
               to={`/${presenter.slug}`}
               key={presenter.id}
+              width='300px'
+              flex={false}
+              margin='5px'
+              elevation='xsmall'
+              background={color.warmWhite}
+              round='xsmall'
               // style={{maxWidth: '350px'}}
               // onClick={() => {
 
               //   alert('Card was Clicked!');
               // }}
             >
-              <CardBody pad='small'>
+              <CardBody>
                 {presenter.profilePicture &&
                 presenter.profilePicture.localFile ? (
                   <GatsbyImage
@@ -59,22 +65,10 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
                     // height={100}
                   />
                 )}
-                {/* <Identifier
-                title={value.title}
-                subTitle={value.subTitle}
-                size="small"
-              >
-                {value.icon}
-              </Identifier> */}
-                {/* <ChartPreview type={value.type} /> */}
-              </CardBody>
-              <CardFooter
-                direction='column'
-                pad={{ horizontal: 'medium', vertical: 'small' }}
-              >
                 <H3
                   textAlign='center'
                   color='3'
+                  margin='5px 0px'
                 >{`${presenter.title} ${presenter.fullName}`}</H3>
                 <ul style={{ textAlign: 'left' }}>
                   {renderSubjectsSummary(presenter.subjectMatter)}
@@ -91,7 +85,22 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
                       })
                     : null} */}
                 </ul>
-                <P color='5'>
+                {/* <Identifier
+                title={value.title}
+                subTitle={value.subTitle}
+                size="small"
+              >
+                {value.icon}
+              </Identifier> */}
+                {/* <ChartPreview type={value.type} /> */}
+              </CardBody>
+              <CardFooter
+                direction='column'
+                pad={{ horizontal: 'medium', vertical: 'small' }}
+              >
+                
+                
+                <P color='5' sizeFactor={1}>
                   {presenter.qualifications &&
                   presenter.qualifications.length > 0
                     ? presenter.qualifications.map((qualification, idx2) => (
@@ -108,7 +117,7 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
             </Card>
           );
         })}
-      </Grid>
+      {/* </Grid> */}
     </Box>
   );
 };
