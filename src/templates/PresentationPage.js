@@ -17,6 +17,7 @@ import { FaPlay } from 'react-icons/fa';
 import { LayoutContext } from '../components/Layout/Layout';
 import Modal from '../components/Modal';
 import { ThemeContext } from 'grommet';
+import { useEffect } from 'react';
 
 const PresentationPage = ({ data }) => {
   const { openVideo, setOpenVideo } = useContext(LayoutContext);
@@ -28,6 +29,10 @@ const PresentationPage = ({ data }) => {
   const pData = data.strapiPresentation;
   const profilePic = pData.presenter.profilePicture? getImage(pData.presenter.profilePicture.localFile): null;
   const presentationPic = pData.image? getImage(pData.image.localFile): null;
+
+  useEffect(() => {
+    console.log('Presenters Page Mounted')
+  }, []);
 
   return (
     <>
@@ -168,7 +173,7 @@ const PresentationPage = ({ data }) => {
           title='YouTube video player'
           frameBorder={0}
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          allowfullscreen='true'
+          allowFullScreen='true'
         ></iframe>
             </Modal>
           )}

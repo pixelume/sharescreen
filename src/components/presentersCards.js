@@ -9,7 +9,7 @@ import { useTheme } from 'styled-components';
 import { brandColors } from '../styles/Theme';
 // import { Ul } from './tableStyles';
 
-const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
+const PresentersCards = ({ arrToDisplay, limit = null, headings, sortClickHandler }) => {
   const color = useTheme(brandColors);
 
   const renderSubjectsSummary = (subjectMatter) => {
@@ -26,12 +26,14 @@ const PresentersCards = ({ sortedArray, headings, sortClickHandler }) => {
     } else return null;
   };
 
+  const limitedArr = limit? arrToDisplay.slice(0, limit): arrToDisplay 
+
   return (
     <Box height='100%' direction='row' wrap justify='center'>
       {/* <Grid gap='medium' columns={{ count: 'fill', size: 'small' }}> */}
       {/* <Grid gap='medium' columns={'350px'}> */}
-        {sortedArray.map((presenter) => {
-          console.log(presenter.profilePicture ? 'has pic' : 'no pic');
+        {limitedArr.map((presenter) => {
+          {/* console.log(presenter.profilePicture ? 'has pic' : 'no pic'); */}
           return (
             <Card
               as={Link}

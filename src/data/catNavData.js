@@ -12,48 +12,71 @@ import {AiOutlineInfoCircle} from 'react-icons/ai';
 import {BiBuildingHouse} from 'react-icons/bi';
 import {SiQgis} from 'react-icons/si';
 import {TiWeatherStormy, TiWaves } from 'react-icons/ti';
-import {GiElephant, GiAfrica, GiBigWave} from 'react-icons/gi';
+import {GiElephant, GiAfrica, GiBigWave, GiForest, GiWaterfall} from 'react-icons/gi';
 import React from 'react';
+
+// Climate Change
+// Freshwater Systems
+// Marine Ecosystems
+// Savannah 
+// Forests
+// Human-Wildlife Interaction
+// Commercialisation
+// GIS
 
 const catNavData = [
   {
-    text: 'Climate Crisis',
-    id: 'Climate Crisis',
+    text: 'Climate Change',
+    id: 'Climate Change',
     link: '/',
     show: 'both',
     role: 'Any',
     icon: <TiWeatherStormy />,
   },
   {
-    text: 'Aquatic Ecosystems',
-    id: 'Aquatic Ecosystems',
+    text: 'Fresh Water Systems',
+    id: 'Fresh Water Systems',
     link: '/presenters',
+    show: 'both',
+    role: 'Any',
+    icon: <GiWaterfall />,
+  },
+  {
+    text: 'Marine Ecosystems',
+    id: 'Marine Ecosystems',
+    link: '/video-library',
     show: 'both',
     role: 'Any',
     icon: <GiBigWave />,
   },
   {
-    text: 'Human-Wildlife Interaction',
-    id: 'Human-Wildlife Interaction',
-    link: '/video-library',
-    show: 'both',
-    role: 'Any',
-    icon: <GiElephant />,
-  },
-  {
-    text: 'African Savannah Ecosystems',
-    id: 'African Savannah Ecosystems',
+    text: 'Savannah',
+    id: 'Savannah',
     link: '/about',
     show: 'both',
     role: 'Any',
     icon: <GiAfrica />,
   },
   {
-    text: 'Commercialization',
-    id: 'Commercialization',
+    text: 'Forests',
+    id: 'Forests',
     link: '/create',
     show: 'both',
-    role: 'Editor',
+    role: 'Any',
+    icon: <GiForest />,
+  },
+  {
+    text: 'Human-Wildlife Interaction',
+    id: 'Human-Wildlife Interaction',
+    show: 'both',
+    role: 'Any',
+    icon: <GiElephant />,
+  },
+  {
+    text: 'Commercialization',
+    id: 'Commercialization',
+    show: 'both',
+    role: 'Any',
     icon: <BiBuildingHouse />,
   },
   {

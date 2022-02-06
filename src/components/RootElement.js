@@ -11,6 +11,7 @@ import fetch from 'cross-fetch';
 import { theme, grommetTheme, brandColors } from '../styles/Theme';
 import { useStaticQuery, graphql } from 'gatsby';
 import '@fontsource/montserrat';
+import shuffle from '../functions/shuffleArray';
 
 const client = new ApolloClient({
   // uri: "http://localhost:1337/graphql",
@@ -25,7 +26,8 @@ const RootElement = ({ children, location }) => {
   const [user, setUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [keywords, setKeywords] = useState([]);
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('Uncategorised')
+  const [shuffledArr, setShuffledArr] = useState([])
 
   // Climate Crisis
   // Aquatic Ecosystems
@@ -61,6 +63,11 @@ const RootElement = ({ children, location }) => {
           id
           slug
           tags
+          categories {
+            id
+            name
+            description
+          }
           presenter {
             fullName
             surname
@@ -92,7 +99,9 @@ const RootElement = ({ children, location }) => {
           qualifications
           profileVerified
           categories {
+            id
             name
+            description
           }
           User {
             id
@@ -126,7 +135,7 @@ const RootElement = ({ children, location }) => {
   `);
 
   const presentationsArr = data.allStrapiPresentation.nodes;
-  const presentersArr = data.allStrapiPresenter.nodes;
+  const presentersArr = shuffle(data.allStrapiPresenter.nodes);
   // const tagsArr = data.allStrapiTag.nodes;
   const privacyPolicy = data.strapiPrivacyPolicy.content;
   const termsConditions = data.strapiTermsAndConditionsPage.content;
@@ -137,7 +146,7 @@ const RootElement = ({ children, location }) => {
     if (didMount.current) {
       if (user && user.jwt) {
         window.sessionStorage.setItem('user', JSON.stringify(user));
-        console.log('I run only if user changes.');
+        // console.log('I run only if user changes.');
       } else {
         window.sessionStorage.removeItem('user');
       }
@@ -151,6 +160,7 @@ const RootElement = ({ children, location }) => {
     if (storedUser && storedUser.jwt) {
       setUser(storedUser);
     }
+    setShuffledArr(shuffle(presentersArr))
   }, []);
 
   const providerValue = {
@@ -161,7 +171,7 @@ const RootElement = ({ children, location }) => {
     keywords,
     setKeywords,
     presentationsArr,
-    presentersArr,
+    presentersArr: shuffledArr,
     // tagsArr,
     privacyPolicy,
     termsConditions,

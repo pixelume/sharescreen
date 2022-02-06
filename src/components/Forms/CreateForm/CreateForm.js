@@ -73,10 +73,10 @@ const CreateForm = () => {
     }
   };
 
-  useEffect(() => {
-    console.log('file', file)
-    console.log('fData', fData)
-  }, [file])
+  // useEffect(() => {
+  //   console.log('file', file)
+  //   console.log('fData', fData)
+  // }, [file])
 
   return (
     <StForm onSubmit={submitHandler}>

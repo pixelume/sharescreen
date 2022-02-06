@@ -12,7 +12,7 @@ const AboutPage = () => {
     img: ({src, alt}) => <img src={src} alt={alt} style={{objectFit: 'contain', width: '100%'}}/>
   };
 
-  console.log(aboutPage);
+  // console.log(aboutPage);
   let content = [];
   aboutPage.map((contentEl, idx) => {
     switch (contentEl.strapi_component) {
@@ -52,7 +52,7 @@ const AboutPage = () => {
                 title='YouTube video player'
                 frameBorder={0}
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </ColInSection>
           );

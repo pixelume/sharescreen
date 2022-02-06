@@ -88,7 +88,7 @@ const headings = [
 ];
 
 const VideoLibraryPage = () => {
-  const { presentationsArr } = useContext(Context);
+  const { presentationsArr, category } = useContext(Context);
   const [searchString, setSearchString, filteredArray] =
     useSearchPresentation(presentationsArr);
   const [sortBy, setSortBy, sortedArray] = useSortByPresentation(
@@ -104,6 +104,15 @@ const VideoLibraryPage = () => {
     }
   };
 
+  const catFilteredArray = presentationsArr.filter(presentation => presentation.categories.map(cat => cat.name).includes(category))
+
+  const getArrToPass = () => {
+    if (category && category !== "Uncategorised") {
+      return catFilteredArray
+    }
+    return sortedArray
+  }
+
   return (
     <>
       <Section padding='40px 0px 0px'>
@@ -113,7 +122,7 @@ const VideoLibraryPage = () => {
           <SearchInput
             id={'search'}
             type='text'
-            placeholder='Search ( Name, Institution or Subject Matter)'
+            placeholder='Search...'
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
           />
@@ -123,7 +132,7 @@ const VideoLibraryPage = () => {
       </Section>
       <Section>
         <ColInSection col={1} textAlign='center'>
-          <PresentationsCards {...{ sortedArray, headings, sortClickHandler }} />
+          <PresentationsCards arrToDisplay={getArrToPass()} {...{ headings, sortClickHandler }} />
           {/* <PresentationsTable
             {...{ sortedArray, headings, sortClickHandler }}
           /> */}

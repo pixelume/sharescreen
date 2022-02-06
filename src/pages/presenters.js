@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Section, ColInSection } from '../components/Layout';
 import PresentersTable from '../components/presentersTable';
 // import styled from 'styled-components';
@@ -85,13 +85,28 @@ const headings = [
 ];
 
 const PresentersPage = () => {
-  const { presentersArr, category, setCategory } = useContext(Context);
+  const { presentersArr, category } = useContext(Context);
+
   const [searchString, setSearchString, filteredArray] =
     useSearchPresenter(presentersArr);
+
   const [sortBy, setSortBy, sortedArray] = useSortByPresenter(
     filteredArray,
     headings
   );
+
+  const catFilteredArray = presentersArr.filter(presenter => presenter.categories.map(cat => cat.name).includes(category))
+
+  const getArrToPass = () => {
+    if (category && category !== "Uncategorised") {
+      return catFilteredArray
+    }
+    return sortedArray
+  }
+
+  useEffect(() => {
+    // console.log('presentersArr', presentersArr);
+  }, [presentersArr]);
 
   const sortClickHandler = (clickedHeading) => {
     if (sortBy.heading && sortBy.heading === clickedHeading) {
@@ -106,16 +121,16 @@ const PresentersPage = () => {
       <Section padding='40px 0px 0px'>
         <CategoriesNav />
         <ColInSection col={1}>
-        <Formfield width='350px' style={{margin: 'auto'}}>
-          <SearchInput
-            id={'search'}
-            type='text'
-            placeholder='Search ( Name, Institution or Subject Matter)'
-            value={searchString}
-            onChange={(e) => setSearchString(e.target.value)}
-          />
-          <FiSearch style={searchIcnStyle} />
-        </Formfield>
+          <Formfield width='350px' style={{ margin: 'auto' }}>
+            <SearchInput
+              id={'search'}
+              type='text'
+              placeholder='Search ( Name, Institution or Subject Matter)'
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
+            />
+            <FiSearch style={searchIcnStyle} />
+          </Formfield>
         </ColInSection>
       </Section>
       {/* <SubHeader>
@@ -123,7 +138,7 @@ const PresentersPage = () => {
       <Section padding='0px'>
         <ColInSection col={1} textAlign='center'>
           {/* <PresentersTable {...{ sortedArray, headings, sortClickHandler }} /> */}
-          <PresentersCards {...{ sortedArray, headings, sortClickHandler }} />
+          <PresentersCards arrToDisplay={getArrToPass()} {...{ headings, sortClickHandler }} />
         </ColInSection>
       </Section>
     </>

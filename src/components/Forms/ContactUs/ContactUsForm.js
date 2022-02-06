@@ -69,7 +69,7 @@ const ContactUsForm = ({closeHandler}) => {
         closeHandler();
       }, 2000);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       // setFormError(error.response.data.message);
       setFormStatus('unSent');
     }

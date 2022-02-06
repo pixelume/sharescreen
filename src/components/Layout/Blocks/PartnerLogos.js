@@ -23,7 +23,7 @@ const PartnerLogos = props => {
   ]
 
   return (
-    <Section slanted='3' backgroundColor="1" padding="0px 0px 40px">
+    <Section slanted='3' backgroundColor="warmWhite" padding="0px 0px 40px">
         <ColInSection col={1} paddingDesktop="30px 0px">
           <H3 as="h2" textAlign="center" color="textDark1">
             Our Partners
@@ -37,7 +37,7 @@ const PartnerLogos = props => {
         >
           {logos.map((logo, idx) => (
             <LogoContainer key={`logo-${idx}`}>
-              <img key={`logo-${idx}`} src={logo} alt="" style={{display: 'block', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)', margin: '20px'}}/>
+              <img key={`logo-${idx}`} src={logo} alt="" style={{display: 'block', height: '100%', objectFit: 'cover', margin: '20px'}}/>
             </LogoContainer>
           ))}
           {/* <img

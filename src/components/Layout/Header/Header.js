@@ -6,7 +6,8 @@ import MainNavContainer from "./MainNavContainer"
 export const HeaderCont = styled.header`
   width: 100vw;
   /* background-color: ${({theme}) => theme.mediumLight1}; */
-  background-color: ${({theme}) => theme.warmWhite};
+  /* background-color: ${({theme}) => theme.warmWhite}; */
+  background-color: rgba(255,255,255,0.7);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,6 +19,7 @@ export const HeaderCont = styled.header`
   padding: 0px 10px;
   box-sizing: border-box;
   border-bottom: 1px solid lightgrey;
+  backdrop-filter: blur(15px);
   & a {
     text-decoration: none;
   }

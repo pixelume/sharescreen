@@ -6,7 +6,7 @@ const baseSize = {
 };
 
 const H1 = styled.h1`
-  color: ${({ theme }) => theme.textDark1};
+  color: ${({ theme, color }) => theme[color] || color || theme.textDark1};
   text-align: ${(props) => props.textAlign || "left"};
   font-size: ${baseSize.mobile}em;
   @media only screen and (orientation: landscape) {

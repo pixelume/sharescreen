@@ -18,7 +18,7 @@ const StNavItem = styled.button`
   color: ${({ theme }) => theme[5]};
   margin: 2px;
   font-size: 0.7em;
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
   &:hover {
     background-color: ${({ theme }) => theme[3]};
     color: ${({ theme }) => theme.warmWhite};
@@ -27,6 +27,8 @@ const StNavItem = styled.button`
     ? css`
         background-color: ${theme[3]};
         color: ${theme.warmWhite};
+        box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.75);
+        transform: translate(-2px, -2px);
       `
     : null
   }
@@ -53,6 +55,7 @@ const NavItems = () => {
       <StNavItem
         key={`catNav-${item.id}`}
         onClick={() => category === item.text? setCategory(''): setCategory(item.text)}
+        // onClick={() => console.log(item.text)}
         active={item.id === category}
       >
         <div style={{fontSize: '3.5em', marginBottom: 10}}>{item.icon}</div>

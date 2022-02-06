@@ -69,7 +69,7 @@ const RequestSpeakerForm = ({presenterId, closeHandler}) => {
       setFData(initialFData);
       closeHandler();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       // setFormError(error.response.data.message);
       setFormStatus('unSent');
     }

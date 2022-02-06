@@ -108,7 +108,7 @@ const ProfilePage = () => {
           });
           setRebuildReq('done');
         } catch (error) {
-          console.log(error.response.data);
+          // console.log(error.response.data);
           setRebuildReq('error');
         }
       };

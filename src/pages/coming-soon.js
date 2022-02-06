@@ -124,9 +124,9 @@ const ComingSoonPage = (props) => {
             style={{width: '100%', height: '100%'}}
             src='https://www.youtube.com/embed/vulhF15fTDk'
             title='YouTube video player'
-            frameborder='0'
+            frameBorder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            // allowfullscreen
+            // allowFullScreen
           ></iframe>
           {/* <video controls style={{ width: "100%" }}>
           <source src={video} type="video/mp4" />

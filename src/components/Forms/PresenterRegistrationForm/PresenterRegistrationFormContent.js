@@ -399,11 +399,11 @@ const PresenterRegistrationFormContent = ({
         </div>
         {!file && (
           <FileDrop
-            onFrameDragEnter={(event) => console.log('onFrameDragEnter', event)}
-            onFrameDragLeave={(event) => console.log('onFrameDragLeave', event)}
-            onFrameDrop={(event) => console.log('onFrameDrop', event)}
-            onDragOver={(event) => console.log('onDragOver', event)}
-            onDragLeave={(event) => console.log('onDragLeave', event)}
+            // onFrameDragEnter={(event) => console.log('onFrameDragEnter', event)}
+            // onFrameDragLeave={(event) => console.log('onFrameDragLeave', event)}
+            // onFrameDrop={(event) => console.log('onFrameDrop', event)}
+            // onDragOver={(event) => console.log('onDragOver', event)}
+            // onDragLeave={(event) => console.log('onDragLeave', event)}
             onTargetClick={onTargetClick}
             onDrop={(files, event) => {
               event.preventDefault();
