@@ -9,18 +9,20 @@ import { ThemeContext } from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Button } from '../styles/Buttons';
 import { Link } from 'gatsby';
+import PresentersCards from '../components/presentersCards';
+import HowToUse from '../components/Layout/Blocks/HowToUse';
 
 // I made a change to this file
 
 const IndexPage = ({ limit }) => {
-  const { presentationsArr } = useContext(Context);
+  const { presentationsArr, presentersArr } = useContext(Context);
   const theme = useContext(ThemeContext);
 
   return (
     <>
       <VideoWithHeading />
       <Section backgroundColor={theme.nature['dfdfce']}>
-      {/* <Section background='radial-gradient(ellipse, rgba(232,255,213,1) 0%, rgba(157,196,124,1) 100%)'> */}
+        {/* <Section background='radial-gradient(ellipse, rgba(232,255,213,1) 0%, rgba(157,196,124,1) 100%)'> */}
         <ColInSection col={6}>
           <StaticImage
             width={100}
@@ -41,7 +43,7 @@ const IndexPage = ({ limit }) => {
             conservation departments and related training institutions, as well
             as conservation-NGO’s.
           </P>
-          <div style={{textAlign: 'right'}}>
+          <div style={{ textAlign: 'right' }}>
             <Button
               as={Link}
               to='/about'
@@ -54,14 +56,22 @@ const IndexPage = ({ limit }) => {
           </div>
         </ColInSection>
       </Section>
-      <IconsWithDescriptions />
-      <Section padding='40px 0 70px' backgroundColor='5' color='warmWhite'>
+      <HowToUse/>
+      {/* <IconsWithDescriptionsiptions /> */}
+      <Section padding='40px 0 70px' backgroundColor='#FFF'>
         <ColInSection col={1} padding='0 0 30px'>
-          <H3 textAlign='center'>Latest Presentations</H3>
+          <H3 textAlign='center' color='#515c35'>
+            Featured Presenters
+          </H3>
+          {/* <H3 textAlign='center'>Latest Presentations</H3> */}
         </ColInSection>
-        {presentationsArr && (
+        <ColInSection col={1} textAlign='center'>
+          {/* <PresentersTable {...{ sortedArray, headings, sortClickHandler }} /> */}
+          <PresentersCards arrToDisplay={presentersArr} limit={4} />
+        </ColInSection>
+        {/* {presentationsArr && (
           <Cards presentationsArr={presentationsArr} limit={3} />
-        )}
+        )} */}
         {/* <Presentations limit={2}/> */}
       </Section>
       <PartnerLogos />

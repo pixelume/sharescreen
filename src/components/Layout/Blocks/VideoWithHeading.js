@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 // import ReactPlayer from 'react-player';
-import { Section, ColInSection, H1, H3 } from '../';
+import { Section, ColInSection, H1, H3, P } from '../';
 import { Button } from '../../../styles/Buttons';
 import { Link } from 'gatsby';
 import treeSilhouette from '../../../svg/treeSilhouetteCompr.svg';
@@ -22,23 +22,66 @@ const StTreeSilhoutte = styled(treeSilhouette)`
   }
 `;
 
+const VideoContainer = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  width: 100vw;
+  height: 100%;
+  & iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    @media (min-aspect-ratio: 16/9) {
+      /* height = 100 * (9 / 16) = 56.25 */
+      height: 56.25vw;
+    }
+    @media (max-aspect-ratio: 16/9) {
+      /* width = 100 / (9 / 16) = 177.777777 */
+      width: 177.78vh;
+    }
+  }
+  &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100vw;
+      height: 100vh;
+      background-color: ${({theme}) => theme.warmWhite};
+      opacity: 0.6;
+      z-index: -1;
+    }
+`
+
 const VideoWithHeading = () => {
   const { radialGradientLight, headerHeightBig } = useContext(ThemeContext);
   const {user} = useContext(Context)
 
   return (
     <Section
-      padding='10px 0px 50px'
-      background={radialGradientLight}
+      // padding='0px'
+      // background={radialGradientLight}
+      backgroundColor='warmWhite'
       minHeight={`calc(100vh - ${headerHeightBig}px)`}
+      style={{padding: 0, position: 'relative'}}
     >
-      <StTreeSilhoutte />
-      <ColInSection>
-        <H1>Bringing experts into the classroom</H1>
-        <H3>Interact Live With Leaders In Their Fields</H3>
+      <VideoContainer>
+        <iframe src="https://www.youtube.com/embed/9jZH_5ZBuQQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&playlist=9jZH_5ZBuQQ" frameBorder="0" allowFullScreen></iframe>
+      </VideoContainer>
+      {/* <StTreeSilhoutte /> */}
+      <ColInSection col={1.2} textAlign='center' backgroundColor='rgba(255,255,255,0.5)' borderRadius='20px' padding='0 30px 50px'>
+        <H1 color='#3e452e'>Bringing experts into the classroom</H1>
+        <H3 color='#3e452e'>Interact Live With Leaders In The Fields of Nature Conservation</H3>
         {/* <Notification color="offWhite">Description Here</Notification> */}
       </ColInSection>
-      <ColInSection maintainAspect shadow borderRadius='5px'>
+      {/* <ColInSection maintainAspect shadow borderRadius='5px'>
         <iframe
           // width='560'
           // height='315'
@@ -53,28 +96,11 @@ const VideoWithHeading = () => {
           title='YouTube video player'
           frameBorder={0}
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          // allowfullscreen
+          // allowFullScreen
         ></iframe>
-        {/* <iframe
-          // width='560'
-          // height='315'
-          style={{ width: '100%', height: '100%' }}
-          src='https://www.youtube.com/embed/vulhF15fTDk'
-          title='YouTube video player'
-          frameborder='0'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          // allowfullscreen
-        ></iframe> */}
-        {/* <ReactPlayer
-            style={{ position: "absolute", top: 0, left: 0 }}
-            url="https://www.youtube.com/watch?v=sLxD1kaVjPA"
-            light
-            width="100%"
-            height="100%"
-          /> */}
-      </ColInSection>
+      </ColInSection> */}
       {!user && (
-        <ColInSection col={1} textAlign='center' padding='50px'>
+        <ColInSection col={1} textAlign='center' padding='50px' >
           <Button
             as={Link}
             to='/register'

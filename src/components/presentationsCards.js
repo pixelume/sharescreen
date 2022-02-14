@@ -9,7 +9,7 @@ import { useTheme } from 'styled-components';
 import { brandColors } from '../styles/Theme';
 // import { Ul } from './tableStyles';
 
-const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
+const PresentationsCards = ({ arrToDisplay, headings, sortClickHandler }) => {
   const color = useTheme(brandColors);
 
   // const renderSubjectsSummary = (subjectMatter) => {
@@ -30,8 +30,8 @@ const PresentationsCards = ({ sortedArray, headings, sortClickHandler }) => {
     <Box pad='large' height='100%' direction='row' wrap justify='center'>
       {/* <Grid gap='medium' columns={{ count: 'fill', size: 'small' }}> */}
       {/* <Grid gap='medium' columns={'350px'}> */}
-        {sortedArray.map((presentation) => {
-          console.log(presentation.image ? 'has pic' : 'no pic');
+        {arrToDisplay.map((presentation) => {
+          {/* console.log(presentation.image ? 'has pic' : 'no pic'); */}
           return (
             <Card
               as={Link}

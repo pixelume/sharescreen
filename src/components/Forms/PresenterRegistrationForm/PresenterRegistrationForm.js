@@ -111,7 +111,7 @@ const PresenterRegistrationForm = ({
                   Authorization: `Bearer ${user.jwt}`
                 }
               })
-              console.log('res2', res2)
+              // console.log('res2', res2)
               setUser(user => ({...user, user: {...res2.data}}))
               setIsDoneCreating(true)
             } catch (error) {
@@ -122,7 +122,7 @@ const PresenterRegistrationForm = ({
           setFile(null);
           setRefetchPresenterProfile(true)
         } catch (error) {
-          console.log(error.response.data);
+          // console.log(error.response.data);
           setFormError(error.response.data.message);
           setFormStatus('unSent');
         }
@@ -150,7 +150,7 @@ const PresenterRegistrationForm = ({
       }));
     } else {
       setFData((prevData) => ({ ...prevData, [el]: [val] }));
-      console.log(`setFData(prevData => ({...prevData, ${[el]}: ${[val]}}))`);
+      // console.log(`setFData(prevData => ({...prevData, ${[el]}: ${[val]}}))`);
     }
   };
 
@@ -160,8 +160,8 @@ const PresenterRegistrationForm = ({
   };
 
   const deletePillHandler = (idx, field) => {
-    console.log(`inside deletePillHandler. fData[field] = ${fData[field]}`);
-    console.log(`idx = ${idx}`);
+    // console.log(`inside deletePillHandler. fData[field] = ${fData[field]}`);
+    // console.log(`idx = ${idx}`);
     if (fData[field].length === 1) {
       setFData((prevData) => ({ ...prevData, [field]: '' }));
     } else {

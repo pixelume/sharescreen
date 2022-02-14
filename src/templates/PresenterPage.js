@@ -77,7 +77,7 @@ const SinglePresenter = (props) => {
   const { requestSpeaker, setRequestSpeaker } = useContext(LayoutContext);
   const { editProfile, setEditProfile } = useContext(LayoutContext);
   const pData = props.data.strapiPresenter;
-  console.log('pData', pData);
+  // console.log('pData', pData);
   const presenterId = pData.id.slice(pData.id.indexOf('_')+1)
   const {loading, error, data} = useQuery(GET_PRESENTER_BY_ID, {variables: {id: parseInt(presenterId)}})
 
@@ -324,7 +324,7 @@ const SinglePresenter = (props) => {
     (user && user.user.role.name === 'Administrator');
 
     useEffect(() => {
-      console.log(data)
+      // console.log(data)
     }, [data])
 
   return pData && shouldRender

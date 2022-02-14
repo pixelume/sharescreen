@@ -46,7 +46,7 @@ const PresentationRegistrationForm = () => {
       setFormError(false);
     }
     const { id, value } = e.target;
-    console.log('e.target.value', e.target.value)
+    // console.log('e.target.value', e.target.value)
     if (id === 'videoLink') {
       const expression =
       /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
@@ -109,7 +109,7 @@ const PresentationRegistrationForm = () => {
     }
     const slug = slugify(fData.name, {lower: true, remove: /[*+~.()'",!:@?]/g});
     setFormStatus('sending');
-    console.log(JSON.stringify({ ...fData, slug: slug }));
+    // console.log(JSON.stringify({ ...fData, slug: slug }));
     const formData = new FormData();
     formData.append('data', JSON.stringify({ ...fData, slug: slug, videoLink: embedVideoLink }));
     formData.append('files.image', file);
@@ -128,7 +128,7 @@ const PresentationRegistrationForm = () => {
       setFData(initialFData);
       setFile(null);
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
       setFormError(error.response.data.message);
       setFormStatus('unSent');
     }

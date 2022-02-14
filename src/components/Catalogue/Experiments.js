@@ -19,11 +19,11 @@ const EXPERIMENT_DATA = gql`
 const Experiments = () => {
   const { loading, error, data } = useQuery(EXPERIMENT_DATA);
 
-  useEffect(() => {
-    console.log('data', data)
-    console.log('error', error)
-    console.log('loading', loading)
-  }, [data, error, loading])
+  // useEffect(() => {
+  //   console.log('data', data)
+  //   console.log('error', error)
+  //   console.log('loading', loading)
+  // }, [data, error, loading])
 
   return (
     <>
