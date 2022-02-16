@@ -5,20 +5,20 @@ import lcaLogo from '../../../images/partner_logos/lca.png'
 import sanparksLogo from '../../../images/partner_logos/sanparks.png'
 import sapLogo from '../../../images/partner_logos/sap.png'
 import spacLogo from '../../../images/partner_logos/spac.png'
-import stdBankLogo from '../../../images/partner_logos/stdbank.png'
+import stdBankLogo from '../../../images/partner_logos/Standard-bank-logo.jpg'
 import styled from 'styled-components';
 
 const LogoContainer = styled.div`
-  height: 80px;
+  height: 100px;
   margin-bottom: 50px;
 `
 
 const PartnerLogos = props => {
   const logos = [
     lcaLogo,
+    spacLogo,
     sanparksLogo,
     sapLogo,
-    spacLogo,
     stdBankLogo
   ]
 
@@ -37,7 +37,7 @@ const PartnerLogos = props => {
         >
           {logos.map((logo, idx) => (
             <LogoContainer key={`logo-${idx}`}>
-              <img key={`logo-${idx}`} src={logo} alt="" style={{display: 'block', height: '100%', objectFit: 'cover', margin: '20px'}}/>
+              <img key={`logo-${idx}`} src={logo} alt="" style={{display: 'block', height: idx === 3? '70%': ![1, 2].includes(idx)? '90%': '100%', objectFit: 'cover', margin: '20px'}}/>
             </LogoContainer>
           ))}
           {/* <img
