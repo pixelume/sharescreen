@@ -26,7 +26,7 @@ const PartnerLogos = props => {
     <Section slanted='3' backgroundColor="warmWhite" padding="0px 0px 40px">
         <ColInSection col={1} paddingDesktop="30px 0px">
           <H3 as="h2" textAlign="center" color="textDark1">
-            Our Partners
+          Founding Patrons
           </H3>
         </ColInSection>
         <ColInSection

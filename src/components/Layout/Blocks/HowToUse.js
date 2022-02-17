@@ -170,7 +170,7 @@ const HowToUse = () => {
     <Section backgroundColor='warmWhite'>
       <ColInSection col={1} padding='0 0 30px'>
         <H3 textAlign='center' color='#515c35'>
-          How to use Share Screen Africa
+          How to use ShareScreen Africa
         </H3>
         {/* <H3 textAlign='center'>Latest Presentations</H3> */}
       </ColInSection>
