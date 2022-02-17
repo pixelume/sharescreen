@@ -23,7 +23,7 @@ const IndexPage = ({ limit }) => {
       <VideoWithHeading />
       <Section backgroundColor={theme.nature['dfdfce']}>
         {/* <Section background='radial-gradient(ellipse, rgba(232,255,213,1) 0%, rgba(157,196,124,1) 100%)'> */}
-        <ColInSection col={6}>
+        <ColInSection col={1} display='flex' justifyContent='center'>
           <StaticImage
             width={100}
             height={100}
@@ -33,17 +33,17 @@ const IndexPage = ({ limit }) => {
             // imgStyle={{filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.25))'}}
           />
         </ColInSection>
-        <ColInSection col={6 / 5}>
+        <ColInSection col={1}>
           <H3 textAlign='center' margin='0px auto 50px'>
             What is ShareScreen Africa?
           </H3>
-          <P margin='0 auto 50px'>
+          <P margin='0 auto 50px' textAlign='center'>
             ShareScreen Africa is a Pan-African conservation-based tutorial
             initiative to the benefit of universities, researchers, colleges,
             conservation departments and related training institutions, as well
             as conservation-NGO’s.
           </P>
-          <div style={{ textAlign: 'right' }}>
+          <div style={{ textAlign: 'center' }}>
             <Button
               as={Link}
               to='/about'
