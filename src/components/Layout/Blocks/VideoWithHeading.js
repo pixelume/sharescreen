@@ -106,12 +106,12 @@ const VideoWithHeading = () => {
       <ColInSection
         col={1.2}
         textAlign='center'
-        backgroundColor='rgba(255,255,255,0.8)'
+        backgroundColor='rgba(255,255,255,0.6)'
         borderRadius='20px'
         padding='0 30px 50px'
       >
-        <H1 color='#3e452e'>Bringing experts into the classroom</H1>
-        <H3 color='#3e452e'>
+        <H1 color='#3e452e' textAlign='center'>Link Experts With Your Classroom</H1>
+        <H3 color='#3e452e' textAlign='center'>
           Interact Live With Leaders In The Fields of Nature Conservation
         </H3>
         {/* <Notification color="offWhite">Description Here</Notification> */}
@@ -140,7 +140,7 @@ const VideoWithHeading = () => {
             as={Link}
             to='/register'
             display='inline-block'
-            bgColor='5'
+            bgColor='#ADD272'
             style={{ color: 'white', cursor: 'pointer' }}
           >
             Register Free

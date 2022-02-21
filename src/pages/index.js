@@ -48,7 +48,7 @@ const IndexPage = ({ limit }) => {
               as={Link}
               to='/about'
               display='inline-block'
-              bgColor='5'
+              bgColor='#ADD272'
               style={{ color: 'white', cursor: 'pointer', margin: 'auto' }}
             >
               Learn More...
@@ -60,7 +60,7 @@ const IndexPage = ({ limit }) => {
       {/* <IconsWithDescriptionsiptions /> */}
       <Section padding='40px 0 70px' backgroundColor='#FFF'>
         <ColInSection col={1} padding='0 0 30px'>
-          <H3 textAlign='center' color='#515c35'>
+          <H3 textAlign='center' >
             Featured Presenters
           </H3>
           {/* <H3 textAlign='center'>Latest Presentations</H3> */}
