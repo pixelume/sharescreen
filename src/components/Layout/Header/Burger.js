@@ -54,9 +54,9 @@ export const StyledBurger = styled.button`
 const Burger = ({open, clickHandler}) => {
   return (
     <StyledBurger onClick={clickHandler} open={open}>
-      <div />
-      <div />
-      <div />
+      <div style={{backgroundColor: 'black'}}/>
+      <div style={{backgroundColor: 'black'}}/>
+      <div style={{backgroundColor: 'black'}}/>
     </StyledBurger>
   )
 }
