@@ -11,6 +11,7 @@ import { Button } from '../styles/Buttons';
 import { Link } from 'gatsby';
 import PresentersCards from '../components/presentersCards';
 import HowToUse from '../components/Layout/Blocks/HowToUse';
+import bgImage from '../images/lca-website-background.png'
 
 // I made a change to this file
 
@@ -21,8 +22,8 @@ const IndexPage = ({ limit }) => {
   return (
     <>
       <VideoWithHeading />
-      <Section backgroundColor={theme.nature['dfdfce']}>
-        {/* <Section background='radial-gradient(ellipse, rgba(232,255,213,1) 0%, rgba(157,196,124,1) 100%)'> */}
+      <Section style={{backgroundImage: `url(${bgImage})`}}>
+      {/* <Section backgroundColor={theme.nature['dfdfce']}> */}
         <ColInSection col={1} display='flex' justifyContent='center'>
           <StaticImage
             width={100}

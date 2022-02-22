@@ -41,7 +41,7 @@ const Footer = () => {
   const { setSubmitContact } = useContext(LayoutContext);
 
   return (
-    <FooterContainer padding='20px 5vw' color='warmWhite' bgColor='#88907d'>
+    <FooterContainer padding='20px 5vw' color='warmWhite' bgColor='#84986B'>
       <FooterColItem>
         <StaticImage
           width={70}
