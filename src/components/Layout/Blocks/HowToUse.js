@@ -127,7 +127,7 @@ const HowToUse = () => {
     },
     '& .MuiStep-root.Mui-completed': {
       borderRadius: '15px',
-      backgroundColor: '#dfdfce',
+      backgroundColor: '#ADD272',
       transition: 'background-color 0.5s ease-out',
       '& .MuiStepLabel-iconContainer': {
         transform: 'scale(1.2)',
@@ -167,7 +167,7 @@ const HowToUse = () => {
   // })
 
   return (
-    <Section backgroundColor='warmWhite'>
+    <Section backgroundColor='#84986B'>
       <ColInSection col={1} padding='0 0 30px'>
         <H3 textAlign='center'>
           How to use ShareScreen Africa
