@@ -16,7 +16,10 @@ import shuffle from '../functions/shuffleArray';
 const client = new ApolloClient({
   // uri: "http://localhost:1337/graphql",
   cache: new InMemoryCache(),
-  link: new HttpLink({ uri: `${process.env.GATSBY_STRAPI_URL}/graphql`, fetch }),
+  link: new HttpLink({
+    uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
+    fetch,
+  }),
   // link: new HttpLink({ uri: 'http://localhost:1337/graphql', fetch }),
 });
 
@@ -26,8 +29,8 @@ const RootElement = ({ children, location }) => {
   const [user, setUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [keywords, setKeywords] = useState([]);
-  const [category, setCategory] = useState('Uncategorised')
-  const [shuffledArr, setShuffledArr] = useState([])
+  const [category, setCategory] = useState('Uncategorised');
+  const [shuffledArr, setShuffledArr] = useState([]);
 
   // Climate Crisis
   // Aquatic Ecosystems
@@ -126,6 +129,28 @@ const RootElement = ({ children, location }) => {
           }
         }
       }
+      allStrapiEvent {
+        nodes {
+          date_time
+          id
+          presenter {
+            fullName
+            slug
+            qualifications
+            title
+          }
+          topic
+          zoom_link
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, height: 350, width: 350)
+              }
+            }
+          }
+          slug
+        }
+      }
       # allStrapiTag(sort: {fields: Title}) {
       #   nodes {
       #     Title
@@ -135,7 +160,8 @@ const RootElement = ({ children, location }) => {
   `);
 
   const presentationsArr = data.allStrapiPresentation.nodes;
-  const presentersArr = shuffle(data.allStrapiPresenter.nodes);
+  const presentersArr = data.allStrapiPresenter.nodes;
+  const eventsArr = data.allStrapiEvent.nodes;
   // const tagsArr = data.allStrapiTag.nodes;
   const privacyPolicy = data.strapiPrivacyPolicy.content;
   const termsConditions = data.strapiTermsAndConditionsPage.content;
@@ -160,7 +186,7 @@ const RootElement = ({ children, location }) => {
     if (storedUser && storedUser.jwt) {
       setUser(storedUser);
     }
-    setShuffledArr(shuffle(presentersArr))
+    setShuffledArr(shuffle(presentersArr));
   }, []);
 
   const providerValue = {
@@ -172,13 +198,14 @@ const RootElement = ({ children, location }) => {
     setKeywords,
     presentationsArr,
     presentersArr: shuffledArr,
+    eventsArr,
     // tagsArr,
     privacyPolicy,
     termsConditions,
     cookiePolicies,
     aboutPage,
     category,
-    setCategory
+    setCategory,
   };
 
   return (
