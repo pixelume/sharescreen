@@ -47,7 +47,7 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: process.env.STRAPI_URL,
-        collectionTypes: [`user`, `presenter`, `presentation`, `request`, `category`],
+        collectionTypes: [`user`, `presenter`, `presentation`, `request`, `category`, `event`],
         singleTypes: [`privacy-policy`, `cookie-policies`, `terms-and-conditions-page`, `about-page`],
       },
     },

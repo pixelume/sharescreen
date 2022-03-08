@@ -148,23 +148,6 @@ const HowToUse = () => {
     return () => clearTimeout(timeoutFn);
   }, [stepCount]);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth < 1024) {
-  //       if (!vertical) {
-  //         setVertical(true)
-  //       }
-  //     } else {
-  //       if (vertical) {
-  //         setVertical(false)
-  //       }
-  //     }
-  //   }
-  //   window.addEventListener('resize', handleResize)
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize)
-  //   }
-  // })
 
   return (
     <Section backgroundColor='#84986B'>

@@ -12,6 +12,7 @@ import { Link } from 'gatsby';
 import PresentersCards from '../components/presentersCards';
 import HowToUse from '../components/Layout/Blocks/HowToUse';
 import bgImage from '../images/lca-website-background.png'
+import Events from '../components/Layout/Blocks/Events';
 
 // I made a change to this file
 
@@ -75,6 +76,7 @@ const IndexPage = ({ limit }) => {
         )} */}
         {/* <Presentations limit={2}/> */}
       </Section>
+      <Events/>
       <PartnerLogos />
     </>
   );
