@@ -11,9 +11,8 @@ import { Button } from '../styles/Buttons';
 import { Link } from 'gatsby';
 import PresentersCards from '../components/presentersCards';
 import HowToUse from '../components/Layout/Blocks/HowToUse';
-import bgImage from '../images/lca-website-background.png'
+import bgImage from '../images/lca-website-background.png';
 import Events from '../components/Layout/Blocks/Events';
-
 // I made a change to this file
 
 const IndexPage = ({ limit }) => {
@@ -23,8 +22,8 @@ const IndexPage = ({ limit }) => {
   return (
     <>
       <VideoWithHeading />
-      <Section style={{backgroundImage: `url(${bgImage})`}}>
-      {/* <Section backgroundColor={theme.nature['dfdfce']}> */}
+      <Section style={{ backgroundImage: `url(${bgImage})` }}>
+        {/* <Section backgroundColor={theme.nature['dfdfce']}> */}
         <ColInSection col={1} display='flex' justifyContent='center'>
           <StaticImage
             width={100}
@@ -58,13 +57,11 @@ const IndexPage = ({ limit }) => {
           </div>
         </ColInSection>
       </Section>
-      <HowToUse/>
+      <HowToUse />
       {/* <IconsWithDescriptionsiptions /> */}
       <Section padding='40px 0 70px' backgroundColor='#FFF'>
         <ColInSection col={1} padding='0 0 30px'>
-          <H3 textAlign='center' >
-            Featured Presenters
-          </H3>
+          <H3 textAlign='center'>Featured Presenters</H3>
           {/* <H3 textAlign='center'>Latest Presentations</H3> */}
         </ColInSection>
         <ColInSection col={1} textAlign='center'>
@@ -76,7 +73,7 @@ const IndexPage = ({ limit }) => {
         )} */}
         {/* <Presentations limit={2}/> */}
       </Section>
-      <Events/>
+      <Events />
       <PartnerLogos />
     </>
   );

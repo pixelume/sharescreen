@@ -134,7 +134,8 @@ const VideoWithHeading = () => {
           // allowFullScreen
         ></iframe>
       </ColInSection> */}
-      {!user && (
+      
+      {/* {!user && (
         <ColInSection col={1} textAlign='center' padding='50px'>
           <Button
             as={Link}
@@ -146,7 +147,7 @@ const VideoWithHeading = () => {
             Register Free
           </Button>
         </ColInSection>
-      )}
+      )} */}
     </Section>
   );
 };

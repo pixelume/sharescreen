@@ -139,6 +139,8 @@ const RootElement = ({ children, location }) => {
             qualifications
             title
           }
+          presenter_full_name
+          presenter_title
           topic
           zoom_link
           image {

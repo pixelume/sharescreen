@@ -8,9 +8,14 @@ import 'sanitize.css/typography.css';
 import ContactUsForm from '../Forms/ContactUs/ContactUsForm';
 import Modal from '../Modal';
 import { H3 } from './Body/StyledTags';
+
 // import { Context } from '../RootElement';
 // import { navigate } from 'gatsby';
 // import RequestSpeakerForm from '../Forms/RequestSpeakerForm/RequestSpeakerForm';
+import { Fab } from '@mui/material';
+import { FaRegCalendarCheck } from 'react-icons/fa';
+import { Box } from '@mui/material/Box';
+import { Link } from 'gatsby';
 
 const MainContainer = styled.div`
   display: flex;
@@ -29,7 +34,7 @@ const Layout = ({ children, location }) => {
   const { pathname } = location;
   const [requestSpeaker, setRequestSpeaker] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
-  const [refetchPresenterProfile, setRefetchPresenterProfile] = useState(false)
+  const [refetchPresenterProfile, setRefetchPresenterProfile] = useState(false);
   const [openVideo, setOpenVideo] = useState(false);
   const [submitContact, setSubmitContact] = useState(false);
   // const {user} = useContext(Context)
@@ -54,11 +59,32 @@ const Layout = ({ children, location }) => {
         setOpenVideo,
         setSubmitContact,
         refetchPresenterProfile,
-        setRefetchPresenterProfile
+        setRefetchPresenterProfile,
       }}
     >
       <MainContainer>
         {children}
+        <Fab
+          variant='extended'
+          aria-label='add'
+          color='success'
+          sx={{
+            position: 'fixed',
+            bottom: '25px',
+            right: '25px',
+            fontWeight: 'bold',
+            alignItems: 'center',
+            '&>a': {color: 'white'},
+            '&:hover': { backgroundColor: '#84986b' },
+          }}
+        >
+          <Link to='#events' style={{display: 'flex', alignItems: 'center'}}>
+            <span style={{ fontSize: '2em' }}>
+              <FaRegCalendarCheck />
+            </span>
+            &nbsp;&nbsp; Register for an upcoming talk
+          </Link>
+        </Fab>
         <Footer />
       </MainContainer>
       <Header />
