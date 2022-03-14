@@ -6,7 +6,7 @@ import {
 import { IoCreateOutline, IoPeopleOutline } from 'react-icons/io5';
 import { RiHomeLine } from 'react-icons/ri';
 import { VscLibrary } from 'react-icons/vsc';
-import {FaUserCircle} from 'react-icons/fa';
+import {FaUserCircle, FaRegCalendarCheck} from 'react-icons/fa';
 import {AiOutlineInfoCircle} from 'react-icons/ai';
 import React from 'react';
 
@@ -65,7 +65,15 @@ const navData = [
     show: 'loggedIn',
     role: 'Any',
     icon: <FaUserCircle />,
-  }
+  },
+  {
+    text: 'Events',
+    id: 'Events',
+    link: '#events',
+    show: 'both',
+    role: 'Any',
+    icon: <FaRegCalendarCheck />,
+  },
 ];
 
 export default navData;

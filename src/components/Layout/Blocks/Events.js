@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import React from 'react';
 import { Section, ColInSection, H3, P } from '../';
 import { useContext } from 'react';
@@ -79,9 +80,9 @@ const Events = () => {
                 By:{' '}
               </H3>
               <P margin='0px' textAlign='left'>
-                {`${item.presenter.title ?? ''} ${item.presenter.fullName}`}
+                {`${item.presenter?.title ?? item.presenter_title} ${item.presenter?.fullName ?? item.presenter_full_name}`}
                 <br />
-                {item.presenter.qualifications ? (
+                {item.presenter?.qualifications ? (
                   <>
                     {item.presenter.qualifications.map((qual, idx) => (
                       <span key={`qual-${idx}`}>{qual},&nbsp;</span>
@@ -92,10 +93,12 @@ const Events = () => {
             </Box>
           </Grid>
           <Grid item>
-            <Box
+            <Button
+              variant='contained'
+              color='success'
               sx={{
                 p: 1.5,
-                '&> h3 > a': { color: 'white', textDecoration: 'underline' },
+                '&> h3 > a': { color: 'white'},
               }}
             >
               <H3>
@@ -104,10 +107,10 @@ const Events = () => {
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  Register Here
+                  Register to join
                 </a>
               </H3>
-            </Box>
+            </Button>
           </Grid>
         </Grid>
       </Grid>

@@ -13,14 +13,14 @@ const navData = [
     role: 'Any',
     icon: <AiOutlineLogin />,
   },
-  {
-    text: 'Register',
-    id: 'Register',
-    link: '/register',
-    show: 'loggedOut',
-    role: 'Any',
-    icon: <AiOutlineUserAdd />,
-  }
+  // {
+  //   text: 'Register',
+  //   id: 'Register',
+  //   link: '/register',
+  //   show: 'loggedOut',
+  //   role: 'Any',
+  //   icon: <AiOutlineUserAdd />,
+  // }
 ];
 
 export default navData;
