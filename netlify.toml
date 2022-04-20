@@ -4,11 +4,3 @@ publish = "public/"
 
 [[plugins]]
 package = "@netlify/plugin-gatsby"
-
-[[redirects]]
-  from = "/events"
-  to = "/"
-  status = 301
-  force = false
-  query = {path = ":path"}
-  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}

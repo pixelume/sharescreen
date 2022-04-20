@@ -1,8 +1,18 @@
 const path = require(`path`);
-const { createRemoteFileNode } = require("gatsby-source-filesystem")
-require("dotenv").config({
+const { createRemoteFileNode } = require('gatsby-source-filesystem');
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type EventJson implements Node {
+      presenter: StrapiEventPresenter!
+    }
+  `;
+  createTypes(typeDefs);
+};
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
