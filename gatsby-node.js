@@ -1,8 +1,81 @@
 const path = require(`path`);
-const { createRemoteFileNode } = require("gatsby-source-filesystem")
-require("dotenv").config({
+const { createRemoteFileNode } = require('gatsby-source-filesystem');
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type StrapiEvent implements Node {
+      presenter: StrapiEventPresenter
+    }
+    type StrapiEventPresenter implements Node {
+      surname: String
+      phone: String
+      city: String
+      availableHours: Int
+      email: String
+      country: String
+      slug: String
+      subjectMatter: [String]
+      industryMemberships: [String]
+      biography: String
+      name: String
+      role: String
+      institution: String
+      qualifications: [String]
+      title: String
+      profileVerified: Boolean
+      profilePicture: StrapiEventPresenterProfilePicture
+      fullName: String
+    }
+
+    type StrapiEventPresenterProfilePicture implements Node {
+      name: String
+      alternativeText: String
+      caption: String
+      width: Int
+      height: Int
+      formats: StrapiEventPresenterProfilePictureFormats
+      hash: String
+      ext: String
+      mime: String
+      size: Float
+      url: String
+      provider: String
+      provider_metadata: StrapiEventPresenterProfilePictureProvider_metadata
+      localFile: File
+    }
+    
+    type StrapiEventPresenterProfilePictureFormats implements Node {
+      thumbnail: StrapiEventPresenterProfilePictureFormatsThumbnail
+    }
+
+    type StrapiEventPresenterProfilePictureProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
+    }
+
+    type StrapiEventPresenterProfilePictureFormatsThumbnail implements Node {
+      ext: String
+      url: String
+      hash: String
+      mime: String
+      name: String
+      size: Float
+      width: Int
+      height: Int
+      provider_metadata: StrapiEventPresenterProfilePictureFormatsThumbnailProvider_metadata
+    }
+
+    type StrapiEventPresenterProfilePictureFormatsThumbnailProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
+    }
+  `;
+  createTypes(typeDefs);
+};
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
