@@ -7,8 +7,147 @@ require('dotenv').config({
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
-    type EventJson implements Node {
-      presenter: StrapiEventPresenter!
+    type StrapiEvent implements Node {
+      topic: String
+      presenter: StrapiEventPresenter
+      date_time(
+        difference: String
+        formatString: String
+        fromNow: Boolean
+        locale: String
+      ): Date
+      zoom_link: String
+      Description: String
+      slug: String
+      presenter_full_name: String
+      presenter_title: String
+      image: StrapiEventImage
+      strapiId: Int
+    }
+    type StrapiEventPresenter implements Node {
+      surname: String
+      phone: String
+      city: String
+      availableHours: Int
+      email: String
+      country: String
+      slug: String
+      subjectMatter: [String]
+      industryMemberships: [String]
+      biography: String
+      name: String
+      role: String
+      institution: String
+      qualifications: [String]
+      title: String
+      profileVerified: Boolean
+      profilePicture: StrapiEventPresenterProfilePicture
+      fullName: String
+    }
+
+    type StrapiEventImage implements Node {
+      id: Int
+      name: String
+      alternativeText: String
+      caption: String
+      width: Int
+      height: Int
+      formats: StrapiEventImageFormats
+      hash: String
+      ext: String
+      mime: String
+      size: Float
+      url: String
+      provider: String
+      provider_metadata: StrapiEventImageProvider_metadata
+      localFile: File
+    }
+
+    type StrapiEventPresenterProfilePicture implements Node {
+      name: String
+      alternativeText: String
+      caption: String
+      width: Int
+      height: Int
+      formats: StrapiEventPresenterProfilePictureFormats
+      hash: String
+      ext: String
+      mime: String
+      size: Float
+      url: String
+      provider: String
+      provider_metadata: StrapiEventPresenterProfilePictureProvider_metadata
+      localFile: File
+    }
+    
+    type StrapiEventImageFormats implements Node {
+      small: StrapiEventImageFormatsSmall
+      thumbnail: StrapiEventImageFormatsThumbnail
+    }
+
+    type StrapiEventImageProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
+    }
+
+    type StrapiEventPresenterProfilePictureFormats implements Node {
+      thumbnail: StrapiEventPresenterProfilePictureFormatsThumbnail
+    }
+
+    type StrapiEventPresenterProfilePictureProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
+    }
+
+    type StrapiEventImageFormatsSmall implements Node {
+      ext: String
+      url: String
+      hash: String
+      mime: String
+      name: String
+      size: Float
+      width: Int
+      height: Int
+      provider_metadata: StrapiEventImageFormatsSmallProvider_metadata
+    }
+
+    type StrapiEventImageFormatsThumbnail implements Node {
+      ext: String
+      url: String
+      hash: String
+      mime: String
+      name: String
+      size: Float
+      width: Int
+      height: Int
+      provider_metadata: StrapiEventImageFormatsThumbnailProvider_metadata
+    }
+
+    type StrapiEventPresenterProfilePictureFormatsThumbnail implements Node {
+      ext: String
+      url: String
+      hash: String
+      mime: String
+      name: String
+      size: Float
+      width: Int
+      height: Int
+      provider_metadata: StrapiEventPresenterProfilePictureFormatsThumbnailProvider_metadata
+    }
+
+    type StrapiEventImageFormatsSmallProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
+    }
+
+    type StrapiEventImageFormatsThumbnailProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
+    }
+
+    type StrapiEventPresenterProfilePictureFormatsThumbnailProvider_metadata implements Node {
+      public_id: String
+      resource_type: String
     }
   `;
   createTypes(typeDefs);
